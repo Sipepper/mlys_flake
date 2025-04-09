@@ -3,7 +3,6 @@
   imports = [
     ./default.nix
   ];
-
   programs.waybar = {
     enable = true;
     settings = {
