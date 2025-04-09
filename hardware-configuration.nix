@@ -29,6 +29,12 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home/mlys/sata" =
+    { device = "/dev/disk/by-uuid/7f81cf18-3581-4814-91b6-1ca84cf4f990";
+      fsType = "ext4";
+      options = [ "noatime" "nodiratime" "discard" ];
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
