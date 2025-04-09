@@ -477,7 +477,7 @@
       tab_bar_style = "powerline";
       scrollback_lines = 100000;
       scrollback_pager = "bat --chop-long-lines";
-      cursor_trail = 3;
+      # cursor_trail = 3;
 
       window_margin_width = 0;
       window_border_width = 0;
@@ -1169,7 +1169,8 @@
     gsettings-desktop-schemas       # Needed for Sioyek TODO still broken
     tldr               # Offline command Manual, substitute for `man` command
     osu-lazer-bin
-    glfw
+    wev
+
 
 
   ] ++ (if config.default.isPC then [
@@ -1213,7 +1214,7 @@
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "QT_QPA_PLATFORMTHEME,gtk"
+        "QT_QPA_PLATFORMTHEME,wayland"
         "GSETTINGS_SCHEMA_DIR, ${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
         "LD_LIBRARY_PATH=\$\{LD_LIBRARY_PATH\}:${ pkgs.lib.makeLibraryPath [ pkgs.vulkan-loader ] }"
         "XDG_CURRENT_DESKTOP,Hyprland"
