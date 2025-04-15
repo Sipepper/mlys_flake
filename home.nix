@@ -1205,6 +1205,7 @@
         "waybar"
         "hyprpaper"
         "steam -silent"
+        "slack -u"
         "easyeffects --gapplication-service"
         "discord --start-minimized"
         "telegram-desktop -startintray"
@@ -1226,7 +1227,7 @@
         "XDG_SESSION_TYPE,wayland"
         "MOZ_ENABLE_WAYLAND,1"
         "GDK_SCALE,auto"
-        "GTK_USE_PORTAL=1"
+        # "GTK_USE_PORTAL=1"
       ];
       general = {
         gaps_in = "2";
