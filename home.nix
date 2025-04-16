@@ -1173,6 +1173,8 @@
     hyprpicker         # Another Color picker need further comparison with wl-color-picker
     slack              # Business communication (Discord for KSE)
     slack-term         # TUI Slack
+    gcalcli            # TUI Google Calendar
+    viber
 
 
 
