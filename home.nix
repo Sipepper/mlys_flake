@@ -22,6 +22,7 @@
       TERMINAL = "kitty";
       PAGER = "bat --plain";
       MANPAGER = "bat --plain";
+      NNN_FCOLORS = "0B0B04060006060009060B06";
 
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
     };
