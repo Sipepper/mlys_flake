@@ -149,6 +149,7 @@
     MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;
     GSETTINGS_SCHEMAS_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}";
+    NNN_FIFO = "/tmp/nnn.fifo";
   };
 
   environment.systemPackages = with pkgs; [

@@ -79,6 +79,7 @@
     settings = {
       enable_audio_bell = false;
       allow_remote_control = true;
+      listen_on = "unix:kitty";
       tab_bar_edge  = "top";
       tab_bar_style = "powerline";
       scrollback_lines = 100000;
@@ -125,15 +126,16 @@
   # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/prefs.config
   # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
 
-  services.tldr-update.enable = true;
-
+  services = {
   # Don't work, cannot get info
-  services.redshift.enable = true;
-  services.redshift.provider = "geoclue2";
+    redshift.enable = true;
+    redshift.provider = "geoclue2";
 
-  services.easyeffects = {
-    enable = true;
+    easyeffects.enable = true;
+    tldr-update.enable = true;
+    preload.enable = true;
   };
+
 
   programs.mangohud.enable = true;
 
@@ -264,6 +266,7 @@
     gcalcli              # TUI Google Calendar
     viber
     prismlauncher
+    w3m-nox
 
   ] ++ (if config.default.isPC then [
       # PC Soft
