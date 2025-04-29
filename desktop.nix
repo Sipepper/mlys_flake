@@ -150,11 +150,11 @@
         # screenshot of the whole screen
         ''SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | mako "Screenshot of whole screen taken" -t 1000''
         "$mainMod, Q, exec, $terminal --class=terminal"
-        # "$mainMod, O, exec, obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland"
-        "$mainMod, O, exec, obsidian"
+        "$mainMod, O, exec, obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland"
+        # "$mainMod, O, exec, obsidian"
         "$mainMod, C, killactive,"
         "$mainMod, E, exec, $fileManager"
-        "$mainMod, R, exec, $terminal -e ranger"
+        "$mainMod, R, exec, $terminal -e nnn"
         "$mainMod, N, exec, $terminal -e nvim"
         "$mainMod, G, exec, kega-fusion"
         "$mainMod, M, exec, $menu"
@@ -237,7 +237,7 @@
 
         "float,        class:(terminal)"
         "center,       class:(terminal)"
-        "size <30% <30%, class:(terminal)"
+        "size <40% <40%, class:(terminal)"
 
         "float,        title:(Picture-in-Picture)"
         "center,       title:(Picture-in-Picture)"
