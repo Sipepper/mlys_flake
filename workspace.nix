@@ -14,10 +14,17 @@
 
     nnn = {
       enable = true;
+      package = pkgs.nnn.override { withNerdIcons = true;};
       extraPackages = with pkgs; [
         file
       ];
       plugins = {
+        src = (pkgs.fetchFromGitHub {
+          owner = "jarun";
+          repo = "nnn";
+          rev = "9a2bfc0f1fe4025a558ad0e1e859a946709498fb";
+          sha256 = "sha256-Hpc8YaJeAzJoEi7aJ6DntH2VLkoR6ToP6tPYn3llR7k=";
+        }) + "/plugins";
         mappings = {
           v = "preview-tui";
         };
@@ -31,6 +38,12 @@
       defaultEditor = true;
       vimdiffAlias = true;
       colorschemes.nightfox.enable = true;
+      extraConfigLua = ''
+        require("nnn").setup({
+          replace_netrw = "picker",
+          -- windownav = "<C-l>"
+        });
+      '';
       extraPlugins = with pkgs; [
         tree-sitter-grammars.tree-sitter-nu
         vimPlugins.nnn-vim
