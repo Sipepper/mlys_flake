@@ -86,10 +86,10 @@
       scrollback_pager = "bat --chop-long-lines";
       # cursor_trail = 3;
 
-      window_margin_width = 0;
-      window_border_width = 0;
+      # window_margin_width = 0;
+      # window_border_width = 0;
       remember_window_size = false;
-      draw_minimal_borders = false;
+      # draw_minimal_borders = false;
     };
     themeFile = "Wombat";
   };
@@ -133,7 +133,6 @@
 
     easyeffects.enable = true;
     tldr-update.enable = true;
-    preload.enable = true;
   };
 
 
@@ -159,6 +158,8 @@
         use_kitty_protocol:               true
       }
     '';
+    # environmentVariables = {
+    # };
   };
 
   programs.feh = {
