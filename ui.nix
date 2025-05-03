@@ -7,14 +7,15 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    # config = {
-    #   common.default = [ "gtk" "termfilechooser" ];
-    #   hyprland.default = [ "termfilechooser" "gtk" "hyprland" ];
-    #   qt5.default = [ "gtk" "termfilechooser" ];
-    # };
+    config = {
+      hyprland = {
+        default = [ "hyprland" "termfilechooser" "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+      };
+    };
     extraPortals = [ 
-      pkgs.xdg-desktop-portal-gtk 
       pkgs.xdg-desktop-portal-termfilechooser
+      pkgs.xdg-desktop-portal-gtk 
       pkgs.xdg-desktop-portal-hyprland 
     ];
   };

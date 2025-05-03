@@ -12,10 +12,10 @@
       splash = false;
       splash_offset = 2.0;
 
-      preload = [ ".wallpaper.jpg" ];
+      preload = [ ./space.jpg ];
 
       wallpaper = [
-        ", .wallpaper.jpg"
+        ", ${./space.jpg}"
       ];
     };
   };
@@ -57,8 +57,9 @@
         rounding = "0";
         active_opacity = "1.0";
         inactive_opacity = "1.0";
+        shadow.enabled = false;
         blur = {
-          enabled = true;
+          enabled = false;
           size = "3";
           passes = "1";
           vibrancy = "0.1696";
@@ -67,7 +68,7 @@
       exec-once = [
         "waybar"
         "hyprpaper"
-        "steam -silent"
+        "steam -silent -forcedesktopscaling 1.5"
         "slack -u"
         "easyeffects --gapplication-service"
         "discord --start-minimized"
@@ -75,20 +76,21 @@
         "udiskie"
         "hyprctl setcursor ${config.default.cursor.name} 24"
         "kitty -e aerc"
-        # "whatsapp-for-linux"
       ];
       env = [
         "CLUTTER_BACKEND,wayland"
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "QT_QPA_PLATFORMTHEME,wayland"
+        "QT_QPA_PLATFORMTHEME,gtk3"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "MOZ_ENABLE_WAYLAND,1"
         "GDK_SCALE,auto"
-        # "GTK_USE_PORTAL=1"
+        "NNN_FCOLORS = 0B0B04060006060009060B06"
+        "GTK_USE_PORTAL=1"
+        "GSETTINGS_SCHEMAS_DIR,${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
       ];
       general = {
         gaps_in = "2";
@@ -111,6 +113,7 @@
       misc = { 
         force_default_wallpaper = "-1"; 
         disable_hyprland_logo = false; 
+        vfr = true;
       };
       input = {
         kb_layout = "us,ua,ru"; #,ru
@@ -210,6 +213,7 @@
         "float,        initialClass:(mpv)"
 
         "float,        class:(org.telegram.desktop)"
+        "float,        title:(Choose Files)"
 
         "tile,         class:Aseprite"
 
@@ -229,11 +233,11 @@
 
         "float,        title:(Save File)"
         "center,       title:(Save File)"
-        "size 800 400, title:(Save File)"
+        # "size 800 400, title:(Save File)"
 
         "float,                   class:(btop)"
         "move 2% 5%,        class:(btop)"
-        "size <30% <50%, class:(terminal)"
+        "size <30% <60%, class:(btop)"
 
         "float,        class:(terminal)"
         "center,       class:(terminal)"

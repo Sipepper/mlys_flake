@@ -85,16 +85,13 @@
       scrollback_lines = 100000;
       scrollback_pager = "bat --chop-long-lines";
       # cursor_trail = 3;
+      enabled_layouts = "all";
+      background = "#192330";
 
-      # window_margin_width = 0;
-      # window_border_width = 0;
       remember_window_size = false;
-      # draw_minimal_borders = false;
     };
     themeFile = "Wombat";
   };
-
-  programs.ranger.enable = true; 
 
   programs.sioyek = {
     enable = true;
@@ -268,6 +265,8 @@
     viber
     prismlauncher
     w3m-nox
+    lshw                 # Hardware info
+
 
   ] ++ (if config.default.isPC then [
       # PC Soft

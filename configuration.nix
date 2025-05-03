@@ -29,6 +29,7 @@
       "application/x-directory" = "thunar.desktop";
       "application/pdf" = "sioyek.desktop";
       "application/xopp" = "xournal.desktop";
+      "text/plain" = "nvim.desktop";
     };
   };
 
@@ -89,6 +90,9 @@
       enable = true; 
       efiSupport = true;
       device = "nodev";
+      splashImage = ./grub.jpg;
+      font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf";
+      fontSize = 16;
     };
     efi.canTouchEfiVariables = true;
   };
@@ -156,7 +160,7 @@
     PAGER = "bat --plain";
     MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;
-    GSETTINGS_SCHEMAS_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}";
+    GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
     NNN_FIFO = "/tmp/nnn.fifo";
   };
 
@@ -173,34 +177,27 @@
     fd
     sshfs
     xorg.xhost
+    glib
     # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
     cargo-expand 
     cargo-fuzz   
     evcxr 
-    vulkan-volk
-    vulkan-headers
-    vulkan-loader
-    vulkan-validation-layers
-    vulkan-tools 
-    # catppuccin-sddm.override {
-    #   flavor = "macchiato";
-    #   font  = pkgs.nerd-fonts.iosevka;
-    #   fontSize = "12";
-    # }
     catppuccin-sddm
     gtk3
     adwaita-icon-theme
+    gsettings-desktop-schemas
 
   ];
 
   hardware.opentabletdriver.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   swapDevices = [{
     device = "/swapfile";
     size = 16 * 1024;
   }];
 
-  programs.kdeconnect.enable = true;
   programs.gamemode.enable = true;
 
 
@@ -212,6 +209,8 @@
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
   services.gnome.gnome-keyring.enable = true;
+
+  services.blueman.enable = true;
 
 
   # Some programs need SUID wrappers

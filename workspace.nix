@@ -6,6 +6,10 @@
   ];
 
   programs = {
+    fzf = {
+      enable = true;
+    };
+
     git = {
       enable = true;
       userName = "Sipepper";
@@ -22,7 +26,7 @@
         src = (pkgs.fetchFromGitHub {
           owner = "jarun";
           repo = "nnn";
-          rev = "9a2bfc0f1fe4025a558ad0e1e859a946709498fb";
+          rev = "4.0";
           sha256 = "sha256-Hpc8YaJeAzJoEi7aJ6DntH2VLkoR6ToP6tPYn3llR7k=";
         }) + "/plugins";
         mappings = {
@@ -38,12 +42,15 @@
       defaultEditor = true;
       vimdiffAlias = true;
       colorschemes.nightfox.enable = true;
-      extraConfigLua = ''
-        require("nnn").setup({
-          replace_netrw = "picker",
-          -- windownav = "<C-l>"
-        });
-      '';
+      # extraConfigLua = ''
+      #   require("nnn").setup({
+      #     replace_netrw = "picker",
+      #     -- windownav = "<C-l>"
+      #     picker = {
+      #       cmd = "nnn -P v";
+      #     };
+      #   });
+      # '';
       extraPlugins = with pkgs; [
         tree-sitter-grammars.tree-sitter-nu
         vimPlugins.nnn-vim
@@ -260,9 +267,7 @@
           enable = true;
           servers = {
             lua_ls.enable = true;
-            quick_lint_js = {
-              enable = true;
-            };
+            ts_ls.enable = true;
             rust_analyzer = {
               enable = true;
               installCargo = true;
@@ -306,12 +311,6 @@
             };
             indent.enable = true;
           };
-        };
-        # neo-tree = { enable = true; };
-        chadtree = {
-          enable = true;
-          theme.textColourSet = "nord";
-          view.openDirection = "right";
         };
 
         vimtex = {
