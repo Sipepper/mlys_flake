@@ -1,8 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
+{config, pkgs, inputs, ... }:
 { 
   imports =
     [ # Include the results of the hardware scan. ./hardware-configuration.nix
@@ -19,6 +18,46 @@
     vistafonts
   ];
 
+  environment.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    BROWSER = "firefox";
+    TERMINAL = "kitty";
+    PAGER = "bat --plain";
+    MANPAGER = "bat --plain";
+    NIXOS_OZONE_WL = 1;
+    GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
+    NNN_FIFO = "/tmp/nnn.fifo";
+  };
+
+  environment.systemPackages = with pkgs; [
+    wl-clipboard
+    system-config-printer
+    nix-prefetch
+    nix-prefetch-git
+    gdb
+    wget
+    gcc_multi
+    unzip
+    udiskie
+    fd
+    sshfs
+    xorg.xhost
+    glib
+    # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
+    cargo-expand 
+    cargo-fuzz   
+    evcxr 
+    catppuccin-sddm
+    gtk3
+    adwaita-icon-theme
+    gsettings-desktop-schemas
+
+  ];
+
+  main-user.enable = true;
+  main-user.userName = "mlys";
+
   xdg.mime = {
     enable = true;
     # removedAssociations = { 
@@ -30,59 +69,100 @@
       "application/pdf" = "sioyek.desktop";
       "application/xopp" = "xournal.desktop";
       "text/plain" = "nvim.desktop";
+      "text/markdown" = "nvim.desktop";
     };
   };
 
+  services = {
+    preload.enable = true;
 
-  services.preload.enable = true;
+    # Enable automatic login for the user.
+    getty.autologinUser = "mlys";
 
-  programs.dconf.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "catppuccin-mocha";
+      package = pkgs.kdePackages.sddm;
+    };
 
-  programs.gamescope.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ 
+        pkgs.samsung-unified-linux-driver 
+        pkgs.splix 
+        pkgs.gutenprint 
+        pkgs.gutenprintBin
+      ];
+    };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };	
-  main-user.enable = true;
-  main-user.userName = "mlys";
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
 
-  # Enable automatic login for the user.
-  services.getty.autologinUser = "mlys";
+    udisks2.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm = {
-    wayland.enable = true;
-    theme = "catppuccin-mocha";
-    package = pkgs.kdePackages.sddm;
+    xserver = {
+      autoRepeatInterval = 30;
+      autoRepeatDelay = 100;
+    };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    gnome.gnome-keyring.enable = true;
+
+    blueman.enable = true;
   };
 
-  services.printing.enable = true;
-  services.printing.drivers = [ 
-    pkgs.samsung-unified-linux-driver 
-    pkgs.splix 
-    pkgs.gutenprint 
-    pkgs.gutenprintBin
-  ];
+  programs = {
+    dconf.enable = true;
 
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
+    gamescope.enable = true;
+
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    };	
+
+    seahorse.enable = true;
+    gamemode.enable = true;
+    thunar.enable = true;
+    xfconf.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+    # Some programs need SUID wrappers
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
   };
 
-  services.udisks2.enable = true;
+  hardware = {
+    opentabletdriver.enable = true;
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
+  };
 
   security = {
+    pam.services.login.enableGnomeKeyring = true;
     rtkit.enable = true;
     polkit.enable = true;
   };
 
-  security.pam.services.login.enableGnomeKeyring = true;
-
-  programs.seahorse.enable = true;
 
   # boot.loader.systemd-boot.enable = true;
   boot.loader = {
@@ -120,16 +200,6 @@
     LC_TIME = "uk_UA.UTF-8";
   };
 
-  services.xserver.autoRepeatInterval = 30;
-  services.xserver.autoRepeatDelay = 100;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mlys = {
@@ -153,72 +223,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.sessionVariables = {
-    EDITOR = "nvim";
-    BROWSER = "firefox";
-    TERMINAL = "kitty";
-    PAGER = "bat --plain";
-    MANPAGER = "bat --plain";
-    NIXOS_OZONE_WL = 1;
-    GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
-    NNN_FIFO = "/tmp/nnn.fifo";
-  };
-
-  environment.systemPackages = with pkgs; [
-    wl-clipboard
-    system-config-printer
-    nix-prefetch
-    nix-prefetch-git
-    gdb
-    wget
-    gcc_multi
-    unzip
-    udiskie
-    fd
-    sshfs
-    xorg.xhost
-    glib
-    # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
-    cargo-expand 
-    cargo-fuzz   
-    evcxr 
-    catppuccin-sddm
-    gtk3
-    adwaita-icon-theme
-    gsettings-desktop-schemas
-
-  ];
-
-  hardware.opentabletdriver.enable = true;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
   swapDevices = [{
     device = "/swapfile";
     size = 16 * 1024;
   }];
-
-  programs.gamemode.enable = true;
-
-
-  programs.thunar.enable = true;
-  programs.xfconf.enable = true;
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
-
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-
-  services.blueman.enable = true;
-
-
-  # Some programs need SUID wrappers
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   system.stateVersion = "24.05"; # Did you read the comment?
   system.autoUpgrade.enable = true;
