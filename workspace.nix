@@ -16,6 +16,7 @@
       userEmail = "valera1gribnik@gmail.com";
     };
 
+    # TUI File manager
     nnn = {
       enable = true;
       package = pkgs.nnn.override { withNerdIcons = true;};
@@ -32,15 +33,14 @@
         mappings = {
           v = "preview-tui";
         };
+        
       };
     };
-    helix.enable = true;
-
-    # TUI File manager
     nixvim = {
       enable = true;
       defaultEditor = true;
       vimdiffAlias = true;
+      # performance.combinePlugins.enable = true;
       colorschemes.nightfox.enable = true;
       # extraConfigLua = ''
       #   require("nnn").setup({
@@ -52,11 +52,15 @@
       #   });
       # '';
       extraPlugins = with pkgs; [
-        tree-sitter-grammars.tree-sitter-nu
         vimPlugins.nnn-vim
       ];
 
-      globals.mapleader = " ";
+
+      globals = {
+        mapleader = " ";
+        _ts_force_sync_parsing = true;
+      };
+
 
       opts = {
         smartcase = true;
