@@ -266,6 +266,9 @@
     prismlauncher
     w3m-nox
     lshw                 # Hardware info
+    usbutils
+    celestia
+    
 
 
   ] ++ (if config.default.isPC then [
