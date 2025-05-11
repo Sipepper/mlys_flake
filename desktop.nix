@@ -12,10 +12,10 @@
       splash = false;
       splash_offset = 2.0;
 
-      preload = [ ./space.jpg ];
+      preload = [ ./assets/space.jpg ];
 
       wallpaper = [
-        ", ${./space.jpg}"
+        ", ${./assets/space.jpg}"
       ];
     };
   };
@@ -214,6 +214,11 @@
 
         "float,        class:(org.telegram.desktop)"
         "float,        title:(Choose Files)"
+        "float,        title:(Select Document)"
+        "float,        title:(Choose modpack)"
+
+        "float,        class:(.blueman-manager-wrapped)"
+
 
         "tile,         class:Aseprite"
 
@@ -235,9 +240,9 @@
         "center,       title:(Save File)"
         # "size 800 400, title:(Save File)"
 
-        "float,                   class:(btop)"
-        "move 2% 5%,        class:(btop)"
-        "size <30% <60%, class:(btop)"
+        "float,            class:(btop)"
+        "move 2% 5%,       class:(btop)"
+        "size <45% <55%,   class:(btop)"
 
         "float,        class:(terminal)"
         "center,       class:(terminal)"
@@ -277,6 +282,7 @@
           "cpu" 
           "custom/easyeffects" 
           "custom/pyradio" 
+          "custom/blueman" 
           "backlight"
         ];
         modules-center = ["tray"];
@@ -300,11 +306,11 @@
           format = "{icon}";
           all-outputs = true;
           format-icons = {
-            "1" = "";
-            "2" = "󱣛";
-            "3" = "󰊗";
-            "4" = "󰡱";
-            "5" = "󰄻";
+            "1" = " ";
+            "2" = "󱣛 ";
+            "3" = "󰊗 ";
+            "4" = "󰡱 ";
+            "5" = "󰄻 ";
             "6" = "󰃻";
           };
           persistent-workspaces = {
@@ -320,7 +326,7 @@
         "cpu" = {
           format = " {usage}%";
           tooltip = false;
-          on-click = "kitty -e --class=btop btop";
+          on-click = "kitty -e --class=btop -o font_size=8 btop";
         };
         "disk" = {
           format = " {}%";
@@ -413,6 +419,11 @@
           tooltip = false;
           format = "  ";
           on-click = "easyeffects";
+        };
+        "custom/blueman" = {
+          tooltip = false;
+          format = "󰂯";
+          on-click = "blueman-manager";
         };
         "custom/pyradio" = {
           tooltip = false;
