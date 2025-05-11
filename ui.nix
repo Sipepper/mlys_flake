@@ -9,7 +9,7 @@
     xdgOpenUsePortal = true;
     config = {
       hyprland = {
-        default = [ "hyprland" "termfilechooser" "gtk" ];
+        default = [ "termfilechooser" "gtk" ];
         "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
       };
     };
