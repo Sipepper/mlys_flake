@@ -15,6 +15,14 @@
     ".config/pyradio/config".text = ''
       theme = catppuccin-mocha
     '';
+    ".space.jpg" = {
+      source = ./assets/space.jpg;
+    };
+
+    "Games/sega" = {
+      source = ./assets/sega;
+    };
+
   };
 
 }
