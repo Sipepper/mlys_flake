@@ -31,7 +31,7 @@
         smart-enter = pkgs.yaziPlugins.smart-enter;
         rsync = pkgs.yaziPlugins.smart-enter;
         full-border = pkgs.yaziPlugins.full-border;
-
+        relative-motions = pkgs.yaziPlugins.relative-motions;
       };
 
     };
