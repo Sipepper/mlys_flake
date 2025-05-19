@@ -23,7 +23,7 @@ table.insert(bookmarks, {
 })
 
 
-require("yamb"):setup {
+require("yamb"):setup({
   -- Optional, the path ending with path seperator represents folder.
   bookmarks = bookmarks,
   -- Optional, recieve notification everytime you jump.
@@ -35,7 +35,7 @@ require("yamb"):setup {
   -- Optional, the path of bookmarks
   path = (ya.target_family() == "windows" and os.getenv("APPDATA") .. "\\yazi\\config\\bookmark") or
     (os.getenv("HOME") .. "/.config/yazi/bookmark"),
-}
+})
 
 require("full-border"):setup()
 require("relative-motions"):setup({ show_numbers="relative", show_motion = true, enter_mode ="first" })
