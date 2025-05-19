@@ -68,6 +68,7 @@
       "application/x-directory" = "thunar.desktop";
       "application/pdf" = "sioyek.desktop";
       "application/xopp" = "xournal.desktop";
+      "application/x-genesis-rom" = "kega-fusion.desktop";
       "text/plain" = "nvim.desktop";
       "text/markdown" = "nvim.desktop";
     };
@@ -123,6 +124,18 @@
   };
 
   programs = {
+    # nh = {
+    #   enable = true;
+    #   clean.enable = true;
+    #   clean.extraArgs = "--keep-since 4d --keep 3";
+    #   flake = builtins.toString ./.;
+    # };
+
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [ ];
+    };
+
     dconf.enable = true;
 
     gamescope.enable = true;
@@ -170,7 +183,7 @@
       enable = true; 
       efiSupport = true;
       device = "nodev";
-      splashImage = ./grub.jpg;
+      splashImage = ./assets/grub.jpg;
       font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf";
       fontSize = 16;
     };
@@ -228,9 +241,20 @@
     size = 16 * 1024;
   }];
 
+
   system.stateVersion = "24.05"; # Did you read the comment?
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.dates = "weekly";
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L"
+    ];
+    dates = "11:00";
+    randomizedDelaySec = "45min";
+  };
 
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;

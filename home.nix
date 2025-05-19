@@ -1,4 +1,7 @@
 { config, pkgs, nixpkgs-stable, inputs, lib, ... }:
+# let 
+#   flake_path = builtins.path { path = ./.; name = "source"; } ;
+# in
 { 
   imports = [
     ./default.nix
@@ -10,6 +13,7 @@
   ];
 
   default.isPC = false;
+  default.main-font = "Iosevka Nerd Font";
 
   home = {
     username = "mlys";
@@ -137,6 +141,12 @@
 
   programs.nushell.enable = true;
   programs.nushell = {
+    shellAliases = {
+      # TODO not working
+      # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
+
+      texenpaper = "nu ${./assets/scripts/paper.nu} ${./assets/tex.tex}";
+    };
     configFile.text = ''
       $env.config.buffer_editor = "nvim" 
       $env.config.show_banner = false 
@@ -226,7 +236,7 @@
     qbittorrent          # torrent client
     syncthing            # p2p file sync between devices
     inkscape             # vector graphics
-    zoom-us              # zoom calls
+    # zoom-us              # zoom calls
     grim                 # screen shots together with slurp
     slurp                # 
     fastfetch            # System fetch
@@ -257,17 +267,21 @@
     wl-color-picker      # color picker
     xournalpp            # More advanced whiteboard
     tldr                 # Offline command Manual, substitute for `man` command
-    osu-lazer-bin
+    osu-lazer-bin        # Rhytm game
     wev
     hyprpicker           # Another Color picker need further comparison with wl-color-picker
     slack                # Business communication (Discord for KSE)
     gcalcli              # TUI Google Calendar
     viber
-    prismlauncher
+    prismlauncher        # Minecraft launcher
     w3m-nox
     lshw                 # Hardware info
     usbutils
-    celestia
+    celestia             # GUI space exploration encyclopedia
+    dysk                 # TUI disk storage visualization 
+    visidata             # TUI data visualization
+
+
     
 
 
