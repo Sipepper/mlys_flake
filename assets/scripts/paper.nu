@@ -1,6 +1,6 @@
 
 def main [path] {
-  cp $path .
+  cp $path ./owo.tex   
 }
 
 
