@@ -12,10 +12,10 @@
       splash = false;
       splash_offset = 2.0;
 
-      preload = [ ./assets/space.jpg ];
+      preload = [ ".space.jpg" ];
 
       wallpaper = [
-        ", ${./assets/space.jpg}"
+        ", .space.jpg"
       ];
     };
   };
@@ -23,10 +23,12 @@
   # Notifications
   services.mako = {
     enable = true;
-    font = config.default.main-font;
-    defaultTimeout = 4000; 
-    backgroundColor = "#${config.default.colors.background}";
-    borderColor = "#${config.default.colors.border}";
+    settings = {
+      font = config.default.main-font;
+      default-timeout = 4000; 
+      background-color = "#${config.default.colors.background}";
+      border-color = "#${config.default.colors.border}";
+    };
   };
 
   programs.fuzzel.enable = true;
@@ -88,7 +90,6 @@
         "XDG_SESSION_TYPE,wayland"
         "MOZ_ENABLE_WAYLAND,1"
         "GDK_SCALE,auto"
-        "NNN_FCOLORS = 0B0B04060006060009060B06"
         "GTK_USE_PORTAL=1"
         "GSETTINGS_SCHEMAS_DIR,${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
       ];
@@ -157,7 +158,7 @@
         # "$mainMod, O, exec, obsidian"
         "$mainMod, C, killactive,"
         "$mainMod, E, exec, $fileManager"
-        "$mainMod, R, exec, $terminal -e nnn"
+        "$mainMod, R, exec, $terminal --class=yazi -e  yazi"
         "$mainMod, N, exec, $terminal -e nvim"
         "$mainMod, G, exec, kega-fusion"
         "$mainMod, M, exec, $menu"
@@ -241,12 +242,16 @@
         # "size 800 400, title:(Save File)"
 
         "float,            class:(btop)"
-        "move 2% 5%,       class:(btop)"
+        "move 1% 5%,       class:(btop)"
         "size <45% <55%,   class:(btop)"
 
-        "float,        class:(terminal)"
-        "center,       class:(terminal)"
+        "float,          class:(terminal)"
+        "center,         class:(terminal)"
         "size <40% <40%, class:(terminal)"
+
+        # "float,          class:(nnn)"
+        # "center,         class:(nnn)"
+        # "size <40% <40%, class:(nnn)"
 
         "float,        title:(Picture-in-Picture)"
         "center,       title:(Picture-in-Picture)"
@@ -441,7 +446,7 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: ${config.default.main-font}, "Font Awesome 6 Free Solid";
+        font-family: "${config.default.main-font}", "Font Awesome 6 Free Solid";
         font-size: 13px;
         min-height: 0;
       }

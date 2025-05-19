@@ -17,44 +17,32 @@
     };
 
     # TUI File manager
-    nnn = {
+    yazi = {
       enable = true;
-      package = pkgs.nnn.override { withNerdIcons = true;};
-      extraPackages = with pkgs; [
-        file
-      ];
+      # keymap = {
+      #   TODO 
+      #     https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
+      #   manager.keymap = [
+      #     { run = "open"; on = [ "l" ]; }
+      #   ];
+      # };
       plugins = {
-        src = (pkgs.fetchFromGitHub {
-          owner = "jarun";
-          repo = "nnn";
-          rev = "4.0";
-          sha256 = "sha256-Hpc8YaJeAzJoEi7aJ6DntH2VLkoR6ToP6tPYn3llR7k=";
-        }) + "/plugins";
-        mappings = {
-          v = "preview-tui";
-        };
-        
+        lazygit = pkgs.yaziPlugins.lazygit;
+        smart-enter = pkgs.yaziPlugins.smart-enter;
+        rsync = pkgs.yaziPlugins.smart-enter;
+        full-border = pkgs.yaziPlugins.full-border;
+
       };
+
     };
+
     nixvim = {
       enable = true;
       defaultEditor = true;
       vimdiffAlias = true;
-      # performance.combinePlugins.enable = true;
+      performance.combinePlugins.enable = true;
       colorschemes.nightfox.enable = true;
-      # extraConfigLua = ''
-      #   require("nnn").setup({
-      #     replace_netrw = "picker",
-      #     -- windownav = "<C-l>"
-      #     picker = {
-      #       cmd = "nnn -P v";
-      #     };
-      #   });
-      # '';
-      extraPlugins = with pkgs; [
-        vimPlugins.nnn-vim
-      ];
-
+      extraPlugins = with pkgs; [ ];
 
       globals = {
         mapleader = " ";
@@ -131,15 +119,15 @@
           options.desc = "LazyGit";
         }
         {
-          action = "<cmd>NnnPicker<cr>";
+          action = "<cmd>Yazi<cr>";
           key = "<leader>f";
-          options.desc = "NNN Pick";
+          options.desc = "Yazi";
         }
-        {
-          action = "<cmd>NnnExplorer<cr>";
-          key = "<leader>e";
-          options.desc = "File Tree";
-        }
+        # {
+        #   action = "<cmd>NnnExplorer<cr>";
+        #   key = "<leader>e";
+        #   options.desc = "File Tree";
+        # }
         {
           action = "<cmd>wq<CR>";
           key = "<leader>qq";
@@ -166,15 +154,45 @@
       ];
 
       plugins = {
+        image = {
+          enable = true;
+          settings = {
+            backend = "kitty";
+          };
+
+        };
+
+        yazi = {
+          enable = true;
+          settings = {
+            enable_mouse_support = true;
+            floating_window_scaling_factor = 0.5;
+            log_level = "debug";
+            open_for_directories = true;
+            yazi_floating_window_border = "single";
+            # yazi_floating_window_winblend = 50;
+          };
+        };
+
+
+
         nix.enable = true;
         web-devicons.enable = true;
-        lualine.enable = true;
-        luasnip.enable = true;
         telescope.enable = true;
         bacon.enable = true;
-        bufferline.enable = true;
-        bufferline.settings = {
-          options.always_show_bufferline = false;
+
+        bufferline = {
+          enable = true;
+          settings = {
+            options.always_show_bufferline = false;
+            options.custom_filter = ''
+              function(buf_number)
+                if not not vim.api.nvim_buf_get_name(buf_number):find(vim.fn.getcwd(), 0, true) then
+                  return true
+                end
+              end,
+            '';
+          };
         };
         nvim-autopairs.enable = true;
         which-key.enable = true;
@@ -222,28 +240,49 @@
             "│"
           ];
         };
-        noice.enable = true;
+        fzf-lua.enable = true;
+
+        noice.enable = false;
+        lualine.enable = true; 
+
+        luasnip = {
+          enable = true;
+          fromLua = [
+            {
+              paths = ./assets/snippets;
+            }
+          ];
+        };
 
         dashboard.enable = true;
         dashboard.settings = {
           change_to_vcs_root = true;
           config = {
             footer = [
-              "Violence is the last refuge of the incompetent!"
+              # "Violence is the last refuge of the incompetent!"
+              # "<-|ↀ◡ↀ|->"
+              "░ᚠᚢᛚᛗ᛫ᚪᛠᚣᛟᚪ░"
             ];
             header = [
-              "██████╗  ██████╗ ██████╗ ███████╗ █████╗ ██╗     ██╗███████╗"
-              "██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔══██╗██║     ██║██╔════╝"
-              "██████╔╝██║   ██║██████╔╝█████╗  ███████║██║     ██║███████╗"
-              "██╔══██╗██║   ██║██╔══██╗██╔══╝  ██╔══██║██║     ██║╚════██║"
-              "██████╔╝╚██████╔╝██║  ██║███████╗██║  ██║███████╗██║███████║"
-              "╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝"
+              "⠀⠀⣀⣤⠤⠶⠶⠶⠶⠶⠶⢶⠶⠶⠦⣤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣤⡤⣤⠶⠴⠶⠶⠶⣶⠶⠶⢤⣤⣀⡀ "
+              "⣴⡏⠡⢒⡸⠋⠀⠐⣾⠉⠉⠭⢄⣠⢤⡷⠷⢾⣛⣿⠷⣶⣤⣄⡀⠀⠀⠐⢿⣟⢲⡁⠐⣾⠛⠃⠀⠀⢀⣠⡤⠶⠒⣛⣩⠝⢋⣠⣰⣂⣤⠴⠏⠉⠓⢺⡿⢁⣴⣮⢽⡟ "
+              "⠙⠶⣞⣥⡴⠚⣩⣦⠨⣷⠋⠠⠤⠶⢲⡺⠢⣤⡼⠿⠛⠛⣻⣿⣿⠿⢶⣤⣿⣯⡾⠗⠾⣇⣙⣤⡶⢿⣯⡕⢖⣺⠋⣭⣤⣤⢤⡶⠖⠮⢷⡄⠛⠂⣠⣽⡟⢷⣬⡿⠋⠁ "
+              "⠀⠀⠀⠈⠒⢿⣁⡴⠟⣊⣇⠠⣴⠞⣉⣤⣷⣤⠶⠿⢛⢛⠩⠌⠚⢁⣴⣿⠏⠀⣴⠀⢀⣦⠻⠻⣑⠢⢕⡋⢿⡿⣿⣷⢮⣤⣷⣬⣿⠷⠈⢁⣤⣾⡿⣽⡮⠋⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠈⠛⠷⣾⣋⣤⡾⠛⣁⡡⢤⡾⢤⡖⠋⠉⠀⠀⠀⠀⠀⢰⣿⡷⠺⠛⠐⡿⠃⠦⠤⠈⠉⠢⠄⠈⠁⠙⢿⣮⣿⢤⣶⣁⣀⣛⣿⣷⠼⠚⠁⠀⠀⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠙⠇⠀⣩⡥⠞⢗⣼⣧⠀⠀⠀⠀⠀⠀⠀⢈⣿⡇⢄⡤⠤⣧⠄⢀⡀⠀⠀⠀⠀⠀⠀⠀⢘⣿⡟⠺⣯⣽⡉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠇⣊⣭⢿⡛⠁⡅⠀⠀⠀⠀⠀⠀⠈⢻⡇⢘⣡⣀⡀⣏⠀⠃⠀⠀⠀⠀⠀⠀⠀⣸⡏⠈⢦⣶⣿⡟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣥⡔⣫⠔⡀⡰⠀⠀⠀⠀⠀⠀⠀⢺⡇⠈⢰⠀⢹⠇⠀⡘⡄⠀⠀⠀⠀⠀⢠⣿⣄⢠⣾⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠷⠺⠘⠛⠛⠓⢂⠀⠀⠀⠀⠸⣧⠀⢺⠀⠊⠀⠰⠇⠘⢄⡀⠀⠰⠶⡛⠓⠟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣆⠛⠒⠁⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
+              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
             ];
-            mru = {
-              limit = 8;
-            };
+            packages.enable = false;
+            mru.limit = 6;
             project = {
-              enable = false;
+              enable = true;
+              limit = 4;
             };
             shortcut = [
               {
