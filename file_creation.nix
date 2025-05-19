@@ -32,8 +32,8 @@
 
     "Games/sega" = {
       source = ./assets/sega;
-      recursive = true;
-      force = true;
+      # recursive = true;
+      # force = true;
     };
 
     ".local/share/applications/kega-fusion.desktop" = {
