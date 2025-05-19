@@ -22,7 +22,6 @@ table.insert(bookmarks, {
   key = "d"
 })
 
-require("relative-motions"):setup({ show_numbers="relative", show_motion = true, enter_mode ="first" })
 
 require("yamb"):setup {
   -- Optional, the path ending with path seperator represents folder.
@@ -39,6 +38,7 @@ require("yamb"):setup {
 }
 
 require("full-border"):setup()
+require("relative-motions"):setup({ show_numbers="relative", show_motion = true, enter_mode ="first" })
 
 require("yatline"):setup({
   section_separator = { open = "", close = "" },
