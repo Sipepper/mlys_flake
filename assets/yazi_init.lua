@@ -37,7 +37,7 @@ table.insert(bookmarks, {
 --   path = "home/mlys/.config/yazi/bookmark",
 -- })
 
-require("full-border"):setup()
+-- require("full-border"):setup()
 
 require("relative-motions"):setup({ show_numbers="relative", show_motion = true, enter_mode ="first" })
 
