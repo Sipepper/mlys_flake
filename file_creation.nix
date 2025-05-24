@@ -30,6 +30,10 @@
       source = ./assets/space.jpg;
     };
 
+    # ".config/yazi/relative-motions" = {
+    #   source = pkgs.yaziPlugins.relative-motions;
+    # };
+
     "Games/sega" = {
       source = ./assets/sega;
       # recursive = true;
@@ -47,6 +51,9 @@
         Name=Kega Fusion
       '';
     };
+    ".assets/tex/preamble.tex" = { source = ./assets/tex/preamble.tex; };
+    ".assets/tex/general.bib" = { source = ./assets/tex/bib.bib; };
+    ".assets/tex/listings-rust.sty" = { source = ./assets/tex/listings-rust.sty; };
 
   };
 

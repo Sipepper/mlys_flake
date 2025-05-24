@@ -1,0 +1,85 @@
+\documentclass[12pt, reqno]{article}
+\usepackage[english]{babel}
+\usepackage{fontspec}
+\setmainfont{Iosevka Nerd Font}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{enumitem}
+\usepackage{svn}
+\usepackage{csquotes}
+\usepackage{booktabs}
+\usepackage{listings,listings-rust}
+\usepackage{biblatex}
+
+% \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    hypertexnames=false,
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage{cleveref}
+\usepackage{subfiles}
+\usepackage{tikz}
+\usepackage{nag}
+
+\usepackage{graphicx}
+\usepackage[all]{xy}
+% \usepackage[margin=2.7cm]{geometry}
+\usepackage{geometry}
+\usepackage[english]{isodate}
+\usepackage{ellipsis}
+\usepackage{adjustbox}
+\usepackage{microtype}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{mdframed}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\newtheoremstyle{sltheorem}
+                {}          % Space above
+                {}          % Space below
+                {\upshape}  % Body font
+                {}          % Indent amount
+                {\bfseries} % Head font
+                {.}         % Punctuation after head
+                { }         % Space after theorem head
+                {}          % Theorem head spec
+% Enable the new "sltheorem" theorem style.
+\theoremstyle{sltheorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\author{Mykola Lysynskyi}
