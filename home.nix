@@ -33,12 +33,48 @@
     pointerCursor = config.default.cursor;
   };
 
+  programs.starship.enable = true;
+
   programs.gh.enable = true;
 
 
   # TUI Mail client
   programs.aerc.enable = true;
   # Config is broken
+
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      logo = {
+        source = ./assets/endeminis-icon.png;
+        padding = {
+          right = 1;
+        };
+      };
+      display = {
+        size = {
+          binaryPrefix = "si";
+        };
+        color = "blue";
+        separator = "  ";
+      };
+      modules = [
+        {
+          type = "datetime";
+          key = "Date";
+          format = "{1}-{3}-{11}";
+        }
+        {
+          type = "datetime";
+          key = "Time";
+          format = "{14}:{17}:{20}";
+        }
+        "break"
+        "player"
+        "media"
+      ];
+    };
+  };
 
   programs.qutebrowser.enable = true;
   programs.qutebrowser = {
@@ -145,7 +181,7 @@
       # TODO not working
       # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
 
-      texenpaper = "nu ${./assets/scripts/paper.nu} ${./assets/tex.tex}";
+      texenpaper = "nu ${./assets/scripts/paper.nu}";
     };
     configFile.text = ''
       $env.config.buffer_editor = "nvim" 
@@ -239,7 +275,7 @@
     # zoom-us              # zoom calls
     grim                 # screen shots together with slurp
     slurp                # 
-    fastfetch            # System fetch
+    # fastfetch            # System fetch
     bacon                # Rust "jit" compilation tool
     mpv                  # video player
     pyradio              # tui radio
@@ -279,6 +315,12 @@
     celestia             # GUI space exploration encyclopedia
     dysk                 # TUI disk storage visualization 
     visidata             # TUI data visualization
+    wiki-tui             # TUI wikipedia
+    mask                 # Markdown makefiles
+    presenterm           # TUI Presentations!
+    dust                 # Disk space visualization
+    ouch                 # cli archiving tool
+
 
 
     
