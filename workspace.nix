@@ -26,13 +26,37 @@
       #     { run = "open"; on = [ "l" ]; }
       #   ];
       # };
+      settings = {
+        # preview.image_delay = 0;
+
+        plugin.prepend_previewers = [
+          { mime = "application/*zip";            run = "ouch"; }
+          { mime = "application/x-tar";           run = "ouch"; }
+          { mime = "application/x-bzip2";         run = "ouch"; }
+          { mime = "application/x-7z-compressed"; run = "ouch"; }
+          { mime = "application/x-rar";           run = "ouch"; }
+          { mime = "application/x-xz";            run = "ouch"; }
+          { mime = "application/xz";              run = "ouch"; }
+        ];
+      };
       plugins = {
         lazygit = pkgs.yaziPlugins.lazygit;
         smart-enter = pkgs.yaziPlugins.smart-enter;
         rsync = pkgs.yaziPlugins.smart-enter;
         full-border = pkgs.yaziPlugins.full-border;
         relative-motions = pkgs.yaziPlugins.relative-motions;
+        ouch = pkgs.yaziPlugins.ouch;
+        # yatline = pkgs.yaziPlugins.yatline;
+        custom-shell = pkgs.fetchFromGitHub {
+          owner = "AnirudhG07";
+          repo = "custom-shell.yazi";
+          # repo = "https://github.com/AnirudhG07/custom-shell.yazi";
+          rev = "6b4550a1b18afbb7ef328ebf54d81de24101288e";
+          sha256 = "1msaj7h2lfbzi6a06jrcvhaq57qqnsg157nj5pmr1zh9rr8dpqkm";
+        };
       };
+      initLua = ./assets/yazi_init.lua;
+      shellWrapperName = "y";
 
     };
 
@@ -166,9 +190,8 @@
           enable = true;
           settings = {
             enable_mouse_support = true;
-            floating_window_scaling_factor = 0.5;
+            floating_window_scaling_factor = 0.8;
             log_level = "debug";
-            open_for_directories = true;
             yazi_floating_window_border = "single";
             # yazi_floating_window_winblend = 50;
           };
@@ -185,16 +208,42 @@
           enable = true;
           settings = {
             options.always_show_bufferline = false;
-            options.custom_filter = ''
-              function(buf_number)
-                if not not vim.api.nvim_buf_get_name(buf_number):find(vim.fn.getcwd(), 0, true) then
-                  return true
-                end
-              end,
-            '';
+            # options.custom_filter = ''
+            #   function(buf_number)
+            #     if not not vim.api.nvim_buf_get_name(buf_number):find(vim.fn.getcwd(), 0, true) then
+            #       return true
+            #     end
+            #   end,
+            # '';
           };
         };
-        nvim-autopairs.enable = true;
+        nvim-autopairs = {
+          enable = true;
+          # luaConfig.post = ''
+          #   Rule("$", "$", "tex")
+          #     :with_move(function(opts)
+          #     return opts.next_char == opts.char
+          #     end)
+          # '';
+          settings = {
+            check_ts = true;
+            disable_filetype = [
+              "TelescopePrompt"
+            ];
+            fast_wrap = {
+              end_key = "$";
+              map = "<M-e>";
+              chars = [
+                "$"
+                "{"
+                "["
+                "("
+                "\""
+                "'"
+              ];
+            };
+          };
+        };
         which-key.enable = true;
         colorizer.enable = true;
         colorizer.settings.user_default_options = {
@@ -251,6 +300,9 @@
             {
               paths = ./assets/snippets;
             }
+            # {
+            #   paths = "/home/mlys/snips";
+            # }
           ];
         };
 
@@ -259,8 +311,6 @@
           change_to_vcs_root = true;
           config = {
             footer = [
-              # "Violence is the last refuge of the incompetent!"
-              # "<-|ↀ◡ↀ|->"
               "░ᚠᚢᛚᛗ᛫ᚪᛠᚣᛟᚪ░"
             ];
             header = [
