@@ -33,6 +33,25 @@
     pointerCursor = config.default.cursor;
   };
 
+  programs.iamb = {
+    enable = true;
+    # settings = {
+    #   profiles = {
+    #     default_profile = "personal";
+    #   };
+    #   settings = {
+    #     notifications.enabled = true;
+    #     image_preview.protocol = {
+    #       type = "kitty";
+    #       size = {
+    #         height = 10;
+    #         width = 66;
+    #       };
+    #     };
+    #   };
+    # };
+  };
+
   programs.starship.enable = true;
 
   programs.gh.enable = true;
@@ -320,11 +339,15 @@
     presenterm           # TUI Presentations!
     dust                 # Disk space visualization
     ouch                 # cli archiving tool
-
-
-
-    
-
+    matrix-commander-rs
+    # nheko
+    pass-wayland
+    tuifeed
+    # chawan
+    lynx
+    links2
+    dua
+    bluetuith
 
   ] ++ (if config.default.isPC then [
       # PC Soft

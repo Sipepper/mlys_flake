@@ -30,28 +30,33 @@
     NNN_FIFO = "/tmp/nnn.fifo";
   };
 
-  environment.systemPackages = with pkgs; [
-    wl-clipboard
-    system-config-printer
-    nix-prefetch
-    nix-prefetch-git
-    gdb
-    wget
-    gcc_multi
-    unzip
-    udiskie
-    fd
-    sshfs
-    xorg.xhost
-    glib
+  environment.systemPackages = [
+    pkgs.wl-clipboard
+    pkgs.system-config-printer
+    pkgs.nix-prefetch
+    pkgs.nix-prefetch-git
+    pkgs.gdb
+    pkgs.wget
+    pkgs.gcc_multi
+    pkgs.unzip
+    pkgs.udiskie
+    pkgs.fd
+    pkgs.sshfs
+    pkgs.xorg.xhost
+    pkgs.glib
     # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
-    cargo-expand 
-    cargo-fuzz   
-    evcxr 
-    catppuccin-sddm
-    gtk3
-    adwaita-icon-theme
-    gsettings-desktop-schemas
+    pkgs.cargo-expand 
+    pkgs.cargo-fuzz   
+    pkgs.evcxr 
+    (pkgs.catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "Iosevka NF";
+      fontSize = "12";
+    })
+
+    pkgs.gtk3
+    pkgs.adwaita-icon-theme
+    pkgs.gsettings-desktop-schemas
 
   ];
 
@@ -168,6 +173,7 @@
     opentabletdriver.enable = true;
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
+    amdgpu.opencl.enable = true;
   };
 
   security = {
@@ -243,6 +249,8 @@
 
 
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  system.switch.enableNg = true;
 
   system.autoUpgrade = {
     enable = true;
