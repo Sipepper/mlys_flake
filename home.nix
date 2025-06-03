@@ -12,7 +12,7 @@
     ./workspace.nix
   ];
 
-  default.isPC = true;
+  default.isPC = false;
   default.main-font = "Iosevka Nerd Font";
 
   home = {
