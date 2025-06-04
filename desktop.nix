@@ -70,7 +70,7 @@
       exec-once = [
         "waybar"
         "hyprpaper"
-        "steam -silent -forcedesktopscaling 1.5"
+        "steam -silent -forcedesktopscaling" # Add dependenyc of isPC
         "slack -u"
         "easyeffects --gapplication-service"
         "discord --start-minimized"
