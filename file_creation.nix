@@ -5,13 +5,6 @@
   ];
 
   home.file = {
-    "./assets/scripts/rebuild.nu" = {
-      enable = true;
-      text =''
-        sudo nixos-rebuild switch --flake "${./.}#default"
-      '';
-
-    };
     ".wallpaper.jpg" = {
       source = pkgs.fetchurl {
         url = "https://images.unsplash.com/photo-1522124624696-7ea32eb9592c?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
