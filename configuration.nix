@@ -80,6 +80,8 @@
   };
 
   services = {
+    lact.enable = true;
+
     preload.enable = true;
 
     # Enable automatic login for the user.
@@ -173,7 +175,11 @@
     opentabletdriver.enable = true;
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
-    amdgpu.opencl.enable = true;
+    amdgpu = {
+      overdrive.enable = true;
+      opencl.enable = true;
+    };
+
   };
 
   security = {
