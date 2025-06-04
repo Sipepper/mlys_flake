@@ -1,3 +1,5 @@
+#!/usr/bin/env nu
+
 let text = "
 \\documentclass{article}
 "
