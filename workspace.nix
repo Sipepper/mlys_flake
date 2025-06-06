@@ -6,6 +6,8 @@
   ];
 
   programs = {
+    mergiraf.enable = true;
+
     fzf = {
       enable = true;
     };
@@ -14,6 +16,14 @@
       enable = true;
       userName = "Sipepper";
       userEmail = "valera1gribnik@gmail.com";
+      difftastic = {
+        enable = true;
+        color = "always";
+        enableAsDifftool = true;
+      };
+      extraConfig = {
+        init.defaultBranch = "main";
+      };
     };
 
     # TUI File manager
@@ -42,10 +52,11 @@
       plugins = {
         lazygit = pkgs.yaziPlugins.lazygit;
         smart-enter = pkgs.yaziPlugins.smart-enter;
-        rsync = pkgs.yaziPlugins.smart-enter;
+        rsync = pkgs.yaziPlugins.rsync;
         full-border = pkgs.yaziPlugins.full-border;
         relative-motions = pkgs.yaziPlugins.relative-motions;
         ouch = pkgs.yaziPlugins.ouch;
+        diff = pkgs.yaziPlugins.diff;
         # yatline = pkgs.yaziPlugins.yatline;
         custom-shell = pkgs.fetchFromGitHub {
           owner = "AnirudhG07";
@@ -278,6 +289,8 @@
 
         lazygit.enable = true;
         lazygit.settings = {
+          # git.paging.pager = "difftastic";
+          git.paging.pager = "mergiraf";
           floating_window_border_chars = [
             "┌"
             "─"
