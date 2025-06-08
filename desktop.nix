@@ -100,7 +100,7 @@
         "col.active_border" = "rgba(${config.default.colors.border}ff)";
         "col.inactive_border" = "rgba(${config.default.colors.background}ff)";
         resize_on_border = false; 
-        allow_tearing = false;
+        allow_tearing = true;
         layout = "dwindle";
       };
       animations.enabled = false;
@@ -132,15 +132,14 @@
         repeat_delay = 300;
 
       };
-      gestures = {
-        workspace_swipe = false;
-      };
+      gestures.workspace_swipe = false; 
       device = {
         name = "e-signal-hator-pulsar";
         sensitivity = "-0.5";
       };
       monitor = if config.default.isPC then ",1920x1080@75,auto,1.2" else ",1920x1080,auto,auto";
 
+      # xwayland.force_zero_scaling = if config.default.isPC then false else true;
       xwayland.force_zero_scaling = true;
 
       "$mainMod" = "SUPER";
@@ -224,6 +223,7 @@
         "tile,         class:Aseprite"
 
         "float,        class:(timer)"
+        "pin,          class:(timer)"
         "move 950 40,  class:(timer)"
         "size 320 50,  class:(timer)"
 
@@ -278,13 +278,14 @@
         name = "topbar";
         layer = "top";
         position = "top";
-        height = 30;
+        height = 35;
         modules-left = [
           "battery#bat1" 
           "battery#bat2" 
           "disk" 
           "memory" 
           "cpu" 
+          "temperature"
           "custom/easyeffects" 
           "custom/pyradio" 
           "custom/blueman" 
@@ -336,6 +337,7 @@
         "disk" = {
           format = " {}%";
           tooltip-format = "{used} / {total} used";
+          on-click = "kitty -e --class=dust -o font_size=8 dust --hold";
         };
         "memory" = {
           format = " {}%";
@@ -432,12 +434,12 @@
         };
         "custom/pyradio" = {
           tooltip = false;
-          format = " ";
+          format = "  ";
           on-click = "kitty --class=pyradio -e pyradio";
         };
         "custom/poweroff" = {
           tooltip = false;
-          format = "";
+          format = " ";
           on-click = "systemctl poweroff";
         };
       };
@@ -447,7 +449,7 @@
         border: none;
         border-radius: 0;
         font-family: "${config.default.main-font}", "Font Awesome 6 Free Solid";
-        font-size: 13px;
+        font-size: 16px;
         min-height: 0;
       }
 

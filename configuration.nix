@@ -76,6 +76,9 @@
       "application/x-genesis-rom" = "kega-fusion.desktop";
       "text/plain" = "nvim.desktop";
       "text/markdown" = "nvim.desktop";
+      "image/png" = "feh.desktop";
+      "image/jpeg" = "feh.desktop";
+      "image/svg" = "feh.desktop";
     };
   };
 
