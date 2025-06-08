@@ -12,7 +12,7 @@
     ./workspace.nix
   ];
 
-  default.isPC = false;
+  default.isPC = true;
   default.main-font = "Iosevka Nerd Font";
 
   home = {
@@ -52,10 +52,11 @@
     # };
   };
 
+  programs.ncspot.enable = true;
+
   programs.starship.enable = true;
 
   programs.gh.enable = true;
-
 
   # TUI Mail client
   programs.aerc.enable = true;
@@ -133,6 +134,7 @@
     enable = true;
     font = {
       name = config.default.main-font;
+      # size = if config.default.isPC then 12 else 10;
       size = 10;
     };
     settings = {
@@ -172,7 +174,7 @@
       "font_size" = "12";
       "super_fast_search" = "1";
       "rerender_overview" = "1";
-      "linear_filter" = "1";
+      # "linear_filter" = "1";
       "force_custom_line_algorithm" = "1";
       "status_bar_font_size" = "14";
       # "inverse_search_command" = "kitty -e \"nvim +%2 %1\"";
@@ -348,14 +350,16 @@
     links2
     dua
     bluetuith
+    clinfo
+    path-of-building
 
   ] ++ (if config.default.isPC then [
       # PC Soft
-      orca-slicer        # 3D printing slicer
-      protonup
-      wine-wayland
-      winetricks
-      freecad-wayland    # CAD software
+      # orca-slicer        # 3D printing slicer
+      # protonup
+      # wine-wayland
+      # winetricks
+      # freecad-wayland    # CAD software
     ] else []);
 
   # Let Home Manager install and manage itself.
