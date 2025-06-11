@@ -227,6 +227,7 @@
         "move 950 40,  class:(timer)"
         "size 320 50,  class:(timer)"
 
+
         "float,        title:(pdflatex)"
         "float,        title:(Console window)"
         "float,        title:(Library)"
@@ -255,6 +256,7 @@
 
         "float,        title:(Picture-in-Picture)"
         "center,       title:(Picture-in-Picture)"
+        "pin,          title:(Picture-in-Picture)"
 
         "fullscreen,   title:(Inkscape)"
 

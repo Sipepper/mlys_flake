@@ -11,9 +11,11 @@
     ];
 
   fonts.packages = with pkgs; [ 
-    nerd-fonts.hurmit 
     nerd-fonts.droid-sans-mono
     nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    iosevka
+    iosevka-comfy.comfy
     corefonts
     vistafonts
   ];
@@ -192,18 +194,18 @@
   };
 
 
-  # boot.loader.systemd-boot.enable = true;
-  boot.loader = {
-    grub = {
-      enable = true; 
-      efiSupport = true;
-      device = "nodev";
-      splashImage = ./assets/grub.jpg;
-      font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf";
-      fontSize = 16;
-    };
-    efi.canTouchEfiVariables = true;
-  };
+  boot.loader.systemd-boot.enable = true;
+  # boot.loader = {
+  #   grub = {
+  #     enable = true; 
+  #     efiSupport = true;
+  #     device = "nodev";
+  #     splashImage = ./assets/grub.jpg;
+  #     font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf";
+  #     fontSize = 16;
+  #   };
+  #   efi.canTouchEfiVariables = true;
+  # };
 
 
   networking = {
