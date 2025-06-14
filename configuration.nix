@@ -14,8 +14,42 @@
     nerd-fonts.droid-sans-mono
     nerd-fonts.iosevka
     nerd-fonts.iosevka-term
-    iosevka
-    iosevka-comfy.comfy
+    (iosevka.override {
+      set = "custom";
+      privateBuildPlan = {
+        family = "Iosevka Custom";
+        spacing = "quasi-proportional";
+        serifs = "sans";
+        noCvSs = true;
+        exportGlyphNames = false;
+        weights = {
+          Regular = {
+            shape = 400;
+            menu = 400;
+            css = 400;
+          };
+          Bold = {
+            shape = 700;
+            menu = 700;
+            css = 700;
+          };
+        };
+        slopes = {
+          Upright = {
+            angle = 0;
+            shape = "upright";
+            menu = "upright";
+            css = "normal";
+          };
+          Italic = {
+            angle = 9.4;
+            shape = "italic";
+            menu = "italic";
+            css = "italic";
+          };
+        };
+      };
+    })
     corefonts
     vistafonts
   ];
