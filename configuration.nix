@@ -115,6 +115,9 @@
       "image/png" = "feh.desktop";
       "image/jpeg" = "feh.desktop";
       "image/svg" = "feh.desktop";
+      "image/vnd.djvu+multipage" = "evince.desktop";
+      
+
     };
   };
 
