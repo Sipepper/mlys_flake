@@ -35,7 +35,7 @@
   programs.fuzzel.settings = {
     main = {
       font = config.default.main-font;
-      terminal = "kitty -e";
+      terminal = "$TERMIMAL -e";
       horizontal-pad = 8;
       vertical-pad = 4;
       icon-theme = config.default.iconTheme.name;
