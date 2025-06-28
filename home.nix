@@ -130,6 +130,9 @@
     ];
   };
 
+  programs.wezterm.enable = true;
+  programs.ghostty.enable = true;
+
   programs.kitty = {
     enable = true;
     font = {
@@ -293,10 +296,8 @@
     qbittorrent          # torrent client
     syncthing            # p2p file sync between devices
     inkscape             # vector graphics
-    # zoom-us              # zoom calls
     grim                 # screen shots together with slurp
     slurp                # 
-    # fastfetch            # System fetch
     bacon                # Rust "jit" compilation tool
     mpv                  # video player
     pyradio              # tui radio
@@ -314,7 +315,7 @@
     wasistlos            # whatsapp client
     sc-controller        # controller configs
     atool                # needed for archive zipping un zipping in ranger 
-    highlight            # ranger file preview highlight
+    # highlight            # ranger file preview highlight
     orca-c               # esoteric programming sequencer
     cava                 # audio visualizer
     libremines           # minesweeper
@@ -351,7 +352,8 @@
     dua
     bluetuith
     clinfo
-    path-of-building
+    evince
+    texliveFull
 
   ] ++ (if config.default.isPC then [
       # PC Soft
