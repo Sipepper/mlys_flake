@@ -26,12 +26,14 @@
       TERMINAL = "kitty";
       PAGER = "bat --plain";
       MANPAGER = "bat --plain";
-      NNN_FCOLORS = "0B0B04060006060009060B06";
 
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
     };
     pointerCursor = config.default.cursor;
   };
+
+
+  programs.helix.enable = true;
 
   programs.iamb = {
     enable = true;
@@ -96,23 +98,23 @@
     };
   };
 
-  programs.qutebrowser.enable = true;
-  programs.qutebrowser = {
-    quickmarks = {
-      nixpkgs = "https://github.com/NixOS/nixpkgs";
-      home-manager = "https://github.com/nix-community/home-manager";
-    };
-    settings = {
-      colors = {
-        hints = {
-          bg = "#${config.default.colors.background}";
-          fg = "#${config.default.colors.text}";
-        };
-        tabs.bar.bg = "#${config.default.colors.background}";
-      };
-      tabs.tabs_are_windows = true;
-    };
-  };
+  # programs.qutebrowser.enable = true;
+  # programs.qutebrowser = {
+  #   quickmarks = {
+  #     nixpkgs = "https://github.com/NixOS/nixpkgs";
+  #     home-manager = "https://github.com/nix-community/home-manager";
+  #   };
+  #   settings = {
+  #     colors = {
+  #       hints = {
+  #         bg = "#${config.default.colors.background}";
+  #         fg = "#${config.default.colors.text}";
+  #       };
+  #       tabs.bar.bg = "#${config.default.colors.background}";
+  #     };
+  #     tabs.tabs_are_windows = true;
+  #   };
+  # };
 
   programs.bat.enable = true;
   programs.bat = {

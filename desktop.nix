@@ -35,7 +35,7 @@
   programs.fuzzel.settings = {
     main = {
       font = config.default.main-font;
-      terminal = "$TERMIMAL -e";
+      terminal = "wezterm -e";
       horizontal-pad = 8;
       vertical-pad = 4;
       icon-theme = config.default.iconTheme.name;
@@ -158,7 +158,7 @@
         "$mainMod, C, killactive,"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, R, exec, $terminal --class=yazi -e yazi"
-        "$mainMod, N, exec, $terminal -e nvim"
+        "$mainMod, N, exec, wezterm -e nvim"
         "$mainMod, G, exec, kega-fusion"
         "$mainMod, M, exec, $menu"
         "$mainMod, F, exec, firefox"

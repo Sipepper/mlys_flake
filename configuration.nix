@@ -63,7 +63,6 @@
     MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;
     GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
-    NNN_FIFO = "/tmp/nnn.fifo";
   };
 
   environment.systemPackages = [
@@ -297,8 +296,6 @@
 
 
   system.stateVersion = "24.05"; # Did you read the comment?
-
-  system.switch.enableNg = true;
 
   system.autoUpgrade = {
     enable = true;
