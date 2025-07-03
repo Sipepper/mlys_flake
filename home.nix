@@ -304,7 +304,6 @@
     mpv                  # video player
     pyradio              # tui radio
     feh                  # image viewer
-
     libreoffice-fresh    # office editors doc,xlsx, etc
     discord              # voice and text-chat app
     smassh               # tui typing training
@@ -316,8 +315,7 @@
     networkmanagerapplet # connections control for waybar
     wasistlos            # whatsapp client
     sc-controller        # controller configs
-    atool                # needed for archive zipping un zipping in ranger 
-    # highlight            # ranger file preview highlight
+    # atool                # needed for archive zipping un zipping in ranger 
     orca-c               # esoteric programming sequencer
     cava                 # audio visualizer
     libremines           # minesweeper
@@ -328,7 +326,7 @@
     xournalpp            # More advanced whiteboard
     tldr                 # Offline command Manual, substitute for `man` command
     osu-lazer-bin        # Rhytm game
-    wev
+    wev                  # wayland event viewer
     hyprpicker           # Another Color picker need further comparison with wl-color-picker
     slack                # Business communication (Discord for KSE)
     gcalcli              # TUI Google Calendar
@@ -345,17 +343,13 @@
     dust                 # Disk space visualization
     ouch                 # cli archiving tool
     matrix-commander-rs
-    # nheko
-    pass-wayland
-    tuifeed
-    # chawan
-    lynx
-    links2
-    dua
-    bluetuith
+    pass-wayland         # cli password store
+    tuifeed              # tui news feed reader
+    dua                  # tui storage capacity viewer
+    bluetuith            # tui bluetooth manager
     clinfo
     evince
-    texliveFull
+    texliveFull          # TODO needed for Inkscape to render LaTeX
 
   ] ++ (if config.default.isPC then [
       # PC Soft

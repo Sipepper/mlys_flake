@@ -29,6 +29,9 @@
   };
 
   programs = {
+    # cli calendar
+    khal.enable = true;
+    qcal.enable = true;
     # Application launcher
     fuzzel = {
       enable = true;
