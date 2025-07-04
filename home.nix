@@ -45,7 +45,7 @@
     starship.enable = true;
     gh.enable = true;
     # TUI Mail client
-    programs.aerc.enable = true; # Config is broken
+    aerc.enable = true; # Config is broken
     fastfetch = {
       enable = true;
       settings = {
@@ -67,27 +67,27 @@
           { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
           { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90} "; }
           { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
-          { type= "os"; key= "{icon} OS"; keyColor= "yellow"; }
-          { type= "kernel"; key= "│ ├ "; keyColor= "yellow"; }
-          { type= "packages"; key= "│ ├󰏖 "; keyColor= "yellow"; }
-          { type= "shell"; key= "│ └ "; keyColor= "yellow"; }
-          { type= "wm"; key= " DE/WM"; keyColor= "blue"; }
-          { type= "lm"; key= "│ ├󰧨 "; keyColor= "blue"; }
-          { type= "wmtheme"; key= "│ ├󰉼 "; keyColor= "blue"; }
-          { type= "icons"; key= "│ ├󰀻 "; keyColor= "blue"; }
-          { type= "terminal"; key= "│ ├ "; keyColor= "blue"; }
-          { type= "wallpaper"; key= "│ └󰸉 "; keyColor= "blue"; }
-          { type= "host"; key= "󰌢 PC"; keyColor= "green"; }
-          { type= "cpu"; key= "│ ├󰻠 "; keyColor= "green"; }
-          { type= "gpu"; key= "│ ├󰍛 "; keyColor= "green"; }
-          { type= "disk"; key= "│ ├ "; keyColor= "green"; }
-          { type= "memory"; key= "│ ├󰑭 "; keyColor= "green"; }
-          { type= "swap"; key= "│ ├󰓡 "; keyColor= "green"; }
-          { type= "uptime"; key= "│ ├󰅐"; keyColor= "green"; }
-          { type= "display"; key= "│ └󰍹"; keyColor= "green"; }
-          { type= "sound"; key= " SND"; keyColor= "cyan"; }
-          { type= "player"; key= │ ├󰥠; keyColor= "cyan"; }
-          { type= "media"; key= │ └󰝚; keyColor= "cyan"; }
+          { type= "os";        key= "{icon} OS"; keyColor= "yellow"; }
+          { type= "kernel";    key= "│ ├ ";     keyColor= "yellow"; }
+          { type= "packages";  key= "│ ├󰏖 ";     keyColor= "yellow"; }
+          { type= "shell";     key= "│ └ ";     keyColor= "yellow"; }
+          { type= "wm";        key= " DE/WM";   keyColor= "blue"; }
+          { type= "lm";        key= "│ ├󰧨 ";     keyColor= "blue"; }
+          { type= "wmtheme";   key= "│ ├󰉼 ";     keyColor= "blue"; }
+          { type= "icons";     key= "│ ├󰀻 ";     keyColor= "blue"; }
+          { type= "terminal";  key= "│ ├ ";     keyColor= "blue"; }
+          { type= "wallpaper"; key= "│ └󰸉 ";     keyColor= "blue"; }
+          { type= "host";      key= "󰌢 PC";      keyColor= "green"; }
+          { type= "cpu";       key= "│ ├󰻠 ";     keyColor= "green"; }
+          { type= "gpu";       key= "│ ├󰍛 ";     keyColor= "green"; }
+          { type= "disk";      key= "│ ├ ";     keyColor= "green"; }
+          { type= "memory";    key= "│ ├󰑭 ";     keyColor= "green"; }
+          { type= "swap";      key= "│ ├󰓡 ";     keyColor= "green"; }
+          { type= "uptime";    key= "│ ├󰅐";      keyColor= "green"; }
+          { type= "display";   key= "│ └󰍹";      keyColor= "green"; }
+          { type= "sound";     key= " SND";     keyColor= "cyan"; }
+          { type= "player";    key= "│ ├󰥠 ";     keyColor= "cyan"; }
+          { type= "media";     key= "│ └󰝚 ";     keyColor= "cyan"; }
           { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
           "break"
           { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90}"; }
@@ -115,7 +115,7 @@
     kitty = {
       enable = true;
       font = {
-        name = config.default.main-font;
+        name = config.default.term-font;
         # size = if config.default.isPC then 12 else 10;
         size = 10;
       };
@@ -327,5 +327,6 @@
     # orca-slicer        # 3D printing slicer
     # freecad-wayland    # CAD software
     texliveFull
+    khal
   ];
 }

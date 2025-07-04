@@ -23,6 +23,7 @@
       };
       extraConfig = {
         init.defaultBranch = "main";
+        merge.tool = "mergiraf";
       };
     };
 
@@ -98,76 +99,19 @@
         langmap = "ФИСВУАПРШОЛДЬТЩЗЙКІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкіегмцчня;abcdefghijklmnopqrstuvwxyz,хїґжєбю\\ʼ;\\[\\]\\\\;\\'\\,\\.\\~";
       };
       keymaps = [
-        {
-          action = "<C-w>l";
-          key = "<C-l>";
-          options.desc = "sd1";
-        }
-        {
-          action = "<C-w>h";
-          key = "<C-h>";
-          options.desc = "sd4";
-        }
-        {
-          action = "<C-w>j";
-          key = "<C-j>";
-          options.desc = "sd3";
-        }
-        {
-          action = "<C-w>k";
-          key = "<C-k>";
-          options.desc = "sd2";
-        }
-        {
-          action = "<cmd>noh<CR>";
-          key = "<Esc><Esc>";
-          options.desc = "which_key_ignore";
-        }
-        {
-          action = "<cmd>BufferLineCloseOthers<CR>";
-          key = "<leader>bo";
-          options.desc = "Close other buffers";
-        }
-        {
-          action = "<cmd>bdelete<CR>";
-          key = "<leader>bd";
-          options.desc = "Close buffer";
-        }
-        {
-          action = "<cmd>bnext<CR>";
-          key = "<S-l>";
-          options.desc = "Move to right tab";
-        }
-        {
-          action = "<cmd>bprev<CR>";
-          key = "<S-h>";
-          options.desc = "Move to left tab";
-        }
-        {
-          action = "<cmd>Telescope live_grep<CR>";
-          key = "<leader>g";
-          options.desc = "Live Grep";
-        }
-        {
-          action = "<cmd>LazyGitCurrentFile<CR>";
-          key = "<leader>lg";
-          options.desc = "LazyGit";
-        }
-        {
-          action = "<cmd>Yazi<cr>";
-          key = "<leader>f";
-          options.desc = "Yazi";
-        }
-        # {
-        #   action = "<cmd>NnnExplorer<cr>";
-        #   key = "<leader>e";
-        #   options.desc = "File Tree";
-        # }
-        {
-          action = "<cmd>wq<CR>";
-          key = "<leader>qq";
-          options.desc = "Save and quit";
-        }
+        { action = "<C-w>l"; key = "<C-l>"; options.desc = "sd1"; }
+        { action = "<C-w>h"; key = "<C-h>"; options.desc = "sd4"; }
+        { action = "<C-w>j"; key = "<C-j>"; options.desc = "sd3"; }
+        { action = "<C-w>k"; key = "<C-k>"; options.desc = "sd2"; }
+        { action = "<cmd>noh<CR>"; key = "<Esc><Esc>"; options.desc = "which_key_ignore"; }
+        { action = "<cmd>BufferLineCloseOthers<CR>"; key = "<leader>bo"; options.desc = "Close other buffers"; }
+        { action = "<cmd>bdelete<CR>"; key = "<leader>bd"; options.desc = "Close buffer"; }
+        { action = "<cmd>bnext<CR>"; key = "<S-l>"; options.desc = "Move to right tab"; }
+        { action = "<cmd>bprev<CR>"; key = "<S-h>"; options.desc = "Move to left tab"; }
+        { action = "<cmd>Telescope live_grep<CR>"; key = "<leader>g"; options.desc = "Live Grep"; }
+        { action = "<cmd>LazyGitCurrentFile<CR>"; key = "<leader>lg"; options.desc = "LazyGit"; }
+        { action = "<cmd>Yazi<cr>"; key = "<leader>f"; options.desc = "Yazi"; }
+        { action = "<cmd>wq<CR>"; key = "<leader>qq"; options.desc = "Save and quit"; }
         {
           action = "<cmd>lua vim.lsp.buf.definition()<CR>";
           key = "gd";
@@ -189,14 +133,6 @@
       ];
 
       plugins = {
-        image = {
-          enable = true;
-          settings = {
-            backend = "kitty";
-          };
-
-        };
-
         yazi = {
           enable = true;
           settings = {
@@ -207,8 +143,6 @@
             # yazi_floating_window_winblend = 50;
           };
         };
-
-
 
         nix.enable = true;
         web-devicons.enable = true;
@@ -303,19 +237,13 @@
           ];
         };
         fzf-lua.enable = true;
-
         noice.enable = false;
+        notify.enable = true;
         lualine.enable = true; 
-
         luasnip = {
           enable = true;
           fromLua = [
-            {
-              paths = ./assets/snippets;
-            }
-            # {
-            #   paths = "/home/mlys/snips";
-            # }
+            { paths = ./assets/snippets; }
           ];
         };
 
@@ -380,7 +308,7 @@
               installRustc = true;
             };
             texlab.enable = true;
-            # nixd.enable = true;
+            nixd.enable = true;
             nushell.enable = true;
             html.enable = true;
           };

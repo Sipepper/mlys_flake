@@ -12,7 +12,6 @@
 
   fonts.packages = with pkgs; [ 
     nerd-fonts.droid-sans-mono
-    nerd-fonts.iosevka
     nerd-fonts.iosevka-term
     (iosevka.override {
       set = "custom";
@@ -114,9 +113,7 @@
       "image/png" = "feh.desktop";
       "image/jpeg" = "feh.desktop";
       "image/svg" = "feh.desktop";
-      "image/vnd.djvu+multipage" = "evince.desktop";
-      
-
+      "image/vnd.djvu+multipage" = "org.gnome.evince.desktop";
     };
   };
 
