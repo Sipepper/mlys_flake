@@ -12,19 +12,7 @@
     ./workspace.nix
   ];
 
-<<<<<<< Updated upstream
-  default.isPC = true;
-||||||| Stash base
-  default.isPC = false;
-=======
-<<<<<<< Updated upstream
-  default.isPC = false;
-||||||| Stash base
-  default.isPC = true;
-=======
   # default.isPC = true;
->>>>>>> Stashed changes
->>>>>>> theirs
   default.main-font = "Iosevka Nerd Font";
 
   home = {
@@ -47,184 +35,151 @@
   };
 
 
-  programs.helix.enable = true;
 
-  programs.iamb.enable = true;
+  programs = {
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
 
-  programs.ncspot.enable = true;
-
-  programs.starship.enable = true;
-
-  programs.gh.enable = true;
-
-  # TUI Mail client
-  programs.aerc.enable = true;
-  # Config is broken
-
-  programs.fastfetch = {
-    enable = true;
-    settings = {
-      logo = {
-        # source = ./assets/endeminis-icon.png;
-        padding = {
-          top = 2;
+    helix.enable = true;
+    iamb.enable = true;
+    ncspot.enable = true;
+    starship.enable = true;
+    gh.enable = true;
+    # TUI Mail client
+    programs.aerc.enable = true; # Config is broken
+    fastfetch = {
+      enable = true;
+      settings = {
+        logo = {
+          # source = ./assets/endeminis-icon.png;
+          padding = {
+            top = 2;
+          };
         };
-      };
-      display = {
-        separator = " -> ";
-        constants = [
-          "──────────────────────────────"
+        display = {
+          separator = " -> ";
+          constants = [
+            "──────────────────────────────"
+          ];
+        };
+        modules = [
+          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
+          { type= "title"; keyWidth= 10; }
+          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
+          { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90} "; }
+          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
+          { type= "os"; key= "{icon} OS"; keyColor= "yellow"; }
+          { type= "kernel"; key= "│ ├ "; keyColor= "yellow"; }
+          { type= "packages"; key= "│ ├󰏖 "; keyColor= "yellow"; }
+          { type= "shell"; key= "│ └ "; keyColor= "yellow"; }
+          { type= "wm"; key= " DE/WM"; keyColor= "blue"; }
+          { type= "lm"; key= "│ ├󰧨 "; keyColor= "blue"; }
+          { type= "wmtheme"; key= "│ ├󰉼 "; keyColor= "blue"; }
+          { type= "icons"; key= "│ ├󰀻 "; keyColor= "blue"; }
+          { type= "terminal"; key= "│ ├ "; keyColor= "blue"; }
+          { type= "wallpaper"; key= "│ └󰸉 "; keyColor= "blue"; }
+          { type= "host"; key= "󰌢 PC"; keyColor= "green"; }
+          { type= "cpu"; key= "│ ├󰻠 "; keyColor= "green"; }
+          { type= "gpu"; key= "│ ├󰍛 "; keyColor= "green"; }
+          { type= "disk"; key= "│ ├ "; keyColor= "green"; }
+          { type= "memory"; key= "│ ├󰑭 "; keyColor= "green"; }
+          { type= "swap"; key= "│ ├󰓡 "; keyColor= "green"; }
+          { type= "uptime"; key= "│ ├󰅐"; keyColor= "green"; }
+          { type= "display"; key= "│ └󰍹"; keyColor= "green"; }
+          { type= "sound"; key= " SND"; keyColor= "cyan"; }
+          { type= "player"; key= │ ├󰥠; keyColor= "cyan"; }
+          { type= "media"; key= │ └󰝚; keyColor= "cyan"; }
+          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
+          "break"
+          { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90}"; }
         ];
       };
-      modules = [
-        { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
-        { type= "title"; keyWidth= 10; }
-        { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
-        { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90} "; }
-        { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
-        { type= "os"; key= "{icon} OS"; keyColor= "yellow"; }
-        { type= "kernel"; key= "│ ├ "; keyColor= "yellow"; }
-        { type= "packages"; key= "│ ├󰏖 "; keyColor= "yellow"; }
-        { type= "shell"; key= "│ └ "; keyColor= "yellow"; }
-        { type= "wm"; key= " DE/WM"; keyColor= "blue"; }
-        { type= "lm"; key= "│ ├󰧨 "; keyColor= "blue"; }
-        { type= "wmtheme"; key= "│ ├󰉼 "; keyColor= "blue"; }
-        { type= "icons"; key= "│ ├󰀻 "; keyColor= "blue"; }
-        { type= "terminal"; key= "│ ├ "; keyColor= "blue"; }
-        { type= "wallpaper"; key= "│ └󰸉 "; keyColor= "blue"; }
-        { type= "host"; key= "󰌢 PC"; keyColor= "green"; }
-        { type= "cpu"; key= "│ ├󰻠 "; keyColor= "green"; }
-        { type= "gpu"; key= "│ ├󰍛 "; keyColor= "green"; }
-        { type= "disk"; key= "│ ├ "; keyColor= "green"; }
-        { type= "memory"; key= "│ ├󰑭 "; keyColor= "green"; }
-        { type= "swap"; key= "│ ├󰓡 "; keyColor= "green"; }
-        { type= "uptime"; key= "│ ├󰅐"; keyColor= "green"; }
-        { type= "display"; key= "│ └󰍹"; keyColor= "green"; }
-        { type= "sound"; key= " SND"; keyColor= "cyan"; }
-        { type= "player"; key= │ ├󰥠; keyColor= "cyan"; }
-        { type= "media"; key= │ └󰝚; keyColor= "cyan"; }
-        { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
-        "break"
-        { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90}"; }
+    };
+    bat = {
+      enable = true;
+      config = {
+        # pager = "less -FR";
+        theme = "Nord";
+      };
+    };
+
+    ripgrep = {
+      enable = true;
+      arguments = [
+        "--line-number"
+        "--smart-case"
       ];
     };
-  };
 
-  # programs.qutebrowser.enable = true;
-  # programs.qutebrowser = {
-  #   quickmarks = {
-  #     nixpkgs = "https://github.com/NixOS/nixpkgs";
-  #     home-manager = "https://github.com/nix-community/home-manager";
-  #   };
-  #   settings = {
-  #     colors = {
-  #       hints = {
-  #         bg = "#${config.default.colors.background}";
-  #         fg = "#${config.default.colors.text}";
-  #       };
-  #       tabs.bar.bg = "#${config.default.colors.background}";
-  #     };
-  #     tabs.tabs_are_windows = true;
-  #   };
-  # };
+    wezterm.enable = true;
 
-  programs.bat.enable = true;
-  programs.bat = {
-    config = {
-      # pager = "less -FR";
-      theme = "Nord";
+    kitty = {
+      enable = true;
+      font = {
+        name = config.default.main-font;
+        # size = if config.default.isPC then 12 else 10;
+        size = 10;
+      };
+      settings = {
+        enable_audio_bell = false;
+        allow_remote_control = true;
+        listen_on = "unix:kitty";
+        tab_bar_edge  = "top";
+        tab_bar_style = "powerline";
+        scrollback_lines = 100000;
+        scrollback_pager = "bat --chop-long-lines";
+        # cursor_trail = 3;
+        enabled_layouts = "all";
+        background = "#192330";
+
+        remember_window_size = false;
+      };
+      themeFile = "Wombat";
     };
-  };
 
-  programs.ripgrep.enable = true;
-  programs.ripgrep = {
-    arguments = [
-      "--line-number"
-      "--smart-case"
-    ];
-  };
+    sioyek = {
+      enable = true;
+      bindings = {
+        "move_up_smooth" = "k";
+        "move_down_smooth" = "j";
+        "move_left" = "l";
+        "move_right" = "h";
+        "close_window" = "q";
+        "quit" = "Q";
 
-  programs.wezterm.enable = true;
-  programs.ghostty.enable = true;
+        "synctex_under_ruler" = "gd";
+        "copy" = "yy";
+        "visual_mark_under_cursor" = "V";
+      };
+      config = {
+        # "should_launch_new_window" = "1";
+        "ui_font" = "${config.default.main-font}";
+        "font_size" = "12";
+        "super_fast_search" = "1";
+        "rerender_overview" = "1";
+        # "linear_filter" = "1";
+        "force_custom_line_algorithm" = "1";
+        "status_bar_font_size" = "14";
+        # "inverse_search_command" = "kitty -e \"nvim +%2 %1\"";
 
-  programs.kitty = {
-    enable = true;
-    font = {
-      name = config.default.main-font;
-      # size = if config.default.isPC then 12 else 10;
-      size = 10;
+      };
     };
-    settings = {
-      enable_audio_bell = false;
-      allow_remote_control = true;
-      listen_on = "unix:kitty";
-      tab_bar_edge  = "top";
-      tab_bar_style = "powerline";
-      scrollback_lines = 100000;
-      scrollback_pager = "bat --chop-long-lines";
-      # cursor_trail = 3;
-      enabled_layouts = "all";
-      background = "#192330";
+    # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/prefs.config
+    # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
+    mangohud.enable = true;
 
-      remember_window_size = false;
-    };
-    themeFile = "Wombat";
-  };
+    nushell = {
+      enable = true;
+      shellAliases = {
+        # TODO not working
+        # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
 
-  programs.sioyek = {
-    enable = true;
-    bindings = {
-      "move_up_smooth" = "k";
-      "move_down_smooth" = "j";
-      "move_left" = "l";
-      "move_right" = "h";
-      "close_window" = "q";
-      "quit" = "Q";
-
-      "synctex_under_ruler" = "gd";
-      "copy" = "yy";
-      "visual_mark_under_cursor" = "V";
-    };
-    config = {
-      # "should_launch_new_window" = "1";
-      "ui_font" = "${config.default.main-font}";
-      "font_size" = "12";
-      "super_fast_search" = "1";
-      "rerender_overview" = "1";
-      # "linear_filter" = "1";
-      "force_custom_line_algorithm" = "1";
-      "status_bar_font_size" = "14";
-      # "inverse_search_command" = "kitty -e \"nvim +%2 %1\"";
-
-    };
-  };
-  # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/prefs.config
-  # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
-
-  services = {
-  # Don't work, cannot get info
-    redshift.enable = true;
-    redshift.provider = "geoclue2";
-
-    easyeffects.enable = true;
-    tldr-update.enable = true;
-  };
-
-
-  programs.mangohud.enable = true;
-
-  programs.nushell.enable = true;
-  programs.nushell = {
-    shellAliases = {
-      # TODO not working
-      # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
-
-      texenpaper = "nu ${./assets/scripts/paper.nu}";
-    };
-    configFile.text = ''
+        texenpaper = "nu ${./assets/scripts/paper.nu}";
+      };
+      configFile.text = ''
       $env.config.buffer_editor = "nvim" 
       $env.config.show_banner = false 
-      
+
       $env.config = {
         bracketed_paste:                  true
         buffer_editor:                    ""
@@ -238,56 +193,66 @@
         use_ansi_coloring:                true
         use_kitty_protocol:               true
       }
-    '';
-    # environmentVariables = {
-    # };
+      '';
+      # environmentVariables = {
+      # };
+    };
+
+    feh = {
+      enable = true;
+      keybindings = {
+        menu_parent = "Left";
+        menu_child = "Right";
+        menu_down	= "Down";
+        menu_up =	"Up";
+
+        scroll_left = "h";
+        scroll_right = "l";
+        scroll_up = "k";
+        scroll_down = "j";
+
+        scroll_left_page = "C-h";
+        scroll_right_page	= "C-l";
+        scroll_up_page = "C-k";
+        scroll_down_page = "C-j";
+
+        toggle_aliasing = "A";
+        toggle_filenames = "d";
+        toggle_pointer = "o";
+        toggle_fullscreen	= "f";
+
+        zoom_in = "plus";
+        zoom_out = "minus";
+
+        next_img = "greater";
+        prev_img = "less";
+        reload_image = "r";
+        size_to_image = "w";
+        next_dir = "bracketright";
+        prev_dir = "bracketleft";
+        orient_3 = "parenright";
+        orient_1 = "parenleft";
+        flip = "underscore";
+        mirror = "bar";
+        remove = "Delete";
+        zoom_fit = "s";
+        zoom_default = "a";
+
+        close = [
+          "q"
+          "Q"
+        ]; 
+      };
+    };
   };
 
-  programs.feh = {
-    enable = true;
-    keybindings = {
-      menu_parent = "Left";
-      menu_child = "Right";
-      menu_down	= "Down";
-      menu_up =	"Up";
+  services = {
+    # Don't work, cannot get info
+    redshift.enable = true;
+    redshift.provider = "geoclue2";
 
-      scroll_left = "h";
-      scroll_right = "l";
-      scroll_up = "k";
-      scroll_down = "j";
-
-      scroll_left_page = "C-h";
-      scroll_right_page	= "C-l";
-      scroll_up_page = "C-k";
-      scroll_down_page = "C-j";
-
-      toggle_aliasing = "A";
-      toggle_filenames = "d";
-      toggle_pointer = "o";
-      toggle_fullscreen	= "f";
-
-      zoom_in = "plus";
-      zoom_out = "minus";
-
-      next_img = "greater";
-      prev_img = "less";
-      reload_image = "r";
-      size_to_image = "w";
-      next_dir = "bracketright";
-      prev_dir = "bracketleft";
-      orient_3 = "parenright";
-      orient_1 = "parenleft";
-      flip = "underscore";
-      mirror = "bar";
-      remove = "Delete";
-      zoom_fit = "s";
-      zoom_default = "a";
-
-      close = [
-        "q"
-        "Q"
-      ]; 
-    };
+    easyeffects.enable = true;
+    tldr-update.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -368,16 +333,8 @@
     clinfo
     evince
     texliveFull
+    # orca-slicer        # 3D printing slicer
+    # freecad-wayland    # CAD software
 
-  ] ++ (if config.default.isPC then [
-      # PC Soft
-      # orca-slicer        # 3D printing slicer
-      # protonup
-      # wine-wayland
-      # winetricks
-      # freecad-wayland    # CAD software
-    ] else []);
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  ];
 }
