@@ -121,7 +121,7 @@
           "disk" = {
             format = " {}%";
             tooltip-format = "{used} / {total} used";
-            on-click = "kitty -e --class=dust -o font_size=8 dust --hold";
+            on-click = "kitty -e --class=dua -o font_size=8 dua interactive";
           };
           "memory" = {
             format = " {}%";
