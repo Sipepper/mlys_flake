@@ -13,6 +13,7 @@
   ];
 
   default.main-font = "Iosevka Nerd Font";
+  default.term-font = "Iosevka Term NF";
 
   home = {
     username = "mlys";
