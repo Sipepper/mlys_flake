@@ -326,6 +326,6 @@
     texliveFull          # TODO needed for Inkscape to render LaTeX
     # orca-slicer        # 3D printing slicer
     # freecad-wayland    # CAD software
-
+    texliveFull
   ];
 }
