@@ -9,6 +9,10 @@ in
       type = lib.types.str;
       default = "Hurmit Nerd Font";
     };
+    term-font = lib.mkOption {
+      type = lib.types.str;
+      default = "Iosevka Term NF";
+    };
     cursor = lib.mkOption {
       type = lib.types.attrs;
       default = {
@@ -41,6 +45,7 @@ in
   config = lib.mkIf cfg.enable {
     default = {
       main-font = "Hurmit Nerd Font";
+      term-font = "Iosevka Term NF";
       cursor = {
         name = "Vanilla-DMZ";
         package = pkgs.vanilla-dmz;
