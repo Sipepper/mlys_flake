@@ -416,9 +416,8 @@
         name = "e-signal-hator-pulsar";
         sensitivity = "-0.5";
       };
-      monitor = if config.default.isPC then ",1920x1080@75,auto,1.2" else ",1920x1080,auto,auto";
+      monitor = ",1920x1080,auto,auto";
 
-      # xwayland.force_zero_scaling = if config.default.isPC then false else true;
       xwayland.force_zero_scaling = true;
 
       "$mainMod" = "SUPER";
