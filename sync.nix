@@ -17,7 +17,7 @@
         "Rust" = { path = "/home/mlys/Rust"; devices = [ "phone" ]; };
         "LaTeX" = { path = "/home/mlys/LaTeX"; devices = [ "phone" ]; };
         "Books" = { path = "/home/mlys/Books"; devices = [ "pc" ]; };
-        "Git" = { path = "/home/mlys/Git"; devices = [ "phone" ]; };
+        # "Git" = { path = "/home/mlys/Git"; devices = [ "phone" ]; };
       };
     };
   };
