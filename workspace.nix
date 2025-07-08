@@ -37,6 +37,13 @@
       #     { run = "open"; on = [ "l" ]; }
       #   ];
       # };
+      theme = {
+        icon = {
+        dirs = [
+            { name = "Rust"; text = "󱘗 "; fg = "#563d7c"; }
+          ]
+        };
+      };
       settings = {
         # preview.image_delay = 0;
 
