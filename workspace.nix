@@ -37,6 +37,20 @@
       #     { run = "open"; on = [ "l" ]; }
       #   ];
       # };
+      theme = {
+        icon.dirs = [
+          { name = "Rust"; text = "󱘗"; }
+          { name = "Obsidian"; text = ""; }
+          { name = "Games"; text = "󰊗"; }
+          { name = "Git"; text = ""; }
+          { name = "LaTeX"; text = "󱛊"; }
+          { name = "Documents"; text = "󱪗"; }
+          { name = "Downloads"; text = ""; }
+          { name = "Work"; text = ""; }
+          { name = "Pictures"; text = ""; }
+          { name = "Books"; text = "󱉟"; }
+        ];
+      };
       settings = {
         # preview.image_delay = 0;
 
