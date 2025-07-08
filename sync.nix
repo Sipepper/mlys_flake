@@ -8,7 +8,7 @@
     enable = true;
     settings = {
       devices = {
-        "phone" = { id = "F76YWQC-6F5ADDO-X6QO4XV-4AWXYKI-M47JE2Z-EMKKIES-7DUMMMC-GIEN3AJ"; };
+        "phone" = { id = "TVV4OKR-JCDYDZQ-3EFMNF2-ZIXBPYO-XRIJVGO-4OCOLAO-S3IQGGK-IXLNPAK"; };
       };
       folders = {
         "Obsidian" = {
