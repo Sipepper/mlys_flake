@@ -19,19 +19,20 @@
       '';
     };
 
-    ".space.jpg" = {
-      source = ./assets/space.jpg;
-    };
+    ".space.jpg" = { source = ./assets/space.jpg; };
 
     # ".config/yazi/relative-motions" = {
     #   source = pkgs.yaziPlugins.relative-motions;
     # };
 
-    "Games/sega" = {
-      source = ./assets/sega;
-      # recursive = true;
-      # force = true;
-    };
+    "Games/sega" = { source = ./assets/sega; };
+    "Git/.readme.md" = { text = "Primary folder for git repos."; };
+    "Rust/.readme.md" = { text = "Primary folder for programming projects."; };
+    "Games/.readme.md" = { text = "Primary folder for games outside of Steam."; };
+    "Books/.readme.md" = { text = "Primary folder for books, i.e. **The Library**."; };
+    "Work/.readme.md" = { text = "Primary folder for non-math work."; };
+    "Documents/.readme.md" = { text = "Primary folder for legal and other documents."; };
+    "LaTeX/.readme.md" = { text = "Primary folder for math papers projects."; };
 
     ".local/share/applications/kega-fusion.desktop" = {
       text = ''
