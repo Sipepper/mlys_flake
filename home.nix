@@ -47,12 +47,15 @@
     fastfetch = {
       enable = true;
       settings = {
-        logo = {
-          # source = ./assets/endeminis-icon.png;
-          padding = {
-            top = 2;
-          };
-        };
+        # logo = {
+        #   source = ./assets/galana.png;
+        #    width = 50;
+        #    height = 50;
+        #    padding = {
+        #      top = 20;
+        #      bottom = 20;
+        #    };
+        # };
         display = {
           separator = " -> ";
           constants = [
@@ -60,11 +63,11 @@
           ];
         };
         modules = [
-          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
-          { type= "title"; keyWidth= 10; }
-          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
+          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= "90"; }
+          { type= "title"; keyWidth= "10"; }
+          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= "90"; }
           { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90} "; }
-          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
+          { type= "custom"; format= "┌{$1} {$1}┐"; outputColor= "90"; }
           { type= "os";        key= "{icon} OS"; keyColor= "yellow"; }
           { type= "kernel";    key= "│ ├ ";     keyColor= "yellow"; }
           { type= "packages";  key= "│ ├󰏖 ";     keyColor= "yellow"; }
@@ -86,9 +89,9 @@
           { type= "sound";     key= " SND";     keyColor= "cyan"; }
           { type= "player";    key= "│ ├󰥠 ";     keyColor= "cyan"; }
           { type= "media";     key= "│ └󰝚 ";     keyColor= "cyan"; }
-          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
+          { type= "custom"; format= "└{$1} {$1}┘"; outputColor= "90"; }
           "break"
-          { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90}"; }
+          # { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90}"; }
         ];
       };
     };
@@ -323,5 +326,5 @@
     clinfo
     evince
     texliveFull          # TODO needed for Inkscape to render LaTeX
-  ]
+  ];
 }
