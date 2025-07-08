@@ -19,7 +19,8 @@
       privateBuildPlan = {
         family = "Iosevka Custom";
         spacing = "quasi-proportional";
-        serifs = "sans";
+        # serifs = "sans";
+        serifs = "slab";
         noCvSs = true;
         exportGlyphNames = false;
         weights = {
