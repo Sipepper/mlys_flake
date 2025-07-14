@@ -495,6 +495,9 @@
         "float,        title:(Select Document)"
         "float,        title:(Choose modpack)"
 
+        "float,        title:(Вхід)"
+        "float,        title:(Login)"
+
         "float,        class:(.blueman-manager-wrapped)"
 
 
