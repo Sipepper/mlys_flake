@@ -328,5 +328,7 @@
     # freecad-wayland    # CAD software
     texliveFull
     khal
+    tree                 # CLI folder visualization
+
   ];
 }
