@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-stable, inputs, lib, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
@@ -31,7 +31,7 @@
     yazi = {
       enable = true;
       keymap = {
-        manager.keymap = [
+        mgr.keymap = [
           { on = "<Esc>"; run = "escape";             desc = "Exit visual mode, clear selection, or cancel search"; }
           { on = "q";     run = "quit";               desc = "Quit the process"; }
           { on = "Q";     run = "quit --no-cwd-file"; desc = "Quit without outputting cwd-file"; }
@@ -164,7 +164,7 @@
           # Help
           { on = "<F1>"; run = "help"; desc = "Open help"; }
         ];
-        manager.prepend_keymap = [
+        mgr.prepend_keymap = [
           { on = "1"; run = "plugin relative-motions 1"; desc = "Move in relative steps"; }
           { on = "2"; run = "plugin relative-motions 2"; desc = "Move in relative steps"; }
           { on = "3"; run = "plugin relative-motions 3"; desc = "Move in relative steps"; }
@@ -174,10 +174,11 @@
           { on = "7"; run = "plugin relative-motions 7"; desc = "Move in relative steps"; }
           { on = "8"; run = "plugin relative-motions 8"; desc = "Move in relative steps"; }
           { on = "9"; run = "plugin relative-motions 9"; desc = "Move in relative steps"; }
-          { on = "y"; run = [ "shell -- for path in '$@'; do echo 'file://$path'; done | wl-copy -t text/uri-list" "yank" ]; desc = "Smart copy"; }
+          { on = "y"; run = [ "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list" "yank" ]; desc = "Smart copy"; }
 
           { on = [ ";" ]; run = "plugin custom-shell -- auto --interactive";  desc = "custom-shell as default"; }
           { on = "C"; run = "plugin ouch"; desc = "Compress with ouch"; }
+          { on = "!"; run = "shell '$SHELL' --block"; desc = "Open $SHELL here"; }
         ];
 
         tasks.keymap = [
