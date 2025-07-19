@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-stable, inputs, lib, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./default.nix
