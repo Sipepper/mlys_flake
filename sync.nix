@@ -14,9 +14,14 @@
       folders = {
         "Obsidian" = { path = "/home/mlys/Obsidian"; devices = [ "phone" ]; };
         "Work" = { path = "/home/mlys/Work"; devices = [ "phone" ]; };
-        "Rust" = { path = "/home/mlys/Rust"; devices = [ "phone" ]; };
+        # "Rust" = { path = "/home/mlys/Rust"; devices = [ "phone" ]; };
         "LaTeX" = { path = "/home/mlys/LaTeX"; devices = [ "phone" ]; };
+<<<<<<< HEAD
         "Books" = { path = "/home/mlys/Books"; devices = [ "pc" ]; };
+||||||| parent of ea8db3f (removed some sync folders)
+        "Books" = { path = "/home/mlys/Books"; devices = [ "laptop" ]; };
+=======
+>>>>>>> ea8db3f (removed some sync folders)
         # "Git" = { path = "/home/mlys/Git"; devices = [ "phone" ]; };
       };
     };
