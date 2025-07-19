@@ -14,9 +14,8 @@
       folders = {
         "Obsidian" = { path = "/home/mlys/Obsidian"; devices = [ "phone" ]; };
         "Work" = { path = "/home/mlys/Work"; devices = [ "phone" ]; };
-        "Rust" = { path = "/home/mlys/Rust"; devices = [ "phone" ]; };
+        # "Rust" = { path = "/home/mlys/Rust"; devices = [ "phone" ]; };
         "LaTeX" = { path = "/home/mlys/LaTeX"; devices = [ "phone" ]; };
-        "Books" = { path = "/home/mlys/Books"; devices = [ "laptop" ]; };
         # "Git" = { path = "/home/mlys/Git"; devices = [ "phone" ]; };
       };
     };
