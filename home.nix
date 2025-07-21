@@ -117,7 +117,7 @@
       font = {
         name = config.default.term-font;
         # size = if config.default.isPC then 12 else 10;
-        size = 10;
+        size = 12;
       };
       settings = {
         enable_audio_bell = false;

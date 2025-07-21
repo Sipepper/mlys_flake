@@ -287,6 +287,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
   swapDevices = [{
     device = "/swapfile";
@@ -315,6 +316,11 @@
 
   fileSystems."/home/mlys/Sata" = {
     device = "/dev/sdb1";
+    autoFormat = true;
+  };
+
+  fileSystems."/home/mlys/SSD" = {
+    device = "/dev/sda1";
     autoFormat = true;
   };
 

@@ -24,7 +24,7 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/home/SSD" =
+  fileSystems."/home/mlys/HDD" =
     { device = "/dev/disk/by-uuid/7741e41c-aabc-4acd-b3e1-88ca9efc2373";
       fsType = "ext4";
     };
