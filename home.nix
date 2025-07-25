@@ -12,6 +12,8 @@
     ./workspace.nix
   ];
 
+  # nixpkgs.config.allowBroken = true;
+
   # default.isPC = true;
   default.main-font = "Iosevka Nerd Font";
   default.term-font = "Iosevka Term NF";
@@ -38,6 +40,18 @@
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
+
+
+    lutris = {
+      enable = true;
+      extraPackages = with pkgs; [
+        mangohud 
+        winetricks
+        gamescope
+        gamemode
+      ];
+      protonPackages = [ pkgs.proton-ge-bin ];
+    };
 
     helix.enable = true;
     iamb.enable = true;
@@ -282,7 +296,6 @@
     feh                  # image viewer
     libreoffice-fresh    # office editors doc,xlsx, etc
     discord              # voice and text-chat app
-    smassh               # tui typing training
     gpg-tui              # tui gpg
     kega-fusion          # SEGA emulator
     btop                 # tui system monitor
@@ -294,7 +307,6 @@
     orca-c               # esoteric programming sequencer
     cava                 # audio visualizer
     libremines           # minesweeper
-    lutris               # unified game launcher proton/wine wrapper
     aseprite             # pixel img/animation drawing software
     pipes-rs             # cli pipes simulation
     wl-color-picker      # color picker
@@ -308,7 +320,6 @@
     prismlauncher        # Minecraft launcher
     lshw                 # Hardware info
     usbutils
-    celestia             # GUI space exploration encyclopedia
     dysk                 # TUI disk storage visualization 
     visidata             # TUI data visualization
     wiki-tui             # TUI wikipedia
@@ -327,8 +338,8 @@
     # orca-slicer        # 3D printing slicer
     # freecad-wayland    # CAD software
     texliveFull
-    khal
     tree                 # CLI folder visualization
+    wine
 
   ];
 }
