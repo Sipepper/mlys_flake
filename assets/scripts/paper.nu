@@ -2,7 +2,6 @@
 
 let text = "
   \\input{preamble.tex}
-  \\addbibresource{bib.bib}
   \\addbibresource{general.bib}
   \\title{}
   \\begin{document}
