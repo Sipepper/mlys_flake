@@ -91,7 +91,6 @@
           { type= "media";     key= "│ └󰝚 ";     keyColor= "cyan"; }
           { type= "custom"; format= "└{$1} {$1}┘"; outputColor= "90"; }
           "break"
-          # { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90}"; }
         ];
       };
     };
@@ -110,8 +109,6 @@
         "--smart-case"
       ];
     };
-
-    wezterm.enable = true;
 
     kitty = {
       enable = true;
@@ -246,9 +243,9 @@
   };
 
   services = {
-  # Don't work, cannot get info
-    redshift.enable = true;
-    redshift.provider = "geoclue2";
+    # Don't work, cannot get info
+    # redshift.enable = true;
+    # redshift.provider = "geoclue2";
 
     easyeffects.enable = true;
     tldr-update.enable = true;
@@ -282,7 +279,6 @@
     feh                  # image viewer
     libreoffice-fresh    # office editors doc,xlsx, etc
     discord              # voice and text-chat app
-    smassh               # tui typing training
     gpg-tui              # tui gpg
     kega-fusion          # SEGA emulator
     btop                 # tui system monitor
@@ -291,34 +287,27 @@
     networkmanagerapplet # connections control for waybar
     wasistlos            # whatsapp client
     sc-controller        # controller configs
-    # atool                # needed for archive zipping un zipping in ranger 
     orca-c               # esoteric programming sequencer
     cava                 # audio visualizer
     libremines           # minesweeper
-    lutris               # unified game launcher proton/wine wrapper
     aseprite             # pixel img/animation drawing software
     pipes-rs             # cli pipes simulation
     wl-color-picker      # color picker
     xournalpp            # More advanced whiteboard
     tldr                 # Offline command Manual, substitute for `man` command
-    osu-lazer-bin        # Rhytm game
     wev                  # wayland event viewer
     hyprpicker           # Another Color picker need further comparison with wl-color-picker
     slack                # Business communication (Discord for KSE)
     gcalcli              # TUI Google Calendar
     prismlauncher        # Minecraft launcher
-    w3m-nox
     lshw                 # Hardware info
     usbutils
-    celestia             # GUI space exploration encyclopedia
     dysk                 # TUI disk storage visualization 
     visidata             # TUI data visualization
-    wiki-tui             # TUI wikipedia
     mask                 # Markdown makefiles
     presenterm           # TUI Presentations!
     dust                 # Disk space visualization
     ouch                 # cli archiving tool
-    matrix-commander-rs
     pass-wayland         # cli password store
     tuifeed              # tui news feed reader
     dua                  # tui storage capacity viewer

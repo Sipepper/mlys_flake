@@ -468,11 +468,6 @@
           key = "<leader>f";
           options.desc = "Yazi";
         }
-        # {
-        #   action = "<cmd>NnnExplorer<cr>";
-        #   key = "<leader>e";
-        #   options.desc = "File Tree";
-        # }
         {
           action = "<cmd>wq<CR>";
           key = "<leader>qq";
@@ -499,13 +494,6 @@
       ];
 
       plugins = {
-        image = {
-          enable = true;
-          settings = {
-            backend = "kitty";
-          };
-
-        };
 
         yazi = {
           enable = true;
@@ -517,8 +505,6 @@
             # yazi_floating_window_winblend = 50;
           };
         };
-
-
 
         nix.enable = true;
         web-devicons.enable = true;
