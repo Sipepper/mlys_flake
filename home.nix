@@ -53,6 +53,17 @@
       protonPackages = [ pkgs.proton-ge-bin ];
     };
 
+    # lutris = {
+    #   enable = true;
+    #   extraPackages = with pkgs; [
+    #     mangohud 
+    #     winetricks
+    #     gamescope
+    #     gamemode
+    #   ];
+    #   protonPackages = [ pkgs.proton-ge-bin ];
+    # };
+
     helix.enable = true;
     iamb.enable = true;
     ncspot.enable = true;
@@ -63,12 +74,15 @@
     fastfetch = {
       enable = true;
       settings = {
-        logo = {
-          # source = ./assets/endeminis-icon.png;
-          padding = {
-            top = 2;
-          };
-        };
+        # logo = {
+        #   source = ./assets/galana.png;
+        #    width = 50;
+        #    height = 50;
+        #    padding = {
+        #      top = 20;
+        #      bottom = 20;
+        #    };
+        # };
         display = {
           separator = " -> ";
           constants = [
@@ -76,11 +90,11 @@
           ];
         };
         modules = [
-          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
-          { type= "title"; keyWidth= 10; }
-          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
+          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= "90"; }
+          { type= "title"; keyWidth= "10"; }
+          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= "90"; }
           { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90} "; }
-          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= 90; }
+          { type= "custom"; format= "┌{$1} {$1}┐"; outputColor= "90"; }
           { type= "os";        key= "{icon} OS"; keyColor= "yellow"; }
           { type= "kernel";    key= "│ ├ ";     keyColor= "yellow"; }
           { type= "packages";  key= "│ ├󰏖 ";     keyColor= "yellow"; }
@@ -102,9 +116,8 @@
           { type= "sound";     key= " SND";     keyColor= "cyan"; }
           { type= "player";    key= "│ ├󰥠 ";     keyColor= "cyan"; }
           { type= "media";     key= "│ └󰝚 ";     keyColor= "cyan"; }
-          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= 90; }
+          { type= "custom"; format= "└{$1} {$1}┘"; outputColor= "90"; }
           "break"
-          { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90}"; }
         ];
       };
     };
@@ -124,13 +137,10 @@
       ];
     };
 
-    wezterm.enable = true;
-
     kitty = {
       enable = true;
       font = {
         name = config.default.term-font;
-        # size = if config.default.isPC then 12 else 10;
         size = 12;
       };
       settings = {
@@ -165,12 +175,11 @@
         "visual_mark_under_cursor" = "V";
       };
       config = {
-        # "should_launch_new_window" = "1";
+        "should_launch_new_window" = "1";
         "ui_font" = "${config.default.main-font}";
         "font_size" = "12";
         "super_fast_search" = "1";
         "rerender_overview" = "1";
-        # "linear_filter" = "1";
         "force_custom_line_algorithm" = "1";
         "status_bar_font_size" = "14";
         # "inverse_search_command" = "kitty -e \"nvim +%2 %1\"";
@@ -187,7 +196,7 @@
         # TODO not working
         # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
 
-        texenpaper = "nu ${./assets/scripts/paper.nu}";
+        paper = "nu ${./assets/scripts/paper.nu}";
       };
       configFile.text = ''
       $env.config.buffer_editor = "nvim" 
@@ -261,8 +270,8 @@
 
   services = {
     # Don't work, cannot get info
-    redshift.enable = true;
-    redshift.provider = "geoclue2";
+    # redshift.enable = true;
+    # redshift.provider = "geoclue2";
 
     easyeffects.enable = true;
     tldr-update.enable = true;
@@ -304,7 +313,7 @@
     wf-recorder          # screen capture
     networkmanagerapplet # connections control for waybar
     wasistlos            # whatsapp client
-    sc-controller        # controller configs
+    # sc-controller        # controller configs
     orca-c               # esoteric programming sequencer
     cava                 # audio visualizer
     libremines           # minesweeper
@@ -313,7 +322,7 @@
     wl-color-picker      # color picker
     xournalpp            # More advanced whiteboard
     tldr                 # Offline command Manual, substitute for `man` command
-    osu-lazer-bin        # Rhytm game
+    # osu-lazer-bin        # Rhytm game
     wev                  # wayland event viewer
     hyprpicker           # Another Color picker need further comparison with wl-color-picker
     slack                # Business communication (Discord for KSE)
@@ -328,7 +337,7 @@
     presenterm           # TUI Presentations!
     dust                 # Disk space visualization
     ouch                 # cli archiving tool
-    matrix-commander-rs
+    # matrix-commander-rs
     pass-wayland         # cli password store
     tuifeed              # tui news feed reader
     dua                  # tui storage capacity viewer
@@ -338,7 +347,7 @@
     texliveFull          # TODO needed for Inkscape to render LaTeX
     # orca-slicer        # 3D printing slicer
     # freecad-wayland    # CAD software
-    texliveFull
+    # texliveFull
     tree                 # CLI folder visualization
     wine
 

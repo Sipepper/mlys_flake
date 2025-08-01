@@ -21,10 +21,6 @@
 
     ".space.jpg" = { source = ./assets/space.jpg; };
 
-    # ".config/yazi/relative-motions" = {
-    #   source = pkgs.yaziPlugins.relative-motions;
-    # };
-
     "Games/sega" = { source = ./assets/sega; };
     "Git/.readme.md" = { text = "Primary folder for git repos."; };
     "Rust/.readme.md" = { text = "Primary folder for programming projects."; };

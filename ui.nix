@@ -20,15 +20,12 @@
       xdgOpenUsePortal = true;
       config = {
         common = {
-          # default = [ "termfilechooser" "gtk" ];
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
         };
       };
       extraPortals = [ 
         pkgs.xdg-desktop-portal-wlr
         pkgs.xdg-desktop-portal-termfilechooser
-        # pkgs.xdg-desktop-portal-gtk 
-        # pkgs.xdg-desktop-portal-hyprland 
       ];
     };
   };
