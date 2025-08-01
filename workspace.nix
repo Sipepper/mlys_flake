@@ -21,11 +21,14 @@
         color = "always";
         enableAsDifftool = true;
       };
-      # extraConfig = {
-      #   init.defaultBranch = "main";
-      #   merge.tool = "mergiraf";
-      #   credential.helper = pkgs.gh;
-      # };
+      extraConfig = {
+        init.defaultBranch = "main";
+        merge = {
+          tool = "mergiraf";
+          driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L";
+        };
+        credential.helper = "${pkgs.gh}";
+      };
     };
 
     # TUI File manager
@@ -133,12 +136,15 @@
           { on = [ ","  "r" ]; run = "sort random --reverse=no";                      desc = "Sort randomly"; }
 
           # Goto
-          { on = [ "g"  "h" ];       run = "cd ~";             desc = "Go home"; }
-          { on = [ "g"  "c" ];       run = "cd ~/.config";     desc = "Go ~/.config"; }
-          { on = [ "g"  "d" ];       run = "cd ~/Downloads";   desc = "Go ~/Downloads"; }
-          { on = [ "g"  "<Space>" ]; run = "cd --interactive"; desc = "Jump interactively"; }
-          { on = [ "g"  "f" ];       run = "follow";           desc = "Follow hovered symlink"; }
+          { on = [ "g"  "h" ];       run = "cd ~";                          desc = "Go home"; }
+          { on = [ "g"  "c" ];       run = "cd ~/.config";                  desc = "Go ~/.config"; }
+          { on = [ "g"  "d" ];       run = "cd ~/Downloads";                desc = "Go ~/Downloads"; }
+          { on = [ "g"  "<Space>" ]; run = "cd --interactive";              desc = "Jump interactively"; }
+          { on = [ "g"  "f" ];       run = "follow";                        desc = "Follow hovered symlink"; }
           { on = [ "g"  "m" ];       run = "cd /run/media/mlys/";           desc = "Open removable media"; }
+          { on = [ "g"  "o" ];       run = "cd ~/Obsidian";                 desc = "Open Obsidian folder"; }
+          { on = [ "g"  "r" ];       run = "cd ~/Rust";                 desc = "Open Rust folder"; }
+          { on = [ "g"  "l" ];       run = "cd ~/Latex";                 desc = "Open LaTeX folder"; }
 
           # Tabs
           { on = "t"; run = "tab_create --current"; desc = "Create a new tab with CWD"; }
@@ -183,9 +189,6 @@
         ];
 
         tasks.keymap = [
-          { on = "<Esc>"; run = "close"; desc = "Close task manager"; }
-          { on = "<C-[>"; run = "close"; desc = "Close task manager"; }
-          { on = "<C-c>"; run = "close"; desc = "Close task manager"; }
           { on = "w";     run = "close"; desc = "Close task manager"; }
           { on = "k"; run = "arrow prev"; desc = "Previous task"; }
           { on = "j"; run = "arrow next"; desc = "Next task"; }
@@ -389,13 +392,11 @@
       vimdiffAlias = true;
       performance.combinePlugins.enable = true;
       colorschemes.nightfox.enable = true;
-      extraPlugins = with pkgs; [ ];
 
       globals = {
         mapleader = " ";
         _ts_force_sync_parsing = true;
       };
-
 
       opts = {
         smartcase = true;
@@ -490,7 +491,7 @@
               end_key = "$";
               map = "<M-e>";
               chars = [
-                "$"
+                "\$"
                 "{"
                 "["
                 "("
@@ -673,12 +674,12 @@
               split_width = 40;
             };
             view_method = "sioyek";
-            imaps = {
-              disabled = [];
-              list = [
-                "fr \\fraction\{\}\{\}"
-              ];
-            };
+            # imaps = {
+            #   disabled = [];
+            #   list = [
+            #     "fr \\fraction\{\}\{\}"
+            #   ];
+            # };
             mappings.disable = {
               "n" = ["tse" "tsd"];
               "x" = ["tsd"];
