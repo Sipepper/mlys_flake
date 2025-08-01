@@ -16,7 +16,7 @@
         wallpaper = [ ", .space.jpg" ];
       };
     };
-    # Notifications
+    # Notifications aboba
     mako = {
       enable = true;
       settings = {
