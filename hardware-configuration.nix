@@ -24,16 +24,6 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/home/mlys/HDD" =
-    { device = "/dev/disk/by-uuid/7741e41c-aabc-4acd-b3e1-88ca9efc2373";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home/mlys/sata" =
-    { device = "/dev/disk/by-uuid/7f81cf18-3581-4814-91b6-1ca84cf4f990";
-      fsType = "ext4";
-    };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
