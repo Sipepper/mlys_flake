@@ -21,10 +21,11 @@
         color = "always";
         enableAsDifftool = true;
       };
-      extraConfig = {
-        init.defaultBranch = "main";
-        merge.tool = "mergiraf";
-      };
+      # extraConfig = {
+      #   init.defaultBranch = "main";
+      #   merge.tool = "mergiraf";
+      #   credential.helper = pkgs.gh;
+      # };
     };
 
     # TUI File manager

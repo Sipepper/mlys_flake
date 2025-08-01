@@ -416,7 +416,7 @@
         name = "e-signal-hator-pulsar";
         sensitivity = "-0.5";
       };
-      monitor = ",1920x1080@75,auto,1";
+      monitor = ",1920x1080@100,auto,1";
 
       # xwayland.force_zero_scaling = if config.default.isPC then false else true;
       xwayland.force_zero_scaling = true;

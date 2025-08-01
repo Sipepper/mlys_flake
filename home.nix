@@ -266,6 +266,7 @@
 
     easyeffects.enable = true;
     tldr-update.enable = true;
+    pass-secret-service.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
