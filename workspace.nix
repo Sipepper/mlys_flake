@@ -8,6 +8,8 @@
   programs = {
     mergiraf.enable = true;
 
+    # aboba from laptop
+
     fzf = {
       enable = true;
     };
