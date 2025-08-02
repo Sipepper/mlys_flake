@@ -1,11 +1,12 @@
-\documentclass[12pt, reqno]{article}
+\documentclass[11pt, reqno]{article}
 \usepackage[english]{babel}
+% \usepackage{concrete}
 \usepackage{fontspec}
-\setmainfont{Iosevka Nerd Font}
+\setmainfont{Iosevka Custom}
+
 
 \usepackage{mathtools}
 \usepackage{amsfonts,amssymb,amsthm}
-
 \usepackage{enumitem}
 \usepackage{svn}
 \usepackage{csquotes}
@@ -13,6 +14,10 @@
 \usepackage{listings,listings-rust}
 \usepackage{biblatex}
 \usepackage{lipsum}
+\usepackage{authblk}
+
+% \usepackage{unicode-math}
+% \setmathfont{texgyrepagella-math.otf}
 
 % \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
 
@@ -42,7 +47,7 @@
 \pgfplotsset{compat=1.18}
 \usepackage{mdframed}
 \usepackage{titlesec}
-
+\usepackage[symbol]{footmisc}
 % \usepackage{abstract}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -83,21 +88,21 @@
   \item\relax}
 {\endlist}
 
-\titleformat
-{\chapter} % command
-[display] % shape
-{\bfseries\Large\itshape} % format
-{Story No. \ \thechapter} % label
-{0.5ex} % sep
-{
-    \rule{\textwidth}{1pt}
-    \vspace{1ex}
-    \centering
-} % before-code
-[
-\vspace{-0.5ex}%
-\rule{\textwidth}{0.3pt}
-] % after-code
+% \titleformat
+% {\chapter} % command
+% [display] % shape
+% {\bfseries\Large\itshape} % format
+% {Story No. \ \thechapter} % label
+% {0.5ex} % sep
+% {
+%     \rule{\textwidth}{1pt}
+%     \vspace{1ex}
+%     \centering
+% } % before-code
+% [
+% \vspace{-0.5ex}%
+% \rule{\textwidth}{0.3pt}
+% ] % after-code
 
 
 % \titleformat{\section}
@@ -107,23 +112,29 @@
 \titlespacing{\section}{\parindent}{1.5ex plus .1ex minus .2ex}{2pt}
 \titleformat{\subsection}[runin]{\normalfont\large\bfseries}{\thesubsection.}{}{}[.]
 
+\setcounter{secnumdepth}{1}
 
-\setlist[enumerate,1]{label={(\alph*)}}
+\setlist[enumerate,1]{label={(\alph*)},itemsep=2pt}
 
-% \titlespacing{\section}{12pc}{1.5ex plus .1ex minus .2ex}{1pc}
-
+% \titlespacing{\section}{12pc}{}{1pc}
+% \titleformat{\section}[display]{\centering \normalsize \color{black}}{\thesection}{10pt}{}
 \newtheoremstyle{sltheorem}
                 {}          % Space above
                 {}          % Space below
                 {\upshape}  % Body font
                 {}          % Indent amount
                 {\bfseries} % Head font
-                {.}         % Punctuation after head
+                {:}         % Punctuation after head
                 { }         % Space after theorem head
                 {}          % Theorem head spec
 % Enable the new "sltheorem" theorem style.
 \theoremstyle{sltheorem}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
-\author{Mykola Lysynskyi}
+\newtheorem{definition}{Definition}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+% \author{\stepcounter{footnote}Mykola Lysynskyi\thanks{Institute of Mathematics NAS of Ukraine}}
+% \author{\stepcounter{footnote}Mykola Lysynskyi}
+\author{Mykola Lysynskyi\footnote{Institute of mathematics NAS of Ukraine}}
+\date{}
 
