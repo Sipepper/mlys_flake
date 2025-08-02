@@ -349,14 +349,13 @@
       exec-once = [
         "waybar"
         "hyprpaper"
-        "steam -silent -forcedesktopscaling" # Add dependenyc of isPC
         "slack -u"
         "easyeffects --gapplication-service"
         "discord --start-minimized"
         "Telegram -startintray"
         "udiskie"
         "hyprctl setcursor ${config.default.cursor.name} 24"
-        "kitty -e aerc"
+        # "kitty -e aerc"
       ];
       env = [
         "CLUTTER_BACKEND,wayland"
