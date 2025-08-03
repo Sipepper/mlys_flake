@@ -169,6 +169,8 @@
         "move_right" = "h";
         "close_window" = "q";
         "quit" = "Q";
+        "next_page" = "J";
+        "previous_page" = "K";
 
         "synctex_under_ruler" = "gd";
         "copy" = "yy";
@@ -180,9 +182,9 @@
         "font_size" = "12";
         "super_fast_search" = "1";
         "rerender_overview" = "1";
-        "force_custom_line_algorithm" = "1";
+        # "force_custom_line_algorithm" = "1";
         "status_bar_font_size" = "14";
-        # "inverse_search_command" = "kitty -e \"nvim +%2 %1\"";
+        "inverse_search_command" = "nvim +%2 %1";
 
       };
     };
@@ -193,9 +195,6 @@
     nushell = {
       enable = true;
       shellAliases = {
-        # TODO not working
-        # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
-
         paper = "nu ${./assets/scripts/paper.nu}";
       };
       configFile.text = ''
