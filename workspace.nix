@@ -144,7 +144,7 @@
           { on = [ "g"  "m" ];       run = "cd /run/media/mlys/";           desc = "Open removable media"; }
           { on = [ "g"  "o" ];       run = "cd ~/Obsidian";                 desc = "Open Obsidian folder"; }
           { on = [ "g"  "r" ];       run = "cd ~/Rust";                 desc = "Open Rust folder"; }
-          { on = [ "g"  "l" ];       run = "cd ~/Latex";                 desc = "Open LaTeX folder"; }
+          { on = [ "g"  "l" ];       run = "cd ~/LaTeX";                 desc = "Open LaTeX folder"; }
 
           # Tabs
           { on = "t"; run = "tab_create --current"; desc = "Create a new tab with CWD"; }
@@ -411,19 +411,20 @@
         langmap = "ФИСВУАПРШОЛДЬТЩЗЙКІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкіегмцчня;abcdefghijklmnopqrstuvwxyz,хїґжєбю\\ʼ;\\[\\]\\\\;\\'\\,\\.\\~";
       };
       keymaps = [
-        { action = "<C-w>l"; key = "<C-l>"; options.desc = "sd1"; }
-        { action = "<C-w>h"; key = "<C-h>"; options.desc = "sd4"; }
-        { action = "<C-w>j"; key = "<C-j>"; options.desc = "sd3"; }
-        { action = "<C-w>k"; key = "<C-k>"; options.desc = "sd2"; }
-        { action = "<cmd>noh<CR>"; key = "<Esc><Esc>"; options.desc = "which_key_ignore"; }
+        { action = "<C-w>l";                         key = "<C-l>";      options.desc = "sd1"; }
+        { action = "<C-w>h";                         key = "<C-h>";      options.desc = "sd4"; }
+        { action = "<C-w>j";                         key = "<C-j>";      options.desc = "sd3"; }
+        { action = "<C-w>k";                         key = "<C-k>";      options.desc = "sd2"; }
+        { action = "<cmd>noh<CR>";                   key = "<Esc><Esc>"; options.desc = "which_key_ignore"; }
         { action = "<cmd>BufferLineCloseOthers<CR>"; key = "<leader>bo"; options.desc = "Close other buffers"; }
-        { action = "<cmd>bdelete<CR>"; key = "<leader>bd"; options.desc = "Close buffer"; }
-        { action = "<cmd>bnext<CR>"; key = "<S-l>"; options.desc = "Move to right tab"; }
-        { action = "<cmd>bprev<CR>"; key = "<S-h>"; options.desc = "Move to left tab"; }
-        { action = "<cmd>Telescope live_grep<CR>"; key = "<leader>g"; options.desc = "Live Grep"; }
-        { action = "<cmd>LazyGitCurrentFile<CR>"; key = "<leader>lg"; options.desc = "LazyGit"; }
-        { action = "<cmd>Yazi<cr>"; key = "<leader>f"; options.desc = "Yazi"; }
-        { action = "<cmd>wq<CR>"; key = "<leader>qq"; options.desc = "Save and quit"; }
+        { action = "<cmd>bdelete<CR>";               key = "<leader>bd"; options.desc = "Close buffer"; }
+        { action = "<cmd>bnext<CR>";                 key = "<S-l>";      options.desc = "Move to right tab"; }
+        { action = "<cmd>bprev<CR>";                 key = "<S-h>";      options.desc = "Move to left tab"; }
+        { action = "<cmd>Telescope live_grep<CR>";   key = "<leader>lg"; options.desc = "Live Grep"; }
+        { action = "<cmd>LazyGitCurrentFile<CR>";    key = "<leader>g";  options.desc = "LazyGit"; }
+        { action = "<cmd>Yazi<cr>";                  key = "<leader>f";  options.desc = "Yazi"; }
+        { action = "<cmd>wq<CR>";                    key = "<leader>qq"; options.desc = "Save and quit"; }
+        { action = "<cmd>UndotreeToggle<CR>";        key = "<leader>u";  options.desc = "Toggle UndoTree"; }
         {
           action = "<cmd>lua vim.lsp.buf.definition()<CR>";
           key = "gd";
@@ -445,6 +446,44 @@
       ];
 
       plugins = {
+        ltex-extra = {
+          enable = true;
+          settings = {
+            initCheck = true;
+            loadLangs = [
+              "en-US"
+              "uk-UA"
+            ];
+            logLevel = "non";
+            path = ".ltex";
+          };
+        };
+        undotree = {
+          enable = true;
+          settings = {
+            CursorLine = true;
+            DiffAutoOpen = true;
+            DiffCommand = "diff";
+            DiffpanelHeight = 10;
+            HelpLine = true;
+            HighlightChangedText = true;
+            HighlightChangedWithSign = true;
+            HighlightSyntaxAdd = "DiffAdd";
+            HighlightSyntaxChange = "DiffChange";
+            HighlightSyntaxDel = "DiffDelete";
+            RelativeTimestamp = true;
+            SetFocusWhenToggle = true;
+            ShortIndicators = false;
+            SplitWidth = 40;
+            TreeNodeShape = "*";
+            TreeReturnShape = "\\";
+            TreeSplitShape = "/";
+            TreeVertShape = "|";
+            WindowLayout = 4;
+          };
+        };
+
+
         yazi = {
           enable = true;
           settings = {
@@ -612,6 +651,7 @@
         lsp = {
           enable = true;
           servers = {
+            ltex.enable = true;
             lua_ls.enable = true;
             ts_ls.enable = true;
             rust_analyzer = {
@@ -619,7 +659,7 @@
               installCargo = true;
               installRustc = true;
             };
-            texlab.enable = true;
+            texlab.enable = true; 
             nixd.enable = true;
             nushell.enable = true;
             html.enable = true;
