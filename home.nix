@@ -12,9 +12,6 @@
     ./workspace.nix
   ];
 
-  # nixpkgs.config.allowBroken = true;
-
-  # default.isPC = true;
   default.main-font = "Iosevka Nerd Font";
   default.term-font = "Iosevka Term NF";
 
@@ -41,7 +38,6 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
-
     lutris = {
       enable = true;
       extraPackages = with pkgs; [
@@ -52,17 +48,6 @@
       ];
       protonPackages = [ pkgs.proton-ge-bin ];
     };
-
-    # lutris = {
-    #   enable = true;
-    #   extraPackages = with pkgs; [
-    #     mangohud 
-    #     winetricks
-    #     gamescope
-    #     gamemode
-    #   ];
-    #   protonPackages = [ pkgs.proton-ge-bin ];
-    # };
 
     helix.enable = true;
     iamb.enable = true;
@@ -295,7 +280,6 @@
     obsidian             # note taking
     lazygit              # tui git 
     qbittorrent          # torrent client
-    syncthing            # p2p file sync between devices
     inkscape             # vector graphics
     grim                 # screen shots together with slurp
     slurp                # 
