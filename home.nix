@@ -8,7 +8,6 @@
     ./desktop.nix
     ./file_creation.nix
     ./ui.nix
-    ./sync.nix
     ./workspace.nix
   ];
 
