@@ -234,17 +234,16 @@
   boot.loader = {
     grub = {
       enable = true; 
-      efiSupport = true; 
-      device = "nodev"; 
-      splashImage = ./assets/grub.jpg; 
-      font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf"; 
-      fontSize = 16; 
+      efiSupport = true;
+      device = "nodev";
+      splashImage = ./assets/grub.jpg;
+      font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf";
+      fontSize = 16;
       useOSProber = true;
     };
     efi.canTouchEfiVariables = true;
   };
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_15;
-  # boot.loader.systemd-boot.enable = true;
 
 
   networking = {

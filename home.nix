@@ -37,9 +37,16 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
-  programs = {
-    # Let Home Manager install and manage itself.
-    home-manager.enable = true;
+    lutris = {
+      enable = true;
+      extraPackages = with pkgs; [
+        mangohud 
+        winetricks
+        gamescope
+        gamemode
+      ];
+      protonPackages = [ pkgs.proton-ge-bin ];
+    };
 
     helix.enable = true;
     iamb.enable = true;
@@ -118,7 +125,7 @@
       enable = true;
       font = {
         name = config.default.term-font;
-        size = 10;
+        size = 12;
       };
       settings = {
         enable_audio_bell = false;
@@ -169,62 +176,12 @@
     # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
     mangohud.enable = true;
 
-      remember_window_size = false;
-    };
-    themeFile = "Wombat";
-  };
-
-  programs.sioyek = {
-    enable = true;
-    bindings = {
-      "move_up_smooth" = "k";
-      "move_down_smooth" = "j";
-      "move_left" = "l";
-      "move_right" = "h";
-      "close_window" = "q";
-      "quit" = "Q";
-
-      "synctex_under_ruler" = "gd";
-      "copy" = "yy";
-      "visual_mark_under_cursor" = "V";
-    };
-    config = {
-      # "should_launch_new_window" = "1";
-      "ui_font" = "${config.default.main-font}";
-      "font_size" = "12";
-      "super_fast_search" = "1";
-      "rerender_overview" = "1";
-      # "linear_filter" = "1";
-      "force_custom_line_algorithm" = "1";
-      "status_bar_font_size" = "14";
-      # "inverse_search_command" = "kitty -e \"nvim +%2 %1\"";
-
-    };
-  };
-  # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/prefs.config
-  # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
-
-  services = {
-  # Don't work, cannot get info
-    redshift.enable = true;
-    redshift.provider = "geoclue2";
-
-    easyeffects.enable = true;
-    tldr-update.enable = true;
-  };
-
-
-  programs.mangohud.enable = true;
-
-  programs.nushell.enable = true;
-  programs.nushell = {
-    shellAliases = {
-      # TODO not working
-      # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
-
-      texenpaper = "nu ${./assets/scripts/paper.nu}";
-    };
-    configFile.text = ''
+    nushell = {
+      enable = true;
+      shellAliases = {
+        paper = "nu ${./assets/scripts/paper.nu}";
+      };
+      configFile.text = ''
       $env.config.buffer_editor = "nvim" 
       $env.config.show_banner = false 
 
@@ -299,43 +256,9 @@
     # redshift.enable = true;
     # redshift.provider = "geoclue2";
 
-      scroll_left = "h";
-      scroll_right = "l";
-      scroll_up = "k";
-      scroll_down = "j";
-
-      scroll_left_page = "C-h";
-      scroll_right_page	= "C-l";
-      scroll_up_page = "C-k";
-      scroll_down_page = "C-j";
-
-      toggle_aliasing = "A";
-      toggle_filenames = "d";
-      toggle_pointer = "o";
-      toggle_fullscreen	= "f";
-
-      zoom_in = "plus";
-      zoom_out = "minus";
-
-      next_img = "greater";
-      prev_img = "less";
-      reload_image = "r";
-      size_to_image = "w";
-      next_dir = "bracketright";
-      prev_dir = "bracketleft";
-      orient_3 = "parenright";
-      orient_1 = "parenleft";
-      flip = "underscore";
-      mirror = "bar";
-      remove = "Delete";
-      zoom_fit = "s";
-      zoom_default = "a";
-
-      close = [
-        "q"
-        "Q"
-      ]; 
-    };
+    easyeffects.enable = true;
+    tldr-update.enable = true;
+    pass-secret-service.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -391,6 +314,7 @@
     usbutils
     dysk                 # TUI disk storage visualization 
     visidata             # TUI data visualization
+    wiki-tui             # TUI wikipedia
     mask                 # Markdown makefiles
     presenterm           # TUI Presentations!
     dust                 # Disk space visualization
@@ -403,5 +327,11 @@
     clinfo
     evince
     texliveFull          # TODO needed for Inkscape to render LaTeX
+    # orca-slicer        # 3D printing slicer
+    # freecad-wayland    # CAD software
+    # texliveFull
+    tree                 # CLI folder visualization
+    wine
+
   ];
 }

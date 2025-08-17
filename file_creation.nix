@@ -29,9 +29,6 @@
     "Work/.readme.md" = { text = "Primary folder for non-math work."; };
     "Documents/.readme.md" = { text = "Primary folder for legal and other documents."; };
     "LaTeX/.readme.md" = { text = "Primary folder for math papers projects."; };
-    # ".config/yazi/relative-motions" = {
-    #   source = pkgs.yaziPlugins.relative-motions;
-    # };
 
     ".local/share/applications/kega-fusion.desktop" = {
       text = ''
