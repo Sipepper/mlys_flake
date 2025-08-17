@@ -4,31 +4,30 @@
     ./default.nix
   ];
 
-  xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
-    force = true;
-    text = ''
-      [filechooser]
-      cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-    '';
-  };
 
   home.sessionVariables.TERMCMD = "kitty --class=file_chooser";
 
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    config = {
-      common = {
-        # default = [ "termfilechooser" "gtk" ];
-        "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-      };
+  xdg = {
+    configFile."xdg-desktop-portal-termfilechooser/config" = {
+      force = true;
+      text = ''
+      [filechooser]
+      cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+      '';
     };
-    extraPortals = [ 
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-termfilechooser
-      # pkgs.xdg-desktop-portal-gtk 
-      # pkgs.xdg-desktop-portal-hyprland 
-    ];
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      config = {
+        common = {
+          "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+        };
+      };
+      extraPortals = [ 
+        pkgs.xdg-desktop-portal-wlr
+        pkgs.xdg-desktop-portal-termfilechooser
+      ];
+    };
   };
   
   qt = {

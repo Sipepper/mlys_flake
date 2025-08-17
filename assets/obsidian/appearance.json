@@ -1,0 +1,10 @@
+{
+  "nativeMenus": false,
+  "theme": "obsidian",
+  "interfaceFontFamily": "Iosevka Custom,Iosevka Nerd Font,Hurmit Nerd Font",
+  "textFontFamily": "Iosevka Custom,Iosevka Nerd Font,Hurmit Nerd Font Propo",
+  "monospaceFontFamily": "Iosevka Nerd Font Mono,Hurmit Nerd Font Mono",
+  "showRibbon": true,
+  "baseFontSize": 16,
+  "cssTheme": "Nightfox"
+}

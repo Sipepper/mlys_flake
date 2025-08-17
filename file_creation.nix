@@ -21,10 +21,6 @@
 
     ".space.jpg" = { source = ./assets/space.jpg; };
 
-    # ".config/yazi/relative-motions" = {
-    #   source = pkgs.yaziPlugins.relative-motions;
-    # };
-
     "Games/sega" = { source = ./assets/sega; };
     "Git/.readme.md" = { text = "Primary folder for git repos."; };
     "Rust/.readme.md" = { text = "Primary folder for programming projects."; };
@@ -33,6 +29,9 @@
     "Work/.readme.md" = { text = "Primary folder for non-math work."; };
     "Documents/.readme.md" = { text = "Primary folder for legal and other documents."; };
     "LaTeX/.readme.md" = { text = "Primary folder for math papers projects."; };
+    # ".config/yazi/relative-motions" = {
+    #   source = pkgs.yaziPlugins.relative-motions;
+    # };
 
     ".local/share/applications/kega-fusion.desktop" = {
       text = ''

@@ -1,12 +1,126 @@
-{ config, pkgs, nixpkgs-stable, inputs, lib, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     ./default.nix
   ];
 
   programs = {
+    firefox = {
+      enable = true;
+
+    };
+
+
+    obsidian = {
+      enable = false;
+      vaults = {
+        "mind-garden" = {
+          enable = true;
+          target = "/Obsidian";
+          settings = {
+
+            app = {
+              livePreview = false;
+              vimMode = true;
+              attachmentFolderPath = "Attachments";
+              propertiesInDocument = "visible";
+
+              pdfExportSettings = {
+                includeName = true;
+                pageSize = "Letter";
+                landscape = false;
+                margin = 0;
+                downscalePercent = 100;
+              };
+
+              alwaysUpdateLinks = true;
+              promptDelete = false;
+              trashOption = "none";
+              showLineNumber = true;
+            };
+
+            appearance = {
+              nativeMenus = false;
+              theme = "obsidian";
+              interfaceFontFamily = "Iosevka Custom,Iosevka Nerd Font,Hurmit Nerd Font";
+              textFontFamily = "Iosevka Custom,Iosevka Nerd Font,Hurmit Nerd Font Propo";
+              monospaceFontFamily = "Iosevka Nerd Font Mono,Hurmit Nerd Font Mono";
+              showRibbon = true;
+              baseFontSize = 16;
+              cssTheme = "Nightfox";
+            };
+
+
+            # TODO Not working here (have no clue how to resolve yet)
+            communityPlugins = [
+              {"quick-latex".enable = true;}
+              {"obsidian-admonition".enable = true;}
+              {"templater-obsidian".enable = true;}
+              {"dataview".enable = true;}
+              {"tag-wrangler".enable = true;}
+              {"obsidian-vault-statistics-plugin".enable = true;}
+              {"obsidian-excalidraw-plugin".enable = true;}
+              {"graph-analysis".enable = true;}
+              {"obsidian-dangling-links".enable = true;}
+              {"calendar".enable = true;}
+              {"contribution-graph".enable = true;}
+              {"obsidian-spaced-repetition".enable = true;}
+              {"obsidian-kanban".enable = true;}
+              {"homepage".enable = true;}
+              {"oz-clear-unused-images".enable = true;}
+              {"performosu".enable = true;}
+              {"obsidian42-strange-new-worlds".enable = true;}
+              {"cut-the-fluff".enable = true;}
+              {"notes-explorer".enable = true;}
+              {"obsidian-relative-line-numbers".enable = true;}
+              {"obsidian-collapse-all-plugin".enable = true;}
+              {"code-emitter".enable = true;}
+              {"code-styler".enable = true;}
+              {"obsidian-tracker".enable = true;}
+            ];
+
+            corePlugins = [
+              {name = "file-explorer"; enable = true;}
+              {name = "global-search"; enable = true;}
+              {name = "switcher";enable = true;}
+              {name = "graph"; enable = true;}
+              {name = "backlink"; enable = true;}
+              {name = "outgoing-link"; enable = true;}
+              {name = "tag-pane"; enable = true;}
+              {name = "page-preview"; enable = true;}
+              {name = "daily-notes"; enable = true;}
+              {name = "templates"; enable = true;}
+              {name = "note-composer"; enable = true;}
+              {name = "command-palette"; enable = true;}
+              {name = "slash-command"; enable = false;}
+              {name = "editor-status"; enable = false;}
+              {name = "starred"; enable = true;}
+              {name = "markdown-importer"; enable = false;}
+              {name = "zk-prefixer"; enable = false;}
+              {name = "random-note"; enable = true;}
+              {name = "outline"; enable = true;}
+              {name = "word-count"; enable = true;}
+              {name = "slides"; enable = true;}
+              {name = "audio-recorder"; enable = false;}
+              {name = "workspaces"; enable = true;}
+              {name = "file-recovery"; enable = true;}
+              {name = "publish"; enable = false;}
+              {name = "sync"; enable = false;}
+              {name = "canvas"; enable = true;}
+              {name = "bookmarks"; enable = true;}
+              {name = "properties"; enable = true;}
+            ];
+          };
+        };
+      };
+    };
+
+
+
     mergiraf.enable = true;
+
+    # aboba from laptop
 
     fzf = {
       enable = true;
@@ -24,6 +138,11 @@
       extraConfig = {
         pull.rebase = false; 
         init.defaultBranch = "main";
+        merge = {
+          tool = "mergiraf";
+          driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L";
+        };
+        credential.helper = "${pkgs.gh}";
       };
     };
 
@@ -37,39 +156,29 @@
           { on = "Q";     run = "quit --no-cwd-file"; desc = "Quit without outputting cwd-file"; }
           { on = "<C-c>"; run = "close";              desc = "Close the current tab; or quit if it's last"; }
           { on = "<C-z>"; run = "suspend";            desc = "Suspend the process"; }
-
           # Hopping
           { on = "k"; run = "arrow prev"; desc = "Previous file"; }
           { on = "j"; run = "arrow next"; desc = "Next file"; }
-
           { on = "<C-d>"; run = "plugin diff";   desc = "Diff the selected with the hovered file"; }
-
           { on = [ "g" "g" ]; run = "arrow top"; desc = "Go to top"; }
           { on = "G";          run = "arrow bot"; desc = "Go to bottom"; }
-
           # Navigation
           { on = "h"; run = "leave"; desc = "Back to the parent directory"; }
           { on = "l"; run = "plugin smart-enter"; desc = "Enter the child directory"; }
-
           { on = "H"; run = "back";    desc = "Back to previous directory"; }
           { on = "L"; run = "forward"; desc = "Forward to next directory"; }
-
           # Toggle
           { on = "<Space>"; run = [ "toggle" "arrow next" ]; desc = "Toggle the current selection state"; }
           { on = "<C-a>";   run = "toggle_all --state=on";    desc = "Select all files"; }
           { on = "<C-r>";   run = "toggle_all";               desc = "Invert selection of all files"; }
-
           # Visual mode
           { on = "v"; run = "visual_mode";         desc = "Enter visual mode (selection mode)"; }
           { on = "V"; run = "visual_mode --unset"; desc = "Enter visual mode (unset mode)"; }
-
           # Seeking
           { on = "K"; run = "seek -5"; desc = "Seek up 5 units in the preview"; }
           { on = "J"; run = "seek 5";  desc = "Seek down 5 units in the preview"; }
-
           # Spotting
           { on = "<Tab>"; run = "spot"; desc = "Spot hovered file"; }
-
           # Operation
           { on = "o";         run = "open --interactive";          desc = "Open selected files interactively"; }
           { on = "y";         run = "yank";                        desc = "Yank selected files (copy)"; }
@@ -81,8 +190,8 @@
           { on = "<C-->";     run = "hardlink";                    desc = "Hardlink yanked files"; }
           { on = "Y";         run = "unyank";                      desc = "Cancel the yank status"; }
           { on = "X";         run = "unyank";                      desc = "Cancel the yank status"; }
-          { on = "d";         run = "remove";                      desc = "Trash selected files"; }
-          { on = "D";         run = "remove --permanently";        desc = "Permanently delete selected files"; }
+          { on = "d";         run = "remove --permanently";                      desc = "Delete selected files"; }
+          # { on = "D";         run = "remove --permanently";        desc = "Permanently delete selected files"; }
           { on = "a";         run = "create";                      desc = "Create a file (ends with / for directories)"; }
           { on = "r";         run = "rename --cursor=before_ext";  desc = "Rename selected file(s)"; }
           { on = ":";         run = "shell --block --interactive"; desc = "Run a shell command (block until finishes)"; }
@@ -92,7 +201,6 @@
           { on = "<C-s>";     run = "escape --search";             desc = "Cancel the ongoing search"; }
           { on = "z";         run = "plugin fzf";                  desc = "Jump to a file/directory via fzf"; }
           { on = "Z";         run = "plugin zoxide";               desc = "Jump to a directory via zoxide"; }
-
           # Linemode
           { on = [ "m"  "s" ]; run = "linemode size";        desc = "Linemode: size"; }
           { on = [ "m"  "p" ]; run = "linemode permissions"; desc = "Linemode: permissions"; }
@@ -100,22 +208,18 @@
           { on = [ "m"  "m" ]; run = "linemode mtime";       desc = "Linemode: mtime"; }
           { on = [ "m"  "o" ]; run = "linemode owner";       desc = "Linemode: owner"; }
           { on = [ "m"  "n" ]; run = "linemode none";        desc = "Linemode: none"; }
-
           # Copy
           { on = [ "c"  "c" ]; run = "copy path";             desc = "Copy the file path"; }
           { on = [ "c"  "d" ]; run = "copy dirname";          desc = "Copy the directory path"; }
           { on = [ "c"  "f" ]; run = "copy filename";         desc = "Copy the filename"; }
           { on = [ "c"  "n" ]; run = "copy name_without_ext"; desc = "Copy the filename without extension"; }
-
           # Filter
           { on = "f"; run = "filter --smart"; desc = "Filter files"; }
-
           # Find
           { on = "/"; run = "find --smart";            desc = "Find next file"; }
           { on = "?"; run = "find --previous --smart"; desc = "Find previous file"; }
           { on = "n"; run = "find_arrow";              desc = "Next found"; }
           { on = "N"; run = "find_arrow --previous";   desc = "Previous found"; }
-
           # Sorting
           { on = [ ","  "m" ]; run = [ "sort mtime --reverse=no" "linemode mtime" ]; desc = "Sort by modified time"; }
           { on = [ ","  "M" ]; run = [ "sort mtime --reverse" "linemode mtime" ];    desc = "Sort by modified time (reverse)"; }
@@ -130,18 +234,18 @@
           { on = [ ","  "s" ]; run = [ "sort size --reverse=no" "linemode size" ];   desc = "Sort by size"; }
           { on = [ ","  "S" ]; run = [ "sort size --reverse" "linemode size" ];      desc = "Sort by size (reverse)"; }
           { on = [ ","  "r" ]; run = "sort random --reverse=no";                      desc = "Sort randomly"; }
-
           # Goto
-          { on = [ "g"  "h" ];       run = "cd ~";             desc = "Go home"; }
-          { on = [ "g"  "c" ];       run = "cd ~/.config";     desc = "Go ~/.config"; }
-          { on = [ "g"  "d" ];       run = "cd ~/Downloads";   desc = "Go ~/Downloads"; }
-          { on = [ "g"  "<Space>" ]; run = "cd --interactive"; desc = "Jump interactively"; }
-          { on = [ "g"  "f" ];       run = "follow";           desc = "Follow hovered symlink"; }
+          { on = [ "g"  "h" ];       run = "cd ~";                          desc = "Go home"; }
+          { on = [ "g"  "c" ];       run = "cd ~/.config";                  desc = "Go ~/.config"; }
+          { on = [ "g"  "d" ];       run = "cd ~/Downloads";                desc = "Go ~/Downloads"; }
+          { on = [ "g"  "<Space>" ]; run = "cd --interactive";              desc = "Jump interactively"; }
+          { on = [ "g"  "f" ];       run = "follow";                        desc = "Follow hovered symlink"; }
           { on = [ "g"  "m" ];       run = "cd /run/media/mlys/";           desc = "Open removable media"; }
-
+          { on = [ "g"  "o" ];       run = "cd ~/Obsidian";                 desc = "Open Obsidian folder"; }
+          { on = [ "g"  "r" ];       run = "cd ~/Rust";                 desc = "Open Rust folder"; }
+          { on = [ "g"  "l" ];       run = "cd ~/LaTeX";                 desc = "Open LaTeX folder"; }
           # Tabs
           { on = "t"; run = "tab_create --current"; desc = "Create a new tab with CWD"; }
-
           { on = "<A-1>"; run = "tab_switch 0"; desc = "Switch to first tab"; }
           { on = "<A-2>"; run = "tab_switch 1"; desc = "Switch to second tab"; }
           { on = "<A-3>"; run = "tab_switch 2"; desc = "Switch to third tab"; }
@@ -151,16 +255,12 @@
           { on = "<A-7>"; run = "tab_switch 6"; desc = "Switch to seventh tab"; }
           { on = "<A-8>"; run = "tab_switch 7"; desc = "Switch to eighth tab"; }
           { on = "<A-9>"; run = "tab_switch 8"; desc = "Switch to ninth tab"; }
-
           { on = "["; run = "tab_switch -1 --relative"; desc = "Switch to previous tab"; }
           { on = "]"; run = "tab_switch 1 --relative";  desc = "Switch to next tab"; }
-
           { on = "{"; run = "tab_swap -1"; desc = "Swap current tab with previous tab"; }
           { on = "}"; run = "tab_swap 1";  desc = "Swap current tab with next tab"; }
-
           # Tasks
           { on = "w"; run = "tasks:show"; desc = "Show task manager"; }
-
           # Help
           { on = "<F1>"; run = "help"; desc = "Open help"; }
         ];
@@ -174,16 +274,13 @@
           { on = "7"; run = "plugin relative-motions 7"; desc = "Move in relative steps"; }
           { on = "8"; run = "plugin relative-motions 8"; desc = "Move in relative steps"; }
           { on = "9"; run = "plugin relative-motions 9"; desc = "Move in relative steps"; }
-          { on = "y"; run = [ "shell -- for path in '$@'; do echo 'file://$path'; done | wl-copy -t text/uri-list" "yank" ]; desc = "Smart copy"; }
-
+          { on = "y"; run = [ "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list" "yank" ]; desc = "Smart copy"; }
           { on = [ ";" ]; run = "plugin custom-shell -- auto --interactive";  desc = "custom-shell as default"; }
           { on = "C"; run = "plugin ouch"; desc = "Compress with ouch"; }
+          { on = "!"; run = "shell '$SHELL' --block"; desc = "Open $SHELL here"; }
         ];
 
         tasks.keymap = [
-          { on = "<Esc>"; run = "close"; desc = "Close task manager"; }
-          { on = "<C-[>"; run = "close"; desc = "Close task manager"; }
-          { on = "<C-c>"; run = "close"; desc = "Close task manager"; }
           { on = "w";     run = "close"; desc = "Close task manager"; }
           { on = "k"; run = "arrow prev"; desc = "Previous task"; }
           { on = "j"; run = "arrow next"; desc = "Next task"; }
@@ -385,15 +482,27 @@
       enable = true;
       defaultEditor = true;
       vimdiffAlias = true;
-      performance.combinePlugins.enable = true;
       colorschemes.nightfox.enable = true;
-      extraPlugins = with pkgs; [ ];
+
+      # extraPlugins = [
+      #   (pkgs.vimUtils.buildVimPlugin {
+      #     name = "fff.nvim";
+      #     src = inputs.fff-nvim;
+      #   })
+      #
+      # ];
+
+      performance.combinePlugins = {
+        enable = true;
+        # standalonePlugins = [
+        #   "fff.nvim"
+        # ];
+      };
 
       globals = {
         mapleader = " ";
         _ts_force_sync_parsing = true;
       };
-
 
       opts = {
         smartcase = true;
@@ -408,71 +517,20 @@
         langmap = "ФИСВУАПРШОЛДЬТЩЗЙКІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкіегмцчня;abcdefghijklmnopqrstuvwxyz,хїґжєбю\\ʼ;\\[\\]\\\\;\\'\\,\\.\\~";
       };
       keymaps = [
-        {
-          action = "<C-w>l";
-          key = "<C-l>";
-          options.desc = "sd1";
-        }
-        {
-          action = "<C-w>h";
-          key = "<C-h>";
-          options.desc = "sd4";
-        }
-        {
-          action = "<C-w>j";
-          key = "<C-j>";
-          options.desc = "sd3";
-        }
-        {
-          action = "<C-w>k";
-          key = "<C-k>";
-          options.desc = "sd2";
-        }
-        {
-          action = "<cmd>noh<CR>";
-          key = "<Esc><Esc>";
-          options.desc = "which_key_ignore";
-        }
-        {
-          action = "<cmd>BufferLineCloseOthers<CR>";
-          key = "<leader>bo";
-          options.desc = "Close other buffers";
-        }
-        {
-          action = "<cmd>bdelete<CR>";
-          key = "<leader>bd";
-          options.desc = "Close buffer";
-        }
-        {
-          action = "<cmd>bnext<CR>";
-          key = "<S-l>";
-          options.desc = "Move to right tab";
-        }
-        {
-          action = "<cmd>bprev<CR>";
-          key = "<S-h>";
-          options.desc = "Move to left tab";
-        }
-        {
-          action = "<cmd>Telescope live_grep<CR>";
-          key = "<leader>g";
-          options.desc = "Live Grep";
-        }
-        {
-          action = "<cmd>LazyGitCurrentFile<CR>";
-          key = "<leader>lg";
-          options.desc = "LazyGit";
-        }
-        {
-          action = "<cmd>Yazi<cr>";
-          key = "<leader>f";
-          options.desc = "Yazi";
-        }
-        {
-          action = "<cmd>wq<CR>";
-          key = "<leader>qq";
-          options.desc = "Save and quit";
-        }
+        { action = "<C-w>l";                         key = "<C-l>";      options.desc = "sd1"; }
+        { action = "<C-w>h";                         key = "<C-h>";      options.desc = "sd4"; }
+        { action = "<C-w>j";                         key = "<C-j>";      options.desc = "sd3"; }
+        { action = "<C-w>k";                         key = "<C-k>";      options.desc = "sd2"; }
+        { action = "<cmd>noh<CR>";                   key = "<Esc><Esc>"; options.desc = "which_key_ignore"; }
+        { action = "<cmd>BufferLineCloseOthers<CR>"; key = "<leader>bo"; options.desc = "Close other buffers"; }
+        { action = "<cmd>bdelete<CR>";               key = "<leader>bd"; options.desc = "Close buffer"; }
+        { action = "<cmd>bnext<CR>";                 key = "<S-l>";      options.desc = "Move to right tab"; }
+        { action = "<cmd>bprev<CR>";                 key = "<S-h>";      options.desc = "Move to left tab"; }
+        { action = "<cmd>Telescope live_grep<CR>";   key = "<leader>lg"; options.desc = "Live Grep"; }
+        { action = "<cmd>LazyGitCurrentFile<CR>";    key = "<leader>g";  options.desc = "LazyGit"; }
+        { action = "<cmd>Yazi<cr>";                  key = "<leader>f";  options.desc = "Yazi"; }
+        { action = "<cmd>wq<CR>";                    key = "<leader>qq"; options.desc = "Save and quit"; }
+        { action = "<cmd>UndotreeToggle<CR>";        key = "<leader>u";  options.desc = "Toggle UndoTree"; }
         {
           action = "<cmd>lua vim.lsp.buf.definition()<CR>";
           key = "gd";
@@ -494,6 +552,43 @@
       ];
 
       plugins = {
+        ltex-extra = {
+          enable = true;
+          settings = {
+            initCheck = true;
+            loadLangs = [
+              "en-US"
+              "uk-UA"
+            ];
+            logLevel = "non";
+            path = ".ltex";
+          };
+        };
+        undotree = {
+          enable = true;
+          settings = {
+            CursorLine = true;
+            DiffAutoOpen = true;
+            DiffCommand = "diff";
+            DiffpanelHeight = 10;
+            HelpLine = true;
+            HighlightChangedText = true;
+            HighlightChangedWithSign = true;
+            HighlightSyntaxAdd = "DiffAdd";
+            HighlightSyntaxChange = "DiffChange";
+            HighlightSyntaxDel = "DiffDelete";
+            RelativeTimestamp = true;
+            SetFocusWhenToggle = true;
+            ShortIndicators = false;
+            SplitWidth = 40;
+            TreeNodeShape = "*";
+            TreeReturnShape = "\\";
+            TreeSplitShape = "/";
+            TreeVertShape = "|";
+            WindowLayout = 4;
+          };
+        };
+
 
 
         yazi = {
@@ -527,12 +622,6 @@
         };
         nvim-autopairs = {
           enable = true;
-          # luaConfig.post = ''
-          #   Rule("$", "$", "tex")
-          #     :with_move(function(opts)
-          #     return opts.next_char == opts.char
-          #     end)
-          # '';
           settings = {
             check_ts = true;
             disable_filetype = [
@@ -542,7 +631,7 @@
               end_key = "$";
               map = "<M-e>";
               chars = [
-                "$"
+                "\$"
                 "{"
                 "["
                 "("
@@ -553,12 +642,14 @@
           };
         };
         which-key.enable = true;
-        colorizer.enable = true;
-        colorizer.settings.user_default_options = {
-          AARRGGBB = true;
-          RRGGBBAA = true;
-          RGB = true;
-          names = false;
+        colorizer = {
+          enable = true;
+          settings.user_default_options = {
+            AARRGGBB = true;
+            RRGGBBAA = true;
+            RGB = true;
+            names = false;
+          };
         };
 
         indent-blankline.enable = true;
@@ -599,20 +690,13 @@
             "│"
           ];
         };
-        fzf-lua.enable = true;
-
         noice.enable = false;
+        notify.enable = true;
         lualine.enable = true; 
-
         luasnip = {
           enable = true;
           fromLua = [
-            {
-              paths = ./assets/snippets;
-            }
-            # {
-            #   paths = "/home/mlys/snips";
-            # }
+            { paths = ./assets/snippets; }
           ];
         };
 
@@ -677,6 +761,7 @@
                 };
               };
             };
+            ltex.enable = true;
             lua_ls.enable = true;
             ts_ls.enable = true;
             rust_analyzer = {
@@ -739,12 +824,12 @@
               split_width = 40;
             };
             view_method = "sioyek";
-            imaps = {
-              disabled = [];
-              list = [
-                "fr \\fraction\{\}\{\}"
-              ];
-            };
+            # imaps = {
+            #   disabled = [];
+            #   list = [
+            #     "fr \\fraction\{\}\{\}"
+            #   ];
+            # };
             mappings.disable = {
               "n" = ["tse" "tsd"];
               "x" = ["tsd"];
@@ -768,6 +853,4 @@
     };
 
   };
-
-
 }

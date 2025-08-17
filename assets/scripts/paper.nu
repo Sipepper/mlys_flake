@@ -1,25 +1,25 @@
 #!/usr/bin/env nu
 
 let text = "
-  \\input{preamble.tex}
-  \\addbibresource{general.bib}
-  \\title{}
-  \\begin{document}
-  
-  \\maketitle
-  \\begin{abstract}
-    abstract
-  \\end{abstract}
-  \\vspace{4em}
-  % \\pagebreak
-  % \\tableofcontents
-  % \\pagebreak
-  
-  \\section{Introduction}
-  \\section{Main results}
-  	
-  \\printbibliography
-  \\end{document}
+\\input{preamble.tex}
+\\addbibresource{general.bib}
+\\title{}
+\\begin{document}
+
+\\maketitle
+\\begin{abstract}
+  abstract
+\\end{abstract}
+\\vspace{4em}
+% \\pagebreak
+% \\tableofcontents
+% \\pagebreak
+
+\\section{Introduction}
+\\section{Main results}
+	
+\\printbibliography
+\\end{document}
 "
 
 

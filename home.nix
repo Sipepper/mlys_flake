@@ -8,7 +8,6 @@
     ./desktop.nix
     ./file_creation.nix
     ./ui.nix
-    ./sync.nix
     ./workspace.nix
   ];
 
@@ -24,14 +23,19 @@
       EDITOR = "nvim";
       BROWSER = "firefox";
       TERMINAL = "kitty";
-      PAGER = "bat --plain";
-      MANPAGER = "bat --plain";
+      # PAGER = "bat --plain";
+      PAGER = "bat";
+      # MANPAGER = "bat --plain";
+      MANPAGER = "bat";
 
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
     };
     pointerCursor = config.default.cursor;
   };
 
+  programs = {
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
 
   programs = {
     # Let Home Manager install and manage itself.
@@ -142,21 +146,22 @@
         "move_right" = "h";
         "close_window" = "q";
         "quit" = "Q";
+        "next_page" = "J";
+        "previous_page" = "K";
 
         "synctex_under_ruler" = "gd";
         "copy" = "yy";
         "visual_mark_under_cursor" = "V";
       };
       config = {
-        # "should_launch_new_window" = "1";
+        "should_launch_new_window" = "1";
         "ui_font" = "${config.default.main-font}";
         "font_size" = "12";
         "super_fast_search" = "1";
         "rerender_overview" = "1";
-        # "linear_filter" = "1";
-        "force_custom_line_algorithm" = "1";
+        # "force_custom_line_algorithm" = "1";
         "status_bar_font_size" = "14";
-        # "inverse_search_command" = "kitty -e \"nvim +%2 %1\"";
+        "inverse_search_command" = "nvim +%2 %1";
 
       };
     };
@@ -164,15 +169,62 @@
     # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
     mangohud.enable = true;
 
-    nushell = {
-      enable = true;
-      shellAliases = {
-        # TODO not working
-        # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
+      remember_window_size = false;
+    };
+    themeFile = "Wombat";
+  };
 
-        texenpaper = "nu ${./assets/scripts/paper.nu}";
-      };
-      configFile.text = ''
+  programs.sioyek = {
+    enable = true;
+    bindings = {
+      "move_up_smooth" = "k";
+      "move_down_smooth" = "j";
+      "move_left" = "l";
+      "move_right" = "h";
+      "close_window" = "q";
+      "quit" = "Q";
+
+      "synctex_under_ruler" = "gd";
+      "copy" = "yy";
+      "visual_mark_under_cursor" = "V";
+    };
+    config = {
+      # "should_launch_new_window" = "1";
+      "ui_font" = "${config.default.main-font}";
+      "font_size" = "12";
+      "super_fast_search" = "1";
+      "rerender_overview" = "1";
+      # "linear_filter" = "1";
+      "force_custom_line_algorithm" = "1";
+      "status_bar_font_size" = "14";
+      # "inverse_search_command" = "kitty -e \"nvim +%2 %1\"";
+
+    };
+  };
+  # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/prefs.config
+  # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
+
+  services = {
+  # Don't work, cannot get info
+    redshift.enable = true;
+    redshift.provider = "geoclue2";
+
+    easyeffects.enable = true;
+    tldr-update.enable = true;
+  };
+
+
+  programs.mangohud.enable = true;
+
+  programs.nushell.enable = true;
+  programs.nushell = {
+    shellAliases = {
+      # TODO not working
+      # rebuild = "nu ${./assets/scripts/rebuild.nu} ${./.}";
+
+      texenpaper = "nu ${./assets/scripts/paper.nu}";
+    };
+    configFile.text = ''
       $env.config.buffer_editor = "nvim" 
       $env.config.show_banner = false 
 
@@ -247,8 +299,43 @@
     # redshift.enable = true;
     # redshift.provider = "geoclue2";
 
-    easyeffects.enable = true;
-    tldr-update.enable = true;
+      scroll_left = "h";
+      scroll_right = "l";
+      scroll_up = "k";
+      scroll_down = "j";
+
+      scroll_left_page = "C-h";
+      scroll_right_page	= "C-l";
+      scroll_up_page = "C-k";
+      scroll_down_page = "C-j";
+
+      toggle_aliasing = "A";
+      toggle_filenames = "d";
+      toggle_pointer = "o";
+      toggle_fullscreen	= "f";
+
+      zoom_in = "plus";
+      zoom_out = "minus";
+
+      next_img = "greater";
+      prev_img = "less";
+      reload_image = "r";
+      size_to_image = "w";
+      next_dir = "bracketright";
+      prev_dir = "bracketleft";
+      orient_3 = "parenright";
+      orient_1 = "parenleft";
+      flip = "underscore";
+      mirror = "bar";
+      remove = "Delete";
+      zoom_fit = "s";
+      zoom_default = "a";
+
+      close = [
+        "q"
+        "Q"
+      ]; 
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -269,7 +356,6 @@
     obsidian             # note taking
     lazygit              # tui git 
     qbittorrent          # torrent client
-    syncthing            # p2p file sync between devices
     inkscape             # vector graphics
     grim                 # screen shots together with slurp
     slurp                # 
@@ -286,7 +372,7 @@
     wf-recorder          # screen capture
     networkmanagerapplet # connections control for waybar
     wasistlos            # whatsapp client
-    sc-controller        # controller configs
+    # sc-controller        # controller configs
     orca-c               # esoteric programming sequencer
     cava                 # audio visualizer
     libremines           # minesweeper
@@ -295,6 +381,7 @@
     wl-color-picker      # color picker
     xournalpp            # More advanced whiteboard
     tldr                 # Offline command Manual, substitute for `man` command
+    # osu-lazer-bin        # Rhytm game
     wev                  # wayland event viewer
     hyprpicker           # Another Color picker need further comparison with wl-color-picker
     slack                # Business communication (Discord for KSE)
@@ -308,6 +395,7 @@
     presenterm           # TUI Presentations!
     dust                 # Disk space visualization
     ouch                 # cli archiving tool
+    # matrix-commander-rs
     pass-wayland         # cli password store
     tuifeed              # tui news feed reader
     dua                  # tui storage capacity viewer

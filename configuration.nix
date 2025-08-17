@@ -19,7 +19,8 @@
       privateBuildPlan = {
         family = "Iosevka Custom";
         spacing = "quasi-proportional";
-        serifs = "sans";
+        # serifs = "sans";
+        serifs = "slab";
         noCvSs = true;
         exportGlyphNames = false;
         weights = {
@@ -114,9 +115,7 @@
       "image/png" = "feh.desktop";
       "image/jpeg" = "feh.desktop";
       "image/svg" = "feh.desktop";
-      "image/vnd.djvu+multipage" = "evince.desktop";
-      
-
+      "image/vnd.djvu+multipage" = "org.gnome.evince.desktop";
     };
   };
 
@@ -193,6 +192,7 @@
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+      protontricks.enable = true;
     };	
 
     seahorse.enable = true;
@@ -220,6 +220,7 @@
       overdrive.enable = true;
       opencl.enable = true;
     };
+    graphics.enable = true;
 
   };
 
@@ -230,18 +231,20 @@
   };
 
 
-  # boot.loader.systemd-boot.enable = true;
   boot.loader = {
     grub = {
       enable = true; 
-      efiSupport = true;
-      device = "nodev";
-      splashImage = ./assets/grub.jpg;
-      font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf";
-      fontSize = 16;
+      efiSupport = true; 
+      device = "nodev"; 
+      splashImage = ./assets/grub.jpg; 
+      font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf"; 
+      fontSize = 16; 
+      useOSProber = true;
     };
     efi.canTouchEfiVariables = true;
   };
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_15;
+  # boot.loader.systemd-boot.enable = true;
 
 
   networking = {
@@ -250,7 +253,10 @@
   };
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
-  time.timeZone = "Europe/Kyiv";
+  time = {
+    timeZone = "Europe/Kyiv";
+    hardwareClockInLocalTime = true;
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -288,6 +294,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
   swapDevices = [{
     device = "/swapfile";
@@ -316,6 +323,11 @@
 
   fileSystems."/home/mlys/Sata" = {
     device = "/dev/sdb1";
+    autoFormat = true;
+  };
+
+  fileSystems."/home/mlys/SSD" = {
+    device = "/dev/sda1";
     autoFormat = true;
   };
 

@@ -14,14 +14,12 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs = { 
-    self, 
     nixpkgs, 
-    home-manager, 
     determinate, 
-    nixvim, 
     ... 
     }@inputs: {
     nixosConfigurations = {
