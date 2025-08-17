@@ -34,7 +34,7 @@
       enable = true;
       settings = {
         main = {
-          font = config.default.main-font;
+          font = "${config.default.main-font}:size=12";
           terminal = "kitty -e";
           horizontal-pad = 8;
           vertical-pad = 4;
@@ -51,6 +51,7 @@
         };
       };
     };
+
     # Status bar
     waybar = {
       enable = true;
@@ -524,13 +525,18 @@
         "move 1% 5%,       class:(btop)"
         "size <45% <55%,   class:(btop)"
 
+        "float,          class:(org.prismlauncher.Prismlauncher)"
+        "center,         class:(org.prismlauncher.Prismlauncher)"
+
+        "float,          class:(discord)"
+        "center,         class:(discord)"
+
+        "float,          class:(Slack)"
+        "center,         class:(Slack)"
+
         "float,          class:(terminal)"
         "center,         class:(terminal)"
         "size <40% <40%, class:(terminal)"
-
-        # "float,          class:(nnn)"
-        # "center,         class:(nnn)"
-        # "size <40% <40%, class:(nnn)"
 
         "float,        title:(Picture-in-Picture)"
         "center,       title:(Picture-in-Picture)"
