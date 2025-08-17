@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-stable, inputs, lib, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./default.nix
@@ -29,15 +29,12 @@
   };
 
   programs = {
-    # cli calendar
-    khal.enable = true;
-    qcal.enable = true;
     # Application launcher
     fuzzel = {
       enable = true;
       settings = {
         main = {
-          font = config.default.main-font;
+          font = "${config.default.main-font}:size=12";
           terminal = "kitty -e";
           horizontal-pad = 8;
           vertical-pad = 4;
@@ -54,6 +51,7 @@
         };
       };
     };
+
     # Status bar
     waybar = {
       enable = true;
@@ -349,7 +347,6 @@
       exec-once = [
         "waybar"
         "hyprpaper"
-        "steam -silent -forcedesktopscaling" # Add dependenyc of isPC
         "slack -u"
         "easyeffects --gapplication-service"
         "discord --start-minimized"
@@ -416,8 +413,9 @@
         name = "e-signal-hator-pulsar";
         sensitivity = "-0.5";
       };
-      monitor = ",1920x1080,auto,auto";
+      monitor = ",1920x1080,auto,1";
 
+      # xwayland.force_zero_scaling = if config.default.isPC then false else true;
       xwayland.force_zero_scaling = true;
 
       "$mainMod" = "SUPER";
@@ -495,9 +493,6 @@
         "float,        title:(Select Document)"
         "float,        title:(Choose modpack)"
 
-        "float,        title:(Вхід)"
-        "float,        title:(Login)"
-
         "float,        class:(.blueman-manager-wrapped)"
 
 
@@ -527,13 +522,18 @@
         "move 1% 5%,       class:(btop)"
         "size <45% <55%,   class:(btop)"
 
+        "float,          class:(org.prismlauncher.Prismlauncher)"
+        "center,         class:(org.prismlauncher.Prismlauncher)"
+
+        "float,          class:(discord)"
+        "center,         class:(discord)"
+
+        "float,          class:(Slack)"
+        "center,         class:(Slack)"
+
         "float,          class:(terminal)"
         "center,         class:(terminal)"
         "size <40% <40%, class:(terminal)"
-
-        # "float,          class:(nnn)"
-        # "center,         class:(nnn)"
-        # "size <40% <40%, class:(nnn)"
 
         "float,        title:(Picture-in-Picture)"
         "center,       title:(Picture-in-Picture)"
