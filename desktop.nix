@@ -29,9 +29,6 @@
   };
 
   programs = {
-    # cli calendar
-    khal.enable = true;
-    qcal.enable = true;
     # Application launcher
     fuzzel = {
       enable = true;
@@ -349,7 +346,6 @@
       exec-once = [
         "waybar"
         "hyprpaper"
-        "steam -silent -forcedesktopscaling" # Add dependenyc of isPC
         "slack -u"
         "easyeffects --gapplication-service"
         "discord --start-minimized"
