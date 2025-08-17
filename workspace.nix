@@ -120,6 +120,8 @@
 
     mergiraf.enable = true;
 
+    # aboba from laptop
+
     fzf = {
       enable = true;
     };
@@ -134,6 +136,7 @@
         enableAsDifftool = true;
       };
       extraConfig = {
+        pull.rebase = false; 
         init.defaultBranch = "main";
         merge = {
           tool = "mergiraf";

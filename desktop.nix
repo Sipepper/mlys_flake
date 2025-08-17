@@ -28,67 +28,103 @@
     };
   };
 
-  programs = {
-    # Application launcher
-    fuzzel = {
-      enable = true;
-      settings = {
-        main = {
-          font = "${config.default.main-font}:size=12";
-          terminal = "kitty -e";
-          horizontal-pad = 8;
-          vertical-pad = 4;
-          icon-theme = config.default.iconTheme.name;
-        };
-        colors = {
-          background = "${config.default.colors.background}ff";
-          text = "${config.default.colors.text}ff";
-          border = "${config.default.colors.border}ff";
-        };
-        border = {
-          width = 2;
-          radius = 0;
+  # Notifications
+  services.mako = {
+    enable = true;
+    settings = {
+      font = config.default.main-font;
+      default-timeout = 4000; 
+      background-color = "#${config.default.colors.background}";
+      border-color = "#${config.default.colors.border}";
+    };
+  };
+
+  programs.fuzzel.enable = true;
+  programs.fuzzel.settings = {
+    main = {
+      font = config.default.main-font;
+      terminal = "wezterm -e";
+      horizontal-pad = 8;
+      vertical-pad = 4;
+      icon-theme = config.default.iconTheme.name;
+    };
+    colors = {
+      background = "${config.default.colors.background}ff";
+      text = "${config.default.colors.text}ff";
+      border = "${config.default.colors.border}ff";
+    };
+    border = {
+      width = 2;
+      radius = 0;
+    };
+  };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.variables = [ "--all" ];
+    settings = {
+      decoration = {
+        rounding = "0";
+        active_opacity = "1.0";
+        inactive_opacity = "1.0";
+        shadow.enabled = false;
+        blur = {
+          enabled = false;
+          size = "3";
+          passes = "1";
+          vibrancy = "0.1696";
         };
       };
     };
+  };
 
-    # Status bar
-    waybar = {
-      enable = true;
-      settings = {
-        mainBar = {
-          name = "topbar";
-          layer = "top";
-          position = "top";
-          height = 35;
-          modules-left = [
-            "battery#bat1" 
-            "battery#bat2" 
-            "disk" 
-            "memory" 
-            "cpu" 
-            "temperature"
-            "custom/easyeffects" 
-            "custom/pyradio" 
-            "custom/blueman" 
-            "backlight"
-          ];
-          modules-center = ["tray"];
-          modules-right = [
-            "hyprland/language" 
-            "hyprland/workspaces" 
-            "network#vpn" 
-            "network#wifi" 
-            "network#ethernet" 
-            "network#disconnected" 
-            "clock" 
-            "custom/poweroff"
-          ];
-          "hyprland/language" = {
-            format = "{}";
-            format-en = "🇺🇸";
-            format-uk = "🇺🇦";
-            format-ru = "ᵣu";
+  programs.waybar = {
+    enable = true;
+    settings = {
+      mainBar = {
+        name = "topbar";
+        layer = "top";
+        position = "top";
+        height = 35;
+        modules-left = [
+          "battery#bat1" 
+          "battery#bat2" 
+          "disk" 
+          "memory" 
+          "cpu" 
+          "temperature"
+          "custom/easyeffects" 
+          "custom/pyradio" 
+          "custom/blueman" 
+          "backlight"
+        ];
+        modules-center = ["tray"];
+        modules-right = [
+          "hyprland/language" 
+          "hyprland/workspaces" 
+          "network#vpn" 
+          "network#wifi" 
+          "network#ethernet" 
+          "network#disconnected" 
+          "clock" 
+          "custom/poweroff"
+        ];
+        "hyprland/language" = {
+          format = "{}";
+          format-en = "🇺🇸";
+          format-uk = "🇺🇦";
+          format-ru = "ᵣu";
+        };
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          all-outputs = true;
+          format-icons = {
+            "1" = " ";
+            "2" = "󱣛 ";
+            "3" = "󰊗 ";
+            "4" = "󰡱 ";
+            "5" = "󰄻 ";
+            "6" = "󰃻";
           };
           "hyprland/workspaces" = {
             format = "{icon}";
@@ -331,9 +367,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = [ "--all" ];
-    plugins = [
-      # pkgs.hyprlandPlugins.csgo-vulkan-fix
-    ];
     settings = {
       decoration = {
         rounding = "0";
@@ -350,13 +383,14 @@
       exec-once = [
         "waybar"
         "hyprpaper"
+        "steam -silent -forcedesktopscaling" # Add dependenyc of isPC
         "slack -u"
         "easyeffects --gapplication-service"
         "discord --start-minimized"
         "Telegram -startintray"
         "udiskie"
         "hyprctl setcursor ${config.default.cursor.name} 24"
-        # "kitty -e aerc"
+        "kitty -e aerc"
       ];
       env = [
         "CLUTTER_BACKEND,wayland"
@@ -416,9 +450,8 @@
         name = "e-signal-hator-pulsar";
         sensitivity = "-0.5";
       };
-      monitor = ",1920x1080@100,auto,1";
+      monitor = ",1920x1080,auto,auto";
 
-      # xwayland.force_zero_scaling = if config.default.isPC then false else true;
       xwayland.force_zero_scaling = true;
 
       "$mainMod" = "SUPER";
@@ -496,6 +529,9 @@
         "float,        title:(Select Document)"
         "float,        title:(Choose modpack)"
 
+        "float,        title:(Вхід)"
+        "float,        title:(Login)"
+
         "float,        class:(.blueman-manager-wrapped)"
 
 
@@ -525,18 +561,13 @@
         "move 1% 5%,       class:(btop)"
         "size <45% <55%,   class:(btop)"
 
-        "float,          class:(org.prismlauncher.Prismlauncher)"
-        "center,         class:(org.prismlauncher.Prismlauncher)"
-
-        "float,          class:(discord)"
-        "center,         class:(discord)"
-
-        "float,          class:(Slack)"
-        "center,         class:(Slack)"
-
         "float,          class:(terminal)"
         "center,         class:(terminal)"
         "size <40% <40%, class:(terminal)"
+
+        # "float,          class:(nnn)"
+        # "center,         class:(nnn)"
+        # "size <40% <40%, class:(nnn)"
 
         "float,        title:(Picture-in-Picture)"
         "center,       title:(Picture-in-Picture)"
