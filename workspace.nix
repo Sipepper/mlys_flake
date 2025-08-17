@@ -31,7 +31,7 @@
     yazi = {
       enable = true;
       keymap = {
-        manager.keymap = [
+        mgr.keymap = [
           { on = "<Esc>"; run = "escape";             desc = "Exit visual mode, clear selection, or cancel search"; }
           { on = "q";     run = "quit";               desc = "Quit the process"; }
           { on = "Q";     run = "quit --no-cwd-file"; desc = "Quit without outputting cwd-file"; }
@@ -164,7 +164,7 @@
           # Help
           { on = "<F1>"; run = "help"; desc = "Open help"; }
         ];
-        manager.prepend_keymap = [
+        mgr.prepend_keymap = [
           { on = "1"; run = "plugin relative-motions 1"; desc = "Move in relative steps"; }
           { on = "2"; run = "plugin relative-motions 2"; desc = "Move in relative steps"; }
           { on = "3"; run = "plugin relative-motions 3"; desc = "Move in relative steps"; }
@@ -495,6 +495,7 @@
 
       plugins = {
 
+
         yazi = {
           enable = true;
           settings = {
@@ -668,6 +669,14 @@
         lsp = {
           enable = true;
           servers = {
+            ltex = {
+              enable = true;
+              settings = {
+                ltex = {
+                  language = "en-US";
+                };
+              };
+            };
             lua_ls.enable = true;
             ts_ls.enable = true;
             rust_analyzer = {
@@ -676,7 +685,7 @@
               installRustc = true;
             };
             texlab.enable = true;
-            # nixd.enable = true;
+            nixd.enable = true;
             nushell.enable = true;
             html.enable = true;
           };
