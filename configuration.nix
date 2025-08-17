@@ -252,7 +252,10 @@
   };
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
-  time.timeZone = "Europe/Kyiv";
+  time = {
+    timeZone = "Europe/Kyiv";
+    hardwareClockInLocalTime = true;
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
