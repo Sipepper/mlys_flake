@@ -35,7 +35,7 @@ main.synctex.gz
 
 def main [name: string] {
   let repo_name = $"Paper | ($name)"
-  gh repo create $repo_name --private --clone -g $gitignore
+  gh repo create $repo_name --private --clone
   cd $repo_name 
   mkdir assets
   ~/.assets/tex/listings-rust.sty | save "listings-rust.sty"
