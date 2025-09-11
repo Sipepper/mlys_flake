@@ -1,8 +1,5 @@
 #!/usr/bin/env nu
 
-let preamble_location = "/home/mlys/.assets/tex/preamble.tex"
-let bib_location = "/home/mlys/.assets/tex/preamble.tex"
-
 let text = "
 \\input{/home/mlys/.assets/tex/preamble.tex}
 \\addbibresource{/home/mlys/.assets/tex/general.bib}
@@ -22,26 +19,26 @@ let text = "
 \\section{Introduction}
 \\section{Main results}
 	
+\\renewcommand*{\\bibfont}{\\footnotesize}
 \\printbibliography
 \\end{document}
 "
 
-let gitignore = "
-main.pdf
-main.blg
-main.log
-main.synctex.gz
-"
-
-def main [name: string] {
-  let repo_name = $"Paper | ($name)"
-  gh repo create $repo_name --private --clone
+def main [
+  name: string
+  --git
+] {
+  let repo_name = $"Paper-($name)"
+  if $git { gh repo create $repo_name --private --clone } else { mkdir $repo_name}
   cd $repo_name 
   mkdir assets
-  ~/.assets/tex/listings-rust.sty | save "listings-rust.sty"
+  cp ~/.assets/tex/listings-rust.sty .
+  cp ~/.assets/nu/pack.nu .
   $text | save "main.tex"
   '' | save "additional.bib"
-  git add -A 
-  git commit -am $"Creation of ($repo_name)"
-  git push
+  if $git {
+    git add -A 
+    git commit -am $"Creation of ($repo_name)"
+    git push
+  }
 }
