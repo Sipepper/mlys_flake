@@ -329,9 +329,16 @@
     texliveFull          # TODO needed for Inkscape to render LaTeX
     # orca-slicer        # 3D printing slicer
     # freecad-wayland    # CAD software
-    # texliveFull
     tree                 # CLI folder visualization
     wine
+    woomer               # Screen zoom and focus like Tsoding
+    chamber
+    calcure              # TUI calendar
+    bibtex-tidy          # Tidying bibtex offline!
+    mermaid-cli          # Mermaid diagrams 
+    typst                # Analogue of LaTeX for math writing
+    pandoc               # Needed for presenterm to render LaTeX
+    piper
 
   ];
 }
