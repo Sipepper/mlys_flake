@@ -482,19 +482,18 @@
       vimdiffAlias = true;
       colorschemes.nightfox.enable = true;
 
-      # extraPlugins = [
-      #   (pkgs.vimUtils.buildVimPlugin {
-      #     name = "fff.nvim";
-      #     src = inputs.fff-nvim;
-      #   })
-      #
-      # ];
+      extraPlugins = [
+        (pkgs.vimUtils.buildVimPlugin {
+          name = "typst-preview.nvim";
+          src = pkgs.vimPlugins.typst-preview-nvim;
+        })
+      ];
 
       performance.combinePlugins = {
         enable = true;
-        # standalonePlugins = [
-        #   "fff.nvim"
-        # ];
+        standalonePlugins = [
+          "typst-preview.nvim"
+        ];
       };
 
       globals = {
@@ -550,6 +549,13 @@
       ];
 
       plugins = {
+        typst-vim = {
+          enable = true;
+          keymaps.watch = "<leader>w";
+          settings = {
+            pdf_viewer = "sioyek";
+          };
+        };
         ltex-extra = {
           enable = true;
           settings = {
