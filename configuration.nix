@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{config, pkgs, inputs, ... }:
+{pkgs, inputs, ... }:
 { 
   imports =
     [ # Include the results of the hardware scan. ./hardware-configuration.nix
@@ -19,7 +19,98 @@
       privateBuildPlan = {
         family = "Iosevka Custom";
         spacing = "quasi-proportional";
-        serifs = "sans";
+        # serifs = "sans";
+        serifs = "slab";
+        noCvSs = true;
+        exportGlyphNames = false;
+        weights = {
+          Regular = {
+            shape = 400;
+            menu = 400;
+            css = 400;
+          };
+          Bold = {
+            shape = 700;
+            menu = 700;
+            css = 700;
+          };
+        };
+        slopes = {
+          Upright = {
+            angle = 0;
+            shape = "upright";
+            menu = "upright";
+            css = "normal";
+          };
+          Italic = {
+            angle = 9.4;
+            shape = "italic";
+            menu = "italic";
+            css = "italic";
+          };
+        };
+      };
+    })
+    corefonts
+    vistafonts
+  ];
+
+  environment.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    BROWSER = "firefox";
+    TERMINAL = "kitty";
+    PAGER = "bat --plain";
+    MANPAGER = "bat --plain";
+    NIXOS_OZONE_WL = 1;
+    GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
+  };
+
+  environment.systemPackages = [
+    pkgs.wl-clipboard
+    pkgs.system-config-printer
+    pkgs.nix-prefetch
+    pkgs.nix-prefetch-git
+    pkgs.gdb
+    pkgs.wget
+    pkgs.gcc_multi
+    pkgs.unzip
+    pkgs.udiskie
+    pkgs.fd
+    pkgs.sshfs
+    pkgs.xorg.xhost
+    pkgs.glib
+    # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
+    pkgs.cargo-expand 
+    pkgs.cargo-fuzz   
+    pkgs.evcxr 
+    (pkgs.catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "Iosevka NF";
+      fontSize = "12";
+    })
+
+    pkgs.gtk3
+{pkgs, inputs, ... }:
+{ 
+  imports =
+    [ # Include the results of the hardware scan. ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.default
+      ./hardware-configuration.nix
+      ./main-user.nix
+    ];
+
+  fonts.packages = with pkgs; [ 
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    (iosevka.override {
+      set = "custom";
+      privateBuildPlan = {
+        family = "Iosevka Custom";
+        spacing = "quasi-proportional";
+        # serifs = "sans";
+        serifs = "slab";
         noCvSs = true;
         exportGlyphNames = false;
         weights = {
@@ -114,9 +205,7 @@
       "image/png" = "feh.desktop";
       "image/jpeg" = "feh.desktop";
       "image/svg" = "feh.desktop";
-      "image/vnd.djvu+multipage" = "evince.desktop";
-      
-
+      "image/vnd.djvu+multipage" = "org.gnome.evince.desktop";
     };
   };
 
