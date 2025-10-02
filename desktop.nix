@@ -365,7 +365,7 @@
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "MOZ_ENABLE_WAYLAND,1"
-        "GDK_SCALE,auto"
+        "GDK_SCALE,1.5"
         "GTK_USE_PORTAL=1"
         "GSETTINGS_SCHEMAS_DIR,${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
       ];
@@ -413,7 +413,7 @@
         name = "e-signal-hator-pulsar";
         sensitivity = "-0.5";
       };
-      monitor = ",1920x1080,auto,1";
+      monitor = ",1920x1080,auto,1.5";
 
       # xwayland.force_zero_scaling = if config.default.isPC then false else true;
       xwayland.force_zero_scaling = true;
