@@ -239,8 +239,10 @@
           { on = [ "g"  "f" ];       run = "follow";                        desc = "Follow hovered symlink"; }
           { on = [ "g"  "m" ];       run = "cd /run/media/mlys/";           desc = "Open removable media"; }
           { on = [ "g"  "o" ];       run = "cd ~/Obsidian";                 desc = "Open Obsidian folder"; }
-          { on = [ "g"  "r" ];       run = "cd ~/Rust";                 desc = "Open Rust folder"; }
-          { on = [ "g"  "l" ];       run = "cd ~/LaTeX";                 desc = "Open LaTeX folder"; }
+          { on = [ "g"  "r" ];       run = "cd ~/Rust";                     desc = "Open Rust folder"; }
+          { on = [ "g"  "l" ];       run = "cd ~/LaTeX";                    desc = "Open LaTeX folder"; }
+          { on = [ "g"  "p" ];       run = "cd ~/Git";                      desc = "Open Git folder"; }
+          { on = [ "g"  "b" ];       run = "cd ~/Obsidian/Books";           desc = "Open the library"; }
           # Tabs
           { on = "t"; run = "tab_create --current"; desc = "Create a new tab with CWD"; }
           { on = "<A-1>"; run = "tab_switch 0"; desc = "Switch to first tab"; }
