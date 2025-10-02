@@ -44,6 +44,7 @@
     ".assets/tex/preamble.tex" = { source = ./assets/tex/preamble.tex; };
     ".assets/tex/general.bib" = { source = ./assets/tex/bib.bib; };
     ".assets/tex/listings-rust.sty" = { source = ./assets/tex/listings-rust.sty; };
+    ".assets/nu/pack.nu" = { source = ./assets/scripts/pack.nu; };
 
   };
 
