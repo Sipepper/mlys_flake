@@ -180,6 +180,8 @@
       enable = true;
       shellAliases = {
         paper = "nu ${./assets/scripts/paper.nu}";
+        paper2 = "nu ${./assets/scripts/paper2.nu}";
+        note = "nu ${./assets/scripts/note.nu}";
       };
       configFile.text = ''
       $env.config.buffer_editor = "nvim" 
