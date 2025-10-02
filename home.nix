@@ -120,7 +120,7 @@
       enable = true;
       font = {
         name = config.default.term-font;
-        size = 12;
+        size = 10;
       };
       settings = {
         enable_audio_bell = false;
