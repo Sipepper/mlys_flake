@@ -413,7 +413,7 @@
       };
       # gestures.workspace_swipe = false; 
       device = {
-        name = "e-signal-hator-pulsar";
+        name = "trust-bayo-wireless-trust-bayo-wireless-mouse";
         sensitivity = "-0.5";
       };
       monitor = ",1920x1080@100,auto,1";
