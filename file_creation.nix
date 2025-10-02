@@ -21,10 +21,6 @@
 
     ".space.jpg" = { source = ./assets/space.jpg; };
 
-    # ".config/yazi/relative-motions" = {
-    #   source = pkgs.yaziPlugins.relative-motions;
-    # };
-
     "Games/sega" = { source = ./assets/sega; };
     "Git/.readme.md" = { text = "Primary folder for git repos."; };
     "Rust/.readme.md" = { text = "Primary folder for programming projects."; };
@@ -48,6 +44,7 @@
     ".assets/tex/preamble.tex" = { source = ./assets/tex/preamble.tex; };
     ".assets/tex/general.bib" = { source = ./assets/tex/bib.bib; };
     ".assets/tex/listings-rust.sty" = { source = ./assets/tex/listings-rust.sty; };
+    ".assets/nu/pack.nu" = { source = ./assets/scripts/pack.nu; };
 
   };
 
