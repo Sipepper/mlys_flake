@@ -365,7 +365,7 @@
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "MOZ_ENABLE_WAYLAND,1"
-        "GDK_SCALE,1.5"
+        "GDK_SCALE,auto"
         "GTK_USE_PORTAL=1"
         "GSETTINGS_SCHEMAS_DIR,${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
       ];
@@ -410,7 +410,7 @@
       };
       gestures.workspace_swipe = false; 
       device = {
-        name = "e-signal-hator-pulsar";
+        name = "trust-bayo-wireless-trust-bayo-wireless-mouse";
         sensitivity = "-0.5";
       };
       monitor = ",1920x1080,auto,1.5";
