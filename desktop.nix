@@ -411,7 +411,7 @@
         repeat_delay = 300;
 
       };
-      gestures.workspace_swipe = false; 
+      # gestures.workspace_swipe = false; 
       device = {
         name = "e-signal-hator-pulsar";
         sensitivity = "-0.5";
