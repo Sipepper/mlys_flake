@@ -447,6 +447,7 @@
         "$mainMod, F2, exec, hyprctl switchxkblayout current 1"  # Switches to the second layout (e.g., 'ua')
         "$mainMod, F3, exec, hyprctl switchxkblayout current 2"  # Switches to the third layout (e.g., 'ru')
         "$mainMod, I, exec, inkscape"
+        "$mainMod, Z, exec, woomer"
         "$mainMod, P, exec, $terminal --class=timer -e timer 25m"
         "$mainMod CTRL, l, resizeactive, 20 0"
         "$mainMod CTRL, h, resizeactive, -20 0"
