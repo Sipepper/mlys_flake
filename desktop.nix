@@ -477,6 +477,9 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
+
+        "$mainMod, SPACE, exec, $(hyprctl activewindow -j | jq '.floating') && hyprctl dispatch cyclenext tiled || hyprctl dispatch cyclenext floating"
+
         "$mainMod SHIFT, T, togglefloating,"
         "$mainMod SHIFT, F, fullscreen,"
         "$mainMod SHIFT, C, centerwindow,"
