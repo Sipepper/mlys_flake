@@ -341,6 +341,7 @@
     typst                # Analogue of LaTeX for math writing
     pandoc               # Needed for presenterm to render LaTeX
     piper
+    jq                   # CLI json processor
 
   ];
 }
