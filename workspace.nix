@@ -240,17 +240,19 @@
           { on = [ ","  "S" ]; run = [ "sort size --reverse" "linemode size" ];      desc = "Sort by size (reverse)"; }
           { on = [ ","  "r" ]; run = "sort random --reverse=no";                      desc = "Sort randomly"; }
           # Goto
-          { on = [ "g"  "h" ];       run = "cd ~";                          desc = "Go home"; }
-          { on = [ "g"  "c" ];       run = "cd ~/.config";                  desc = "Go ~/.config"; }
-          { on = [ "g"  "d" ];       run = "cd ~/Downloads";                desc = "Go ~/Downloads"; }
-          { on = [ "g"  "<Space>" ]; run = "cd --interactive";              desc = "Jump interactively"; }
-          { on = [ "g"  "f" ];       run = "follow";                        desc = "Follow hovered symlink"; }
-          { on = [ "g"  "m" ];       run = "cd /run/media/mlys/";           desc = "Open removable media"; }
-          { on = [ "g"  "o" ];       run = "cd ~/Obsidian";                 desc = "Open Obsidian folder"; }
-          { on = [ "g"  "r" ];       run = "cd ~/Rust";                     desc = "Open Rust folder"; }
-          { on = [ "g"  "l" ];       run = "cd ~/LaTeX";                    desc = "Open LaTeX folder"; }
-          { on = [ "g"  "p" ];       run = "cd ~/Git";                      desc = "Open Git folder"; }
-          { on = [ "g"  "b" ];       run = "cd ~/Obsidian/Books";           desc = "Open the library"; }
+          { on = [ "g"  "h" ];      run = "cd ~";                          desc = "Go home"; }
+          { on = [ "g"  "c" ];      run = "cd ~/.config";                  desc = "Go ~/.config"; }
+          { on = [ "g"  "d" ];      run = "cd ~/Downloads";                desc = "Go ~/Downloads"; }
+          { on = [ "g"  "<Space>" ];run = "cd --interactive";              desc = "Jump interactively"; }
+          { on = [ "g"  "f" ];      run = "follow";                        desc = "Follow hovered symlink"; }
+          { on = [ "g"  "m" ];      run = "cd /run/media/mlys/";           desc = "Open removable media"; }
+          { on = [ "g"  "o" ];      run = "cd ~/Obsidian";                 desc = "Open Obsidian folder"; }
+          { on = [ "g"  "r" ];      run = "cd ~/Rust";                     desc = "Open Rust folder"; }
+          { on = [ "g"  "l" ];      run = "cd ~/LaTeX";                    desc = "Open LaTeX folder"; }
+          { on = [ "g"  "w" ];      run = "cd ~/Work";                     desc = "Open Work folder"; }
+          { on = [ "g"  "p" ];      run = "cd ~/Git";                      desc = "Open Git folder"; }
+          { on = [ "g"  "b" ];      run = "cd ~/Obsidian/Books";           desc = "Open the library"; }
+          { on = [ "g"  "i" ];      run = "cd ~/.local/share/PrismLauncher"; desc = "Open the minecraft instances location"; }
           # Tabs
           { on = "t"; run = "tab_create --current"; desc = "Create a new tab with CWD"; }
           { on = "<A-1>"; run = "tab_switch 0"; desc = "Switch to first tab"; }
