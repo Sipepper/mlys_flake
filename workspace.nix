@@ -126,20 +126,28 @@
 
     git = {
       enable = true;
-      userName = "Sipepper";
-      userEmail = "valera1gribnik@gmail.com";
-      difftastic = {
-        enable = true;
-        color = "always";
-        enableAsDifftool = true;
-      };
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Sipepper";
+          email = "valera1gribnik@gmail.com";
+        };
         init.defaultBranch = "main";
         merge = {
           tool = "mergiraf";
           driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L";
         };
         credential.helper = "${pkgs.gh}";
+      };
+    };
+
+    difftastic = {
+      enable = true;
+      git = {
+        enable = true;
+        diffToolMode = true;
+      };
+      options = {
+        color = "always";
       };
     };
 
