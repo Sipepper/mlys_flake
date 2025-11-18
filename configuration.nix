@@ -241,7 +241,6 @@
     };
     efi.canTouchEfiVariables = true;
   };
-  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_16;
 
 
   networking = {
