@@ -494,22 +494,23 @@
       vimdiffAlias = true;
       colorschemes.nightfox.enable = true;
 
-      extraPlugins = [
-        (pkgs.vimUtils.buildVimPlugin {
-          name = "typst-preview.nvim";
-          src = pkgs.vimPlugins.typst-preview-nvim;
-        })
-      ];
+      # extraPlugins = [
+      #   (pkgs.vimUtils.buildVimPlugin {
+      #     name = "typst-preview.nvim";
+      #     src = pkgs.vimPlugins.typst-preview-nvim;
+      #   })
+      # ];
 
       performance.combinePlugins = {
         enable = true;
         standalonePlugins = [
-          "typst-preview.nvim"
+          "nvim-treesitter"
         ];
       };
 
       globals = {
         mapleader = " ";
+        maplocalleader = ",";
         _ts_force_sync_parsing = true;
       };
 
@@ -536,9 +537,10 @@
         { action = "<cmd>bnext<CR>";                 key = "<S-l>";      options.desc = "Move to right tab"; }
         { action = "<cmd>bprev<CR>";                 key = "<S-h>";      options.desc = "Move to left tab"; }
         { action = "<cmd>Telescope live_grep<CR>";   key = "<leader>lg"; options.desc = "Live Grep"; }
+        { action = "<cmd>FFFFind<CR>";               key = "<leader>s"; options.desc = "Open FFF"; }
         { action = "<cmd>LazyGitCurrentFile<CR>";    key = "<leader>g";  options.desc = "LazyGit"; }
         { action = "<cmd>Yazi<cr>";                  key = "<leader>f";  options.desc = "Yazi"; }
-        { action = "<cmd>wq<CR>";                    key = "<leader>qq"; options.desc = "Save and quit"; }
+        { action = "<cmd>w<CR>";                     key = "<leader>j"; options.desc = "Write"; }
         { action = "<cmd>UndotreeToggle<CR>";        key = "<leader>u";  options.desc = "Toggle UndoTree"; }
         {
           action = "<cmd>lua vim.lsp.buf.definition()<CR>";
@@ -560,7 +562,80 @@
         }
       ];
 
+
       plugins = {
+        snacks = {
+          enable = true;
+          settings = {
+            bigfile.enabled = true;
+            terminal.enabled = true;
+            image = {
+              enabled = true;
+              doc.inline = false;
+              math = {
+                enabled = false;
+                latex = {
+                  font_size = "normalsize";
+                  packages = [
+                    "concrete"
+                    "mathtools"
+                    "amsfonts"
+                    "amssymb"
+                    "amsthm"
+                    "amscd"
+                    "tikz"
+                  ];
+                  tpl = ''
+                    \documentclass[preview,border=0pt,varwidth,12pt]{standalone}
+                    \usepackage{$\{packages}}
+                    \usepackage[all]{xy}
+                    \begin{document}
+                    $\{header}
+                    { \$\{font_size} \selectfont
+                      \color[HTML]{$\{color}}
+                    $\{content}}
+                    \end{document}]]
+                  '';
+                };
+              };
+
+            };
+            words.enabled = true;
+            picker.enabled = true;
+          };
+
+        };
+        # java.enable = true;
+        fff = {
+          enable = true;
+          settings = {
+            # base_path = lib.nixvim.mkRaw "vim.fn.getcwd()";
+            key_bindings = {
+              close = [
+                "<Esc>"
+                "<C-c>"
+              ];
+              move_down = [
+                "<Down>"
+                "<C-n>"
+              ];
+              move_up = [
+                "<Up>"
+                "<C-p>"
+              ];
+              open_split = "<C-s>";
+              open_tab = "<C-t>";
+              open_vsplit = "<C-v>";
+              select_file = "<CR>";
+            };
+            layout = {
+              height = 0.8;
+              preview_position = "right";
+              width = 0.8;
+            };
+            max_results = 100;
+          };
+        };
         typst-vim = {
           enable = true;
           keymaps.watch = "<leader>w";
@@ -744,16 +819,16 @@
               limit = 4;
             };
             shortcut = [
-              {
-                action = {
-                  __raw = "function(path) vim.cmd('Telescope find_files') end";
-                };
-                desc = "Files";
-                group = "Label";
-                icon = " ";
-                icon_hl = "@variable";
-                key = "f";
-              }
+              # {
+              #   action = {
+              #     __raw = "function(path) vim.cmd('Telescope find_files') end";
+              #   };
+              #   desc = "Files";
+              #   group = "Label";
+              #   icon = " ";
+              #   icon_hl = "@variable";
+              #   key = "f";
+              # }
               {
                 action = "q";
                 desc = " quit";
@@ -768,6 +843,7 @@
         lsp = {
           enable = true;
           servers = {
+            tinymist.enable = true;
             ltex.enable = true;
             lua_ls.enable = true;
             ts_ls.enable = true;
@@ -810,7 +886,7 @@
             highlight = {
               enable = true;
               disable = [ "latex" ];
-              additional_vim_regex_highlighting = true;
+              # additional_vim_regex_highlighting = true;
             };
             indent.enable = true;
           };
@@ -831,12 +907,6 @@
               split_width = 40;
             };
             view_method = "sioyek";
-            # imaps = {
-            #   disabled = [];
-            #   list = [
-            #     "fr \\fraction\{\}\{\}"
-            #   ];
-            # };
             mappings.disable = {
               "n" = ["tse" "tsd"];
               "x" = ["tsd"];
@@ -854,7 +924,7 @@
             height = 30;
             width = 130;
           };
-          open_mapping = "[[<c-/>]]";
+          open_mapping = "[[<c-;>]]";
         };
       };
     };
