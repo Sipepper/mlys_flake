@@ -95,6 +95,7 @@
     pkgs.gsettings-desktop-schemas
 
   ];
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   main-user.enable = true;
   main-user.userName = "mlys";
