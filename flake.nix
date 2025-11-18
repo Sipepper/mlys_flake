@@ -14,15 +14,15 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    quickshell = {
-      url = "github:outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";  # Use same quickshell version
-    };   
+    # quickshell = {
+    #   url = "github:outfoxxed/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # noctalia = {
+    #   url = "github:noctalia-dev/noctalia-shell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.quickshell.follows = "quickshell";  # Use same quickshell version
+    # };   
   };
 
   outputs = { 
@@ -36,8 +36,7 @@
         modules = [
           ./configuration.nix
           inputs.home-manager.nixosModules.default
-            determinate.nixosModules.default
-            ./noctalia.nix
+          determinate.nixosModules.default
         ];
       };
     };
