@@ -264,11 +264,9 @@
 
   # SOFT
   home.packages = with pkgs; [
-    firefox              # browser
     wofi                 # needed for waybar config, may delete soon TODO
     brightnessctl        # brightness control
     telegram-desktop     # telegram (messenger)
-    sioyek               # nvim-esque pdf-reader
     tectonic             # LaTeX processing
     rustc                # Rust programming language
     clippy               # Rust linter
@@ -293,11 +291,11 @@
     networkmanagerapplet # connections control for waybar
     wasistlos            # whatsapp client
     # sc-controller        # controller configs
-    orca-c               # esoteric programming sequencer
-    cava                 # audio visualizer
-    libremines           # minesweeper
+    # orca-c               # esoteric programming sequencer
+    # cava                 # audio visualizer
+    # libremines           # minesweeper
     aseprite             # pixel img/animation drawing software
-    pipes-rs             # cli pipes simulation
+    # pipes-rs             # cli pipes simulation
     wl-color-picker      # color picker
     xournalpp            # More advanced whiteboard
     tldr                 # Offline command Manual, substitute for `man` command
@@ -305,12 +303,12 @@
     wev                  # wayland event viewer
     hyprpicker           # Another Color picker need further comparison with wl-color-picker
     slack                # Business communication (Discord for KSE)
-    gcalcli              # TUI Google Calendar
+    # gcalcli              # TUI Google Calendar
     prismlauncher        # Minecraft launcher
     lshw                 # Hardware info
     usbutils
-    dysk                 # TUI disk storage visualization 
-    visidata             # TUI data visualization
+    # dysk                 # TUI disk storage visualization 
+    # visidata             # TUI data visualization
     wiki-tui             # TUI wikipedia
     mask                 # Markdown makefiles
     presenterm           # TUI Presentations!
@@ -327,7 +325,7 @@
     # orca-slicer        # 3D printing slicer
     # freecad-wayland    # CAD software
     tree                 # CLI folder visualization
-    wine
+    # wine
     woomer               # Screen zoom and focus like Tsoding
     chamber
     calcure              # TUI calendar
@@ -337,6 +335,9 @@
     pandoc               # Needed for presenterm to render LaTeX
     piper
     jq                   # CLI json processor
+    # gearlever            # to work with Appimages
+    imagemagick          # Used to render images (for snacks)
+    ghostscript          # ------||-------
 
   ];
 }
