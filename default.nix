@@ -24,7 +24,7 @@ in
     colors = lib.mkOption {
       type = lib.types.attrs;
       default = {
-        background = "2b303b"; # #2b303b
+        background = "192330"; # #192330
         text = "ffffff";       # #ffffff
         border = "64727d";     # #64727d
       };
