@@ -94,12 +94,12 @@
             format = "{icon}";
             all-outputs = true;
             format-icons = {
-              "1" = " ";
-              "2" = "󱣛 ";
-              "3" = "󰊗 ";
-              "4" = "󰡱 ";
-              "5" = "󰄻 ";
-              "6" = "󰃻";
+              "1" = " "; #  
+              "2" = "󱣛 "; # 󱣛 
+              "3" = "󰡱 "; # 󰊗 
+              "4" = "󰊗 "; # 󰡱 
+              "5" = "󰄻 "; # 󰄻 
+              "6" = "󰃻";  # 󰃻"
             };
             persistent-workspaces = {
               "*" = 6;
@@ -356,7 +356,8 @@
         "Telegram -startintray"
         "udiskie"
         "hyprctl setcursor ${config.default.cursor.name} 24"
-        # "kitty -e aerc"
+        "kitty --class=aerc -e aerc"
+        "obsidian"
       ];
       env = [
         "CLUTTER_BACKEND,wayland"
@@ -437,7 +438,7 @@
         "$mainMod, C, killactive,"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, R, exec, $terminal --class=yazi -e yazi"
-        "$mainMod, N, exec, kitty -e nvim"
+        "$mainMod, N, exec, kitty -e --class=nvim nvim"
         "$mainMod, G, exec, kega-fusion"
         "$mainMod, M, exec, $menu"
         "$mainMod, F, exec, firefox"
@@ -499,20 +500,20 @@
         "float,        initialClass:(mpv)"
 
         "float,        class:(org.telegram.desktop)"
+        "workspace 1,  class:(org.telegram.desktop)"
+
+        "float,        class:wasistlos"
+        "workspace 1,  class:wasistlos"
+
         "float,        title:(Choose Files)"
         "float,        title:(Select Document)"
         "float,        title:(Choose modpack)"
-
         "float,        class:(.blueman-manager-wrapped)"
-
-
-        "tile,         class:Aseprite"
 
         "float,        class:(timer)"
         "pin,          class:(timer)"
         "move 950 40,  class:(timer)"
         "size 320 50,  class:(timer)"
-
 
         "float,        title:(pdflatex)"
         "float,        title:(Console window)"
@@ -534,22 +535,22 @@
 
         "float,          class:(org.prismlauncher.Prismlauncher)"
         "center,         class:(org.prismlauncher.Prismlauncher)"
+        "workspace 4,    class:(org.prismlauncher.Prismlauncher)"
 
         "float,          class:(discord)"
         "center,         class:(discord)"
-
-        "float,          class:(Slack)"
-        "center,         class:(Slack)"
+        "workspace 1,    class:(discord)"
 
         "float,          class:(terminal)"
         "center,         class:(terminal)"
-        "size <40% <40%, class:(terminal)"
+        "size <50% <40%, class:(terminal)"
+
+        "size 30% 90% ,  class:(sioyek)"
 
         "float,        title:(Picture-in-Picture)"
         "center,       title:(Picture-in-Picture)"
         "pin,          title:(Picture-in-Picture)"
 
-        "fullscreen,   title:(Inkscape)"
 
         "fullscreen,   class:(Fusion)"
         # wifi connection connection editoreditor
@@ -560,6 +561,24 @@
         "float,        class:(org.pulseaudio.pavucontrol)"
         "move 10 40,   class:(org.pulseaudio.pavucontrol)"
         "size 350 250, class:(org.pulseaudio.pavucontrol)"
+
+        "size <30%,    class:(aerc)"
+        "workspace 1,  class:(aerc)"
+
+        "size <70%,    class:(Slack)"
+        "workspace 1,  class:(Slack)"
+
+        "workspace 2,  class:(obsidian)"
+        "workspace 2,  class:(nvim)"
+        "workspace 2,  class:(firefox)"
+
+        "tile,         class:Aseprite"
+        "workspace 3,  class:Aseprite"
+        "workspace 3,  class:org.inkscape.Inkscape"
+        "float,        class:org.inkscape.Inkscape"
+
+        "workspace 4,  class:Minecraft*"
+
       ];
     };
   };
