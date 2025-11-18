@@ -209,8 +209,15 @@
 
   hardware = {
     opentabletdriver.enable = true;
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = { 
+        General.Experimental = true;
+        General.FastConnectable = true;
+        Policy.AutoEnable = true;
+      };
+    };
     amdgpu = {
       overdrive.enable = true;
       opencl.enable = true;
