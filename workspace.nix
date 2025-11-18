@@ -844,7 +844,7 @@
             height = 30;
             width = 130;
           };
-          open_mapping = "[[<c-/>]]";
+          open_mapping = "[[<c-;>]]";
         };
       };
     };
