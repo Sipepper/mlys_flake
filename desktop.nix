@@ -402,7 +402,7 @@
         sensitivity = "0";
         touchpad = {
           natural_scroll = true;
-          tap-to-click = false;
+          tap-to-click = true;
         };
         # force_no_accel = true;
         repeat_delay = 300;
