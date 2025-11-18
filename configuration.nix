@@ -49,7 +49,7 @@
       };
     })
     corefonts
-    vistafonts
+    vista-fonts
   ];
 
   environment.sessionVariables = {
