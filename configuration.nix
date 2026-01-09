@@ -112,6 +112,7 @@
       "image/svg" = "feh.desktop";
       "image/vnd.djvu+multipage" = "org.gnome.evince.desktop";
     };
+    addedAssociations = { "inode/directory" = "yazi.desktop"; };
   };
 
   services = {
