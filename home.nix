@@ -32,17 +32,6 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
-    lutris = {
-      enable = false;
-      extraPackages = with pkgs; [
-        mangohud 
-        winetricks
-        gamescope
-        gamemode
-      ];
-      protonPackages = [ pkgs.proton-ge-bin ];
-    };
-
     iamb.enable = true;
     ncspot.enable = true;
     starship.enable = true;
@@ -166,8 +155,6 @@
 
       };
     };
-    # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/prefs.config
-    # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
 
     nushell = {
       enable = true;

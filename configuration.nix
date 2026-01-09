@@ -60,7 +60,6 @@
     PAGER = "bat --plain";
     MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;
-    GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
   };
 
   environment.systemPackages = [
@@ -78,8 +77,6 @@
     pkgs.xorg.xhost
     pkgs.glib
     # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
-    pkgs.cargo-expand 
-    pkgs.cargo-fuzz   
     pkgs.evcxr 
     (pkgs.catppuccin-sddm.override {
       flavor = "mocha";
@@ -119,8 +116,6 @@
 
   services = {
     lact.enable = true;
-
-    preload.enable = true;
 
     # Enable automatic login for the user.
     getty.autologinUser = "mlys";
@@ -169,14 +164,8 @@
   };
 
   programs = {
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [ ];
-    };
 
     dconf.enable = true;
-
-    gamescope.enable = true;
 
     steam = {
       enable = true;
@@ -188,7 +177,6 @@
 
     seahorse.enable = true;
     gamemode.enable = true;
-    thunar.enable = true;
     xfconf.enable = true;
     hyprland = {
       enable = true;
@@ -299,18 +287,6 @@
 
 
   system.stateVersion = "24.05"; # Did you read the comment?
-
-  system.autoUpgrade = {
-    enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L"
-    ];
-    dates = "11:00";
-    randomizedDelaySec = "45min";
-  };
 
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;

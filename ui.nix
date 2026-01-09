@@ -4,9 +4,6 @@
     ./default.nix
   ];
 
-
-  # home.sessionVariables.TERMCMD = "kitty --class=file_chooser";
-
   xdg = {
     configFile."xdg-desktop-portal-termfilechooser/config" = {
       force = true;
