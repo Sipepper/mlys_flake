@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs ,pkgs, ... }:
 {
   imports = [
     ./default.nix
@@ -29,6 +29,8 @@
   };
 
   programs = {
+
+
     # Application launcher
     fuzzel = {
       enable = true;
@@ -353,7 +355,7 @@
         "hyprpaper"
         "slack -u"
         "easyeffects --gapplication-service"
-        "discord --start-minimized"
+        "vesktop --start-minimized"
         "Telegram -startintray"
         "udiskie"
         "hyprctl setcursor ${config.default.cursor.name} 24"
@@ -362,7 +364,8 @@
       ];
       env = [
         "CLUTTER_BACKEND,wayland"
-        "GDK_BACKEND,wayland,x11"
+        "GDK_BACKEND,wayland"
+        "GDK_DEBUG,portals"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "QT_QPA_PLATFORMTHEME,gtk3"
@@ -374,6 +377,7 @@
         "GTK_USE_PORTAL=1"
         "GSETTINGS_SCHEMAS_DIR,${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
       ];
+
       general = {
         gaps_in = "2";
         gaps_out = "5";
@@ -384,19 +388,24 @@
         allow_tearing = true;
         layout = "dwindle";
       };
-      animations.enabled = false;
+
+      animations.enabled = false; 
+
       dwindle = {
         pseudotile = true;
         preserve_split = true;
       };
+
       master = {
         new_status = "master";
       };
+
       misc = { 
         force_default_wallpaper = "-1"; 
         disable_hyprland_logo = false; 
         vfr = true;
       };
+
       input = {
         kb_layout = "us,ua,ru"; #,ru
         kb_variant = "";
@@ -415,7 +424,7 @@
       };
       # gestures.workspace_swipe = false; 
       device = {
-        name = "trust-bayo-wireless-trust-bayo-wireless-mouse";
+        name = "keychron--keychron-link-";
         sensitivity = "-0.5";
       };
       monitor = ",1920x1080@100,auto,1";
@@ -479,7 +488,6 @@
         "$mainMod SHIFT, 0, movetoworkspace, 10"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-
 
         "$mainMod, SPACE, exec, $(hyprctl activewindow -j | jq '.floating') && hyprctl dispatch cyclenext tiled || hyprctl dispatch cyclenext floating"
 
