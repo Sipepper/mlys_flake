@@ -55,7 +55,8 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     BROWSER = "firefox";
-    TERMINAL = "kitty";
+    # TERMINAL = "kitty";
+    TERMINAL = "wezterm";
     PAGER = "bat --plain";
     MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;

@@ -35,7 +35,8 @@
       settings = {
         main = {
           font = "${config.default.main-font}:size=12";
-          terminal = "kitty -e";
+          # terminal = "kitty -e";
+          terminal = "wezterm -e";
           horizontal-pad = 8;
           vertical-pad = 4;
           icon-theme = config.default.iconTheme.name;
@@ -114,12 +115,12 @@
           "cpu" = {
             format = " {usage}%";
             tooltip = false;
-            on-click = "kitty -e --class=btop -o font_size=8 btop";
+            on-click = "wezterm -e btop";
           };
           "disk" = {
             format = " {}%";
             tooltip-format = "{used} / {total} used";
-            on-click = "kitty -e --class=dua -o font_size=8 dua interactive";
+            on-click = "wezterm -e dua interactive";
           };
           "memory" = {
             format = " {}%";
@@ -217,7 +218,7 @@
           "custom/pyradio" = {
             tooltip = false;
             format = "  ";
-            on-click = "kitty --class=pyradio -e pyradio";
+            on-click = "wezterm -e pyradio";
           };
           "custom/poweroff" = {
             tooltip = false;
@@ -356,7 +357,7 @@
         "Telegram -startintray"
         "udiskie"
         "hyprctl setcursor ${config.default.cursor.name} 24"
-        "kitty --class=aerc -e aerc"
+        "wezterm -e aerc"
         "obsidian"
       ];
       env = [
@@ -436,10 +437,8 @@
         "$mainMod, O, exec, obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland"
         # "$mainMod, O, exec, obsidian"
         "$mainMod, C, killactive,"
-        "$mainMod, E, exec, $fileManager"
-        "$mainMod, R, exec, $terminal --class=yazi -e yazi"
-        "$mainMod, N, exec, kitty -e --class=nvim nvim"
-        "$mainMod, G, exec, kega-fusion"
+        "$mainMod, R, exec, $terminal -e yazi"
+        "$mainMod, N, exec, $terminal -e nvim"
         "$mainMod, M, exec, $menu"
         "$mainMod, F, exec, firefox"
         "$mainMod, T, exec, Telegram"

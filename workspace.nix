@@ -6,6 +6,65 @@
   ];
 
   programs = {
+    wezterm = {
+      enable = true;
+      # extraConfig = ''
+      #   return {
+      #     font = wezterm.font("Iosevka NF"),
+      #     font_size = 16.0,
+      #     color_scheme = "Tomorrow Night",
+      #     hide_tab_bar_if_only_one_tab = true,
+      #     keys = {
+      #       {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
+      #     }
+      #   }
+      # '';
+    };
+
+
+    vesktop = {
+      enable = true;
+      settings = {};
+      vencord = {
+        # themes.path = /home/mlys/.assets/vencord; 
+        themes."system24" = ./assets/vencord_themes/system24.theme.css; 
+        settings = {
+          autoUpdate = false;
+          autoUpdateNotification = false;
+          notifyAboutUpdates = false;
+          useQuickCss = true;
+          disableMinSize = true;
+          enabledThemes = [
+            "system24.css"
+          ];
+          plugins = {
+            AlwaysExpandRoles.enabled = true;
+            AnonymiseFileNames.enabled = true;
+            BetterSettings.enabled = true;
+            ClearURLs.enabled = true;
+            CrashHandler.enabled = true;
+            Dearrow.enabled = true;
+            FixCodeblockGap.enabled = true;
+            FixImagesQuality.enabled = true;
+            ImageZoom.enabled = true;
+            MemberCount.enabled = true;
+            NoProfileThemes.enabled = true;
+            WebKeybinds.enabled = true;
+            WebScreenShareFixes.enabled = true;
+          };
+        };
+        # useSystem = true;
+      };
+    };
+
+
+    pandoc = {
+      enable = true;
+      defaults = {
+        metadata.author = "Mykola Lysynskyi";
+        pdf-engine = "tectonic";
+      };
+    };
     firefox = {
       enable = true;
 

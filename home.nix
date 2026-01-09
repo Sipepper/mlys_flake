@@ -19,7 +19,7 @@
       NIXOS_OZONE_WL = 1;
       EDITOR = "nvim";
       BROWSER = "firefox";
-      TERMINAL = "kitty";
+      TERMINAL = "wezterm";
       PAGER = "bat";
       MANPAGER = "bat";
 
