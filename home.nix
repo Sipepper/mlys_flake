@@ -234,9 +234,15 @@
   };
 
   services = {
-    # Don't work, cannot get info
-    # redshift.enable = true;
-    # redshift.provider = "geoclue2";
+    gammastep = {
+      enable = true;
+      provider = "geoclue2";
+      tray = true;
+      temperature = {
+        day = 6500;
+        night = 4000;
+      };
+    };
 
     easyeffects.enable = true;
     tldr-update.enable = true;

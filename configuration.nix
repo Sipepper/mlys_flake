@@ -115,6 +115,7 @@
   };
 
   services = {
+    geoclue2.enable = true;
     lact.enable = true;
 
     # Enable automatic login for the user.
