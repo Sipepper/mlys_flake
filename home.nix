@@ -243,7 +243,72 @@
       };
     };
 
-    easyeffects.enable = true;
+    easyeffects = {
+      enable = true;
+      preset = "standard_home";
+      extraPresets = {
+        standard_home = {
+          input = {
+            "autogain#0" = {
+              bypass = false;
+              force-silence = false;
+              input-gain = 0;
+              maximum-history = 15;
+              output-gain = -5;
+              reference = "Geometric Mean (MSI)";
+              silence-threshold = -70;
+              target = -24;
+            };
+            blocklist = [
+
+            ];
+            "exciter#0" = {
+              amount = 0;
+              blend = 0;
+              bypass = false;
+              ceil = 16000;
+              ceil-active = false;
+              harmonics = {
+              };
+              input-gain = 0;
+              output-gain = 0;
+              scope = 7500;
+            };
+            plugins_order = [
+              "rnnoise#0"
+              "speex#0"
+              "exciter#0"
+              "autogain#0"
+            ];
+            "rnnoise#0" = {
+              bypass = false;
+              enable-vad = false;
+              input-gain = 0;
+              model-name = "\"\"";
+              output-gain = 0;
+              release = 20;
+              use-standard-model = true;
+              vad-thres = 50;
+              wet = 0;
+            };
+            "speex#0" = {
+              bypass = false;
+              enable-agc = true;
+              enable-denoise = false;
+              enable-dereverb = true;
+              input-gain = 0;
+              noise-suppression = -1;
+              output-gain = 0;
+              vad = {
+                enable = true;
+                probability-continue = 90;
+                probability-start = 95;
+              };
+            };
+          };
+        };
+      };
+    };
     tldr-update.enable = true;
     pass-secret-service.enable = true;
   };
