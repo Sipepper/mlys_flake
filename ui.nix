@@ -5,6 +5,7 @@
   ];
 
   xdg = {
+    # Can create desktop entries via desktopEntries = { ... }
     configFile."xdg-desktop-portal-termfilechooser/config" = {
       force = true;
       text = ''
