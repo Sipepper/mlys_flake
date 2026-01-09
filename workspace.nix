@@ -245,6 +245,7 @@
           { on = "<Tab>"; run = "spot"; desc = "Spot hovered file"; }
           # Operation
           { on = "o";         run = "open --interactive";          desc = "Open selected files interactively"; }
+          { on = "i";         run = "shell dua interactive";             desc = "Open file size manager"; }
           { on = "y";         run = "yank";                        desc = "Yank selected files (copy)"; }
           { on = "x";         run = "yank --cut";                  desc = "Yank selected files (cut)"; }
           { on = "p";         run = "paste";                       desc = "Paste yanked files"; }
@@ -590,7 +591,7 @@
         { action = "<C-w>h";                         key = "<C-h>";      options.desc = "sd4"; }
         { action = "<C-w>j";                         key = "<C-j>";      options.desc = "sd3"; }
         { action = "<C-w>k";                         key = "<C-k>";      options.desc = "sd2"; }
-        { action = "<cmd>noh<CR>";                   key = "<Esc><Esc>"; options.desc = "which_key_ignore"; }
+        { action = "<cmd>noh<CR>";                   key = "<leader><Esc>"; options.desc = "Remove search highlight"; }
         { action = "<cmd>BufferLineCloseOthers<CR>"; key = "<leader>bo"; options.desc = "Close other buffers"; }
         { action = "<cmd>bdelete<CR>";               key = "<leader>bd"; options.desc = "Close buffer"; }
         { action = "<cmd>bnext<CR>";                 key = "<S-l>";      options.desc = "Move to right tab"; }
