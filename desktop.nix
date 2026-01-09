@@ -401,7 +401,7 @@
         kb_layout = "us,ua,ru"; #,ru
         kb_variant = "";
         kb_model = "";
-        kb_options = "grp:alt_shift_toggle"; 
+        kb_options = "grp:alt_shift_toggle, caps:super"; 
         kb_rules = "";
         follow_mouse = "1";
         sensitivity = "0";
@@ -430,29 +430,25 @@
 
       bind = [
         # screenshot of a region
-        '', Print, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | mako "Screenshot of the region taken" -t 1000''
+        ''$mainMod, S, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png ''
         # screenshot of the whole screen
-        ''SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | mako "Screenshot of whole screen taken" -t 1000''
-        "$mainMod, Q, exec, $terminal --class=terminal"
-        "$mainMod, O, exec, obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland"
-        # "$mainMod, O, exec, obsidian"
+        ''$mainMod SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png''
+
+        "$mainMod, Q, exec, $terminal"
         "$mainMod, C, killactive,"
         "$mainMod, R, exec, $terminal -e yazi"
         "$mainMod, N, exec, $terminal -e nvim"
         "$mainMod, M, exec, $menu"
-        "$mainMod, F, exec, firefox"
-        "$mainMod, T, exec, Telegram"
-        # "$mainMod, S, exec, $terminal -o \"font_size 8.0\" -e sc-im"
-        "$mainMod, F1, exec, hyprctl switchxkblayout current 0"  # Switches to the first layout (e.g., 'us')
-        "$mainMod, F2, exec, hyprctl switchxkblayout current 1"  # Switches to the second layout (e.g., 'ua')
-        "$mainMod, F3, exec, hyprctl switchxkblayout current 2"  # Switches to the third layout (e.g., 'ru')
-        "$mainMod, I, exec, inkscape"
         "$mainMod, Z, exec, woomer"
-        "$mainMod, P, exec, $terminal --class=timer -e timer 25m"
-        "$mainMod CTRL, l, resizeactive, 20 0"
-        "$mainMod CTRL, h, resizeactive, -20 0"
-        "$mainMod CTRL, k, resizeactive, 0 -20"
-        "$mainMod CTRL, j, resizeactive, 0 20"
+
+        "$mainMod, T, togglefloating,"
+        "$mainMod, F, fullscreen,"
+        "$mainMod, C, centerwindow,"
+
+        "$mainMod CTRL, l, resizeactive, 40 0"
+        "$mainMod CTRL, h, resizeactive, -40 0"
+        "$mainMod CTRL, k, resizeactive, 0 -40"
+        "$mainMod CTRL, j, resizeactive, 0 40"
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
@@ -487,9 +483,6 @@
 
         "$mainMod, SPACE, exec, $(hyprctl activewindow -j | jq '.floating') && hyprctl dispatch cyclenext tiled || hyprctl dispatch cyclenext floating"
 
-        "$mainMod SHIFT, T, togglefloating,"
-        "$mainMod SHIFT, F, fullscreen,"
-        "$mainMod SHIFT, C, centerwindow,"
       ];
       bindm = [
         "$mainMod, mouse:272, movewindow"
