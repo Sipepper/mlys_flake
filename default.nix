@@ -7,7 +7,7 @@ in
     enable = lib.mkEnableOption "enable";
     main-font = lib.mkOption {
       type = lib.types.str;
-      default = "Hurmit Nerd Font";
+      default = "Iosevka Custom";
     };
     term-font = lib.mkOption {
       type = lib.types.str;
