@@ -100,8 +100,8 @@
     #   "inode/directory" = "kitty-open.desktop";
     # };
     defaultApplications = {
-      "inode/directory" = "thunar.desktop";
-      "application/x-directory" = "thunar.desktop";
+      "inode/directory" = "yazi.desktop";
+      "application/x-directory" = "yazi.desktop";
       "application/pdf" = "sioyek.desktop";
       "application/xopp" = "xournal.desktop";
       "application/x-genesis-rom" = "kega-fusion.desktop";

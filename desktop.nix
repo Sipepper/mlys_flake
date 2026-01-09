@@ -424,8 +424,8 @@
       xwayland.force_zero_scaling = true;
 
       "$mainMod" = "SUPER";
-      "$terminal" = "kitty";
-      "$fileManager" = "thunar";
+      # "$terminal" = "kitty";
+      "$terminal" = "wezterm";
       "$menu" = "fuzzel";
 
       bind = [
