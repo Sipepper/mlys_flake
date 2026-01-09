@@ -223,7 +223,7 @@
       efiSupport = true;
       device = "nodev";
       splashImage = ./assets/grub.jpg;
-      font = "${pkgs.nerd-fonts.hurmit}/share/fonts/opentype/NerdFonts/Hurmit/HurmitNerdFont-Regular.otf";
+      # font = "${pkgs.nerd-fonts.iosevka-term}/share/fonts/truetype/NerdFonts/IosevkaTerm/IosevkaTermNerdFont-Regular.ttf";
       fontSize = 16;
       useOSProber = true;
     };
