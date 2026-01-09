@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-stable, inputs, lib, ... }:
+{ config, pkgs, ... }:
 { 
   imports = [
     ./default.nix
@@ -22,8 +22,6 @@
       TERMINAL = "wezterm";
       PAGER = "bat";
       MANPAGER = "bat";
-
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
     };
     pointerCursor = config.default.cursor;
   };
@@ -36,6 +34,7 @@
     ncspot.enable = true;
     starship.enable = true;
     gh.enable = true;
+
     # TUI Mail client
     aerc.enable = true; # Config is broken
     fastfetch = {
@@ -124,7 +123,7 @@
 
         remember_window_size = false;
       };
-      themeFile = "Wombat";
+      themeFile = "Nord";
     };
 
     sioyek = {
@@ -399,4 +398,5 @@
     # dysk                 # TUI disk storage visualization 
     # visidata             # TUI data visualization
   ];
+
 }
