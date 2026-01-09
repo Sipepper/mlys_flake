@@ -146,11 +146,11 @@
       config = {
         "should_launch_new_window" = "1";
         "ui_font" = "${config.default.main-font}";
-        "font_size" = "12";
+        "font_size" = "14";
+        "keyboard_select_font_size" = "10";
         "super_fast_search" = "1";
         "rerender_overview" = "1";
-        # "force_custom_line_algorithm" = "1";
-        "status_bar_font_size" = "14";
+        "status_bar_font_size" = "16";
         "inverse_search_command" = "nvim +%2 %1";
 
       };
@@ -178,7 +178,6 @@
         render_right_prompt_on_last_line: false
         show_banner:                      false
         use_ansi_coloring:                true
-        use_kitty_protocol:               true
       }
       '';
       # environmentVariables = {
