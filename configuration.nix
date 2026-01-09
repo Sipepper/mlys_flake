@@ -9,7 +9,6 @@
 
   fonts.packages = with pkgs; [ 
     nerd-fonts.droid-sans-mono
-    nerd-fonts.iosevka
     nerd-fonts.iosevka-term
     (iosevka.override {
       set = "custom";
