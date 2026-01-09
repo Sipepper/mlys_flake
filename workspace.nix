@@ -567,6 +567,8 @@
           "nvim-treesitter"
         ];
       };
+      # Fix of conflicting subpaths probably
+      performance.byteCompileLua.enable = true;
 
       globals = {
         mapleader = " ";
@@ -625,7 +627,7 @@
 
       plugins = {
         snacks = {
-          enable = true;
+          enable = false;
           settings = {
             bigfile.enabled = true;
             terminal.enabled = true;
