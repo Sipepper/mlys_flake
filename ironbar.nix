@@ -1,5 +1,0 @@
-{ ... }: {
-  programs.ironbar = {
-    enable = true;
-  };
-}
