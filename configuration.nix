@@ -78,15 +78,15 @@
     pkgs.glib
     # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
     pkgs.evcxr 
-    (pkgs.catppuccin-sddm.override {
-      flavor = "mocha";
-      font = "Iosevka NF";
-      fontSize = "12";
-    })
 
     pkgs.gtk3
     pkgs.adwaita-icon-theme
     pkgs.gsettings-desktop-schemas
+    (pkgs.catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "Iosevka Custom";
+      fontSize = "12";
+    })
 
   ];
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
@@ -123,8 +123,8 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "catppuccin-mocha-theme";
-      package = pkgs.kdePackages.sddm;
+      enableHidpi = true;
+      theme = "catppuccin-mocha-mauve";
     };
 
     printing = {
