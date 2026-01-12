@@ -400,7 +400,7 @@
         kb_options = "grp:alt_shift_toggle"; 
         kb_rules = "";
         follow_mouse = "1";
-        sensitivity = "0";
+        sensitivity = "0.2";
         touchpad = {
           natural_scroll = true;
           tap-to-click = true;
@@ -408,11 +408,6 @@
         # force_no_accel = true;
         repeat_delay = 300;
 
-      };
-      gestures.workspace_swipe = false; 
-      device = {
-        name = "trust-bayo-wireless-trust-bayo-wireless-mouse";
-        sensitivity = "-0.5";
       };
       monitor = ",1920x1080,auto,1.5";
 
@@ -430,7 +425,6 @@
         # screenshot of the whole screen
         ''SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | mako "Screenshot of whole screen taken" -t 1000''
         "$mainMod, Q, exec, $terminal --class=terminal"
-        "$mainMod, O, exec, obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland"
         # "$mainMod, O, exec, obsidian"
         "$mainMod, C, killactive,"
         "$mainMod, E, exec, $fileManager"

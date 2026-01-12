@@ -125,8 +125,6 @@
   services = {
     lact.enable = true;
 
-    preload.enable = true;
-
     # Enable automatic login for the user.
     getty.autologinUser = "mlys";
 

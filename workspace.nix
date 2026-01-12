@@ -565,7 +565,7 @@
 
       plugins = {
         snacks = {
-          enable = true;
+          enable = false;
           settings = {
             bigfile.enabled = true;
             terminal.enabled = true;

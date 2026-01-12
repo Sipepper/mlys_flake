@@ -32,6 +32,8 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    vscode.enable = true;
+
     lutris = {
       enable = true;
       extraPackages = with pkgs; [
@@ -294,7 +296,7 @@
     # orca-c               # esoteric programming sequencer
     # cava                 # audio visualizer
     # libremines           # minesweeper
-    aseprite             # pixel img/animation drawing software
+    # aseprite             # pixel img/animation drawing software
     # pipes-rs             # cli pipes simulation
     wl-color-picker      # color picker
     xournalpp            # More advanced whiteboard
@@ -328,7 +330,7 @@
     # wine
     woomer               # Screen zoom and focus like Tsoding
     chamber
-    calcure              # TUI calendar
+    # calcure              # TUI calendar
     bibtex-tidy          # Tidying bibtex offline!
     mermaid-cli          # Mermaid diagrams 
     typst                # Analogue of LaTeX for math writing
@@ -339,5 +341,11 @@
     imagemagick          # Used to render images (for snacks)
     ghostscript          # ------||-------
 
+    gnumake
+
+    ruby
+    docker
+
+    
   ];
 }
