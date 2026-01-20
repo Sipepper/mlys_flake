@@ -8,17 +8,45 @@
   programs = {
     wezterm = {
       enable = true;
-      # extraConfig = ''
-      #   return {
-      #     font = wezterm.font("Iosevka NF"),
-      #     font_size = 16.0,
-      #     color_scheme = "Tomorrow Night",
-      #     hide_tab_bar_if_only_one_tab = true,
-      #     keys = {
-      #       {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
-      #     }
-      #   }
-      # '';
+      extraConfig = ''
+        return {
+          color_scheme = "nightfox",
+          use_fancy_tab_bar = false,
+          font = wezterm.font "IosevkaTerm NF Medium",
+
+          colors = {
+            tab_bar = {
+              background = "#192330",
+              active_tab = { bg_color = "#3C5372", fg_color = "#ffffff", intensity = "Bold", italic = true },
+              inactive_tab = { bg_color = "#192330", fg_color = "#64727D", },
+              new_tab = { bg_color = "#192330", fg_color = "#ffffff", },
+              new_tab_hover = { bg_color = "#64727D", fg_color = "#ffffff", },
+              inactive_tab_hover = { bg_color = "#192330", fg_color = "#738091", },
+            }
+
+          },
+
+          font_size = 12,
+          window_padding = {
+            left = 2,
+            right = 2,
+            top = 0,
+            bottom = 0,
+          },
+          hide_tab_bar_if_only_one_tab = true,
+          keys = {
+            { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
+            { key = "s", mods = "CTRL|SHIFT", action = wezterm.action.SplitHorizontal {domain = "CurrentPaneDomain" } },
+            { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.SplitVertical {domain = "CurrentPaneDomain" } },
+            { key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+            { key = "x", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane { confirm = true } },
+            { key = "j", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Down") },
+            { key = "k", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Up") },
+            { key = "l", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Right") },
+            { key = "h", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Left") },
+          },
+        }
+      '';
     };
 
 
