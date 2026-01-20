@@ -1,13 +1,11 @@
-{ config, pkgs, nixpkgs-stable, inputs, lib, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./default.nix
   ];
 
-
-  home.sessionVariables.TERMCMD = "kitty --class=file_chooser";
-
   xdg = {
+    # Can create desktop entries via desktopEntries = { ... }
     configFile."xdg-desktop-portal-termfilechooser/config" = {
       force = true;
       text = ''
@@ -24,7 +22,6 @@
         };
       };
       extraPortals = [ 
-        pkgs.xdg-desktop-portal-wlr
         pkgs.xdg-desktop-portal-termfilechooser
       ];
     };
@@ -33,15 +30,17 @@
   qt = {
     enable = true;
     platformTheme.name = "gtk3";
-    style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-qt;
+    style = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
   };
   
   gtk = {
     enable = true;
     theme = {
-      name = "Nordic";
-      package = pkgs.nordic;
+      name = "Dracula";
+      package = pkgs.dracula-theme;
     };
     gtk3.extraConfig.gtk-decoration-layot = "menu:";
     font.name = config.default.main-font;

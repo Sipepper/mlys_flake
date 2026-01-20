@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   cfg = config.default;
 in
@@ -7,7 +7,7 @@ in
     enable = lib.mkEnableOption "enable";
     main-font = lib.mkOption {
       type = lib.types.str;
-      default = "Hurmit Nerd Font";
+      default = "Iosevka Custom";
     };
     term-font = lib.mkOption {
       type = lib.types.str;
@@ -44,7 +44,7 @@ in
 
   config = lib.mkIf cfg.enable {
     default = {
-      main-font = "Hurmit Nerd Font";
+      main-font = "Iosevka Custom";
       term-font = "Iosevka Term NF";
       cursor = {
         name = "Vanilla-DMZ";

@@ -12,7 +12,6 @@
 
   fonts.packages = with pkgs; [ 
     nerd-fonts.droid-sans-mono
-    nerd-fonts.iosevka
     nerd-fonts.iosevka-term
     (iosevka.override {
       set = "custom";
@@ -24,6 +23,11 @@
         noCvSs = true;
         exportGlyphNames = false;
         weights = {
+          Light = {
+            shape = 300;
+            menu = 300;
+            css = 300;
+          };
           Regular = {
             shape = 400;
             menu = 400;
@@ -58,12 +62,10 @@
   environment.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    BROWSER = "firefox";
-    TERMINAL = "kitty";
+    TERMINAL = "wezterm";
     PAGER = "bat --plain";
     MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;
-    GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
   };
 
   environment.systemPackages = [
@@ -86,7 +88,7 @@
     pkgs.evcxr 
     (pkgs.catppuccin-sddm.override {
       flavor = "mocha";
-      font = "Iosevka NF";
+      font = "Iosevka Custom";
       fontSize = "12";
     })
 
@@ -95,6 +97,7 @@
     pkgs.gsettings-desktop-schemas
 
   ];
+
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   main-user.enable = true;
@@ -106,8 +109,8 @@
     #   "inode/directory" = "kitty-open.desktop";
     # };
     defaultApplications = {
-      "inode/directory" = "thunar.desktop";
-      "application/x-directory" = "thunar.desktop";
+      "inode/directory" = "yazi.desktop";
+      "application/x-directory" = "yazi.desktop";
       "application/pdf" = "sioyek.desktop";
       "application/xopp" = "xournal.desktop";
       "application/x-genesis-rom" = "kega-fusion.desktop";
@@ -116,13 +119,13 @@
       "image/png" = "feh.desktop";
       "image/jpeg" = "feh.desktop";
       "image/svg" = "feh.desktop";
-      "image/vnd.djvu+multipage" = "evince.desktop";
-      
-
+      "image/vnd.djvu+multipage" = "org.gnome.evince.desktop";
     };
+    addedAssociations = { "inode/directory" = "yazi.desktop"; };
   };
 
   services = {
+    geoclue2.enable = true;
     lact.enable = true;
 
     # Enable automatic login for the user.
@@ -131,8 +134,8 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "catppuccin-mocha-theme";
-      package = pkgs.kdePackages.sddm;
+      enableHidpi = true;
+      theme = "catppuccin-mocha-mauve";
     };
 
     printing = {
@@ -172,10 +175,6 @@
   };
 
   programs = {
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [ ];
-    };
 
     dconf.enable = true;
 
@@ -189,15 +188,19 @@
     };	
 
     seahorse.enable = true;
+
     gamemode.enable = true;
-    thunar.enable = true;
+
     xfconf.enable = true;
+
     hyprland = {
       enable = true;
       xwayland.enable = true;
     };
+
     # Some programs need SUID wrappers
     mtr.enable = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -216,10 +219,10 @@
         Policy.AutoEnable = true;
       };
     };
-    amdgpu = {
-      overdrive.enable = true;
-      opencl.enable = true;
-    };
+    # amdgpu = {
+    #   overdrive.enable = true;
+    #   opencl.enable = true;
+    # };
 
   };
 
@@ -294,20 +297,7 @@
     size = 16 * 1024;
   }];
 
-
   system.stateVersion = "24.05"; # Did you read the comment?
-
-  system.autoUpgrade = {
-    enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L"
-    ];
-    dates = "11:00";
-    randomizedDelaySec = "45min";
-  };
 
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;

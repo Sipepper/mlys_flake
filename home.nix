@@ -19,11 +19,9 @@
       NIXOS_OZONE_WL = 1;
       EDITOR = "nvim";
       BROWSER = "firefox";
-      TERMINAL = "kitty";
+      TERMINAL = "wezterm";
       PAGER = "bat";
       MANPAGER = "bat";
-
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
     };
     pointerCursor = config.default.cursor;
   };
@@ -32,20 +30,6 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
-    vscode.enable = true;
-
-    lutris = {
-      enable = true;
-      extraPackages = with pkgs; [
-        mangohud 
-        winetricks
-        gamescope
-        gamemode
-      ];
-      protonPackages = [ pkgs.proton-ge-bin ];
-    };
-
-    helix.enable = true;
     iamb.enable = true;
     ncspot.enable = true;
     starship.enable = true;
@@ -105,8 +89,8 @@
     bat = {
       enable = true;
       config = {
-        # pager = "less -FR";
-        theme = "Nord";
+        pager = "less -FR";
+        theme = "TwoDark";
       };
     };
 
@@ -138,7 +122,7 @@
 
         remember_window_size = false;
       };
-      themeFile = "Wombat";
+      themeFile = "Nord";
     };
 
     sioyek = {
@@ -160,18 +144,17 @@
       config = {
         "should_launch_new_window" = "1";
         "ui_font" = "${config.default.main-font}";
-        "font_size" = "12";
+        "font_size" = "14";
+        "keyboard_select_font_size" = "10";
         "super_fast_search" = "1";
         "rerender_overview" = "1";
-        # "force_custom_line_algorithm" = "1";
-        "status_bar_font_size" = "14";
+        "status_bar_font_size" = "16";
         "inverse_search_command" = "nvim +%2 %1";
 
       };
     };
     # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/prefs.config
     # https://github.com/ahrm/sioyek/blob/main/pdf_viewer/keys.config
-    mangohud.enable = true;
 
     nushell = {
       enable = true;
@@ -195,7 +178,6 @@
         render_right_prompt_on_last_line: false
         show_banner:                      false
         use_ansi_coloring:                true
-        use_kitty_protocol:               true
       }
       '';
       # environmentVariables = {
@@ -216,14 +198,14 @@
         scroll_down = "j";
 
         scroll_left_page = "C-h";
-        scroll_right_page	= "C-l";
+        scroll_right_page = "C-l";
         scroll_up_page = "C-k";
         scroll_down_page = "C-j";
 
         toggle_aliasing = "A";
         toggle_filenames = "d";
         toggle_pointer = "o";
-        toggle_fullscreen	= "f";
+        toggle_fullscreen = "f";
 
         zoom_in = "plus";
         zoom_out = "minus";
@@ -251,11 +233,82 @@
   };
 
   services = {
-    # Don't work, cannot get info
-    # redshift.enable = true;
-    # redshift.provider = "geoclue2";
+    gammastep = {
+      enable = true;
+      provider = "geoclue2";
+      tray = true;
+      temperature = {
+        day = 6500;
+        night = 4000;
+      };
+    };
 
-    easyeffects.enable = true;
+    easyeffects = {
+      enable = true;
+      preset = "standard_home";
+      extraPresets = {
+        standard_home = {
+          input = {
+            "autogain#0" = {
+              bypass = false;
+              force-silence = false;
+              input-gain = 0;
+              maximum-history = 15;
+              output-gain = -5;
+              reference = "Geometric Mean (MSI)";
+              silence-threshold = -70;
+              target = -24;
+            };
+            blocklist = [
+
+            ];
+            "exciter#0" = {
+              amount = 0;
+              blend = 0;
+              bypass = false;
+              ceil = 16000;
+              ceil-active = false;
+              harmonics = {
+              };
+              input-gain = 0;
+              output-gain = 0;
+              scope = 7500;
+            };
+            plugins_order = [
+              "rnnoise#0"
+              "speex#0"
+              "exciter#0"
+              "autogain#0"
+            ];
+            "rnnoise#0" = {
+              bypass = false;
+              enable-vad = false;
+              input-gain = 0;
+              model-name = "\"\"";
+              output-gain = 0;
+              release = 20;
+              use-standard-model = true;
+              vad-thres = 50;
+              wet = 0;
+            };
+            "speex#0" = {
+              bypass = false;
+              enable-agc = true;
+              enable-denoise = false;
+              enable-dereverb = true;
+              input-gain = 0;
+              noise-suppression = -1;
+              output-gain = 0;
+              vad = {
+                enable = true;
+                probability-continue = 90;
+                probability-start = 95;
+              };
+            };
+          };
+        };
+      };
+    };
     tldr-update.enable = true;
     pass-secret-service.enable = true;
   };
@@ -292,31 +345,21 @@
     wf-recorder          # screen capture
     networkmanagerapplet # connections control for waybar
     wasistlos            # whatsapp client
-    # sc-controller        # controller configs
-    # orca-c               # esoteric programming sequencer
-    # cava                 # audio visualizer
-    # libremines           # minesweeper
-    # aseprite             # pixel img/animation drawing software
-    # pipes-rs             # cli pipes simulation
+    aseprite             # pixel img/animation drawing software
     wl-color-picker      # color picker
     xournalpp            # More advanced whiteboard
     tldr                 # Offline command Manual, substitute for `man` command
-    # osu-lazer-bin        # Rhytm game
     wev                  # wayland event viewer
     hyprpicker           # Another Color picker need further comparison with wl-color-picker
     slack                # Business communication (Discord for KSE)
-    # gcalcli              # TUI Google Calendar
     prismlauncher        # Minecraft launcher
     lshw                 # Hardware info
     usbutils
-    # dysk                 # TUI disk storage visualization 
-    # visidata             # TUI data visualization
     wiki-tui             # TUI wikipedia
     mask                 # Markdown makefiles
     presenterm           # TUI Presentations!
     dust                 # Disk space visualization
     ouch                 # cli archiving tool
-    # matrix-commander-rs
     pass-wayland         # cli password store
     tuifeed              # tui news feed reader
     dua                  # tui storage capacity viewer
@@ -324,28 +367,36 @@
     clinfo
     evince
     texliveFull          # TODO needed for Inkscape to render LaTeX
-    # orca-slicer        # 3D printing slicer
-    # freecad-wayland    # CAD software
     tree                 # CLI folder visualization
-    # wine
     woomer               # Screen zoom and focus like Tsoding
     chamber
-    # calcure              # TUI calendar
+    calcure              # TUI calendar
     bibtex-tidy          # Tidying bibtex offline!
     mermaid-cli          # Mermaid diagrams 
     typst                # Analogue of LaTeX for math writing
-    pandoc               # Needed for presenterm to render LaTeX
     piper
     jq                   # CLI json processor
-    # gearlever            # to work with Appimages
     imagemagick          # Used to render images (for snacks)
     ghostscript          # ------||-------
+    cargo-generate       # Generate Rust project template based on git repo
+    cargo-expand 
+    cargo-fuzz   
+    milkytracker         # Tracker DAW
 
-    gnumake
-
-    ruby
     docker
 
-    
+    # pipes-rs             # cli pipes simulation
+    # sc-controller        # controller configs
+    # orca-c               # esoteric programming sequencer
+    # cava                 # audio visualizer
+    # libremines           # minesweeper
+    # osu-lazer-bin        # Rhytm game
+    # gcalcli              # TUI Google Calendar
+    # matrix-commander-rs
+    # orca-slicer          # 3D printing slicer
+    # freecad-wayland      # CAD software
+    # gearlever            # to work with Appimages
+    # dysk                 # TUI disk storage visualization 
+    # visidata             # TUI data visualization
   ];
 }

@@ -35,7 +35,7 @@
       settings = {
         main = {
           font = "${config.default.main-font}:size=12";
-          terminal = "kitty -e";
+          terminal = "wezterm -e";
           horizontal-pad = 8;
           vertical-pad = 4;
           icon-theme = config.default.iconTheme.name;
@@ -114,12 +114,12 @@
           "cpu" = {
             format = " {usage}%";
             tooltip = false;
-            on-click = "kitty -e --class=btop -o font_size=8 btop";
+            on-click = "wezterm -e btop";
           };
           "disk" = {
             format = " {}%";
             tooltip-format = "{used} / {total} used";
-            on-click = "kitty -e --class=dua -o font_size=8 dua interactive";
+            on-click = "wezterm -e dua interactive";
           };
           "memory" = {
             format = " {}%";
@@ -217,7 +217,7 @@
           "custom/pyradio" = {
             tooltip = false;
             format = "  ";
-            on-click = "kitty --class=pyradio -e pyradio";
+            on-click = "wezterm -e pyradio";
           };
           "custom/poweroff" = {
             tooltip = false;
@@ -349,16 +349,17 @@
         "hyprpaper"
         "slack -u"
         "easyeffects --gapplication-service"
-        "discord --start-minimized"
+        "vesktop --start-minimized"
         "Telegram -startintray"
         "udiskie"
         "hyprctl setcursor ${config.default.cursor.name} 24"
-        "kitty --class=aerc -e aerc"
+        "wezterm -e aerc"
         "obsidian"
       ];
       env = [
         "CLUTTER_BACKEND,wayland"
-        "GDK_BACKEND,wayland,x11"
+        "GDK_BACKEND,wayland"
+        "GDK_DEBUG,portals"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "QT_QPA_PLATFORMTHEME,gtk3"
@@ -415,28 +416,24 @@
       xwayland.force_zero_scaling = true;
 
       "$mainMod" = "SUPER";
-      "$terminal" = "kitty";
+      # "$terminal" = "kitty";
+      "$terminal" = "wezterm";
       "$fileManager" = "thunar";
       "$menu" = "fuzzel";
 
       bind = [
         # screenshot of a region
-        '', Print, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | mako "Screenshot of the region taken" -t 1000''
+        ''$mainMod, S, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png ''
         # screenshot of the whole screen
-        ''SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | mako "Screenshot of whole screen taken" -t 1000''
+        ''$mainMod SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png''
         "$mainMod, Q, exec, $terminal --class=terminal"
         # "$mainMod, O, exec, obsidian"
-        "$mainMod, C, killactive,"
+        "$mainMod, A, killactive,"
         "$mainMod, E, exec, $fileManager"
-        "$mainMod, R, exec, $terminal --class=yazi -e yazi"
-        "$mainMod, N, exec, kitty -e --class=nvim nvim"
+        "$mainMod, R, exec, $terminal -e yazi"
+        "$mainMod, N, exec, $terminal -e nvim"
         "$mainMod, G, exec, kega-fusion"
         "$mainMod, M, exec, $menu"
-        "$mainMod, F, exec, firefox"
-        "$mainMod, T, exec, Telegram"
-        # "$mainMod, S, exec, $terminal -o \"font_size 8.0\" -e sc-im"
-        "$mainMod, I, exec, inkscape"
-        "$mainMod, P, exec, $terminal --class=timer -e timer 25m"
         "$mainMod CTRL, l, resizeactive, 20 0"
         "$mainMod CTRL, h, resizeactive, -20 0"
         "$mainMod CTRL, k, resizeactive, 0 -20"
@@ -482,90 +479,6 @@
       bindm = [
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
-      ];
-      windowrulev2 = [
-        "float,        initialClass:(mpv)"
-
-        "float,        class:(org.telegram.desktop)"
-        "workspace 1,  class:(org.telegram.desktop)"
-
-        "float,        class:wasistlos"
-        "workspace 1,  class:wasistlos"
-
-        "float,        title:(Choose Files)"
-        "float,        title:(Select Document)"
-        "float,        title:(Choose modpack)"
-        "float,        class:(.blueman-manager-wrapped)"
-
-        "float,        class:(timer)"
-        "pin,          class:(timer)"
-        "move 950 40,  class:(timer)"
-        "size 320 50,  class:(timer)"
-
-        "float,        title:(pdflatex)"
-        "float,        title:(Console window)"
-        "float,        title:(Library)"
-        "float,        title:(Save As)"
-        "center,       title:(Save As)"
-        "size 800 400, title:(Save As)"
-
-        "float,        title:(Steam Settings)"
-        "float,        title:(Friends List)"
-
-        "float,        title:(Save File)"
-        "center,       title:(Save File)"
-        # "size 800 400, title:(Save File)"
-
-        "float,            class:(btop)"
-        "move 1% 5%,       class:(btop)"
-        "size <45% <55%,   class:(btop)"
-
-        "float,          class:(org.prismlauncher.Prismlauncher)"
-        "center,         class:(org.prismlauncher.Prismlauncher)"
-        "workspace 4,    class:(org.prismlauncher.Prismlauncher)"
-
-        "float,          class:(discord)"
-        "center,         class:(discord)"
-        "workspace 1,    class:(discord)"
-
-        "float,          class:(terminal)"
-        "center,         class:(terminal)"
-        "size <50% <40%, class:(terminal)"
-
-        "size 30% 90% ,  class:(sioyek)"
-
-        "float,        title:(Picture-in-Picture)"
-        "center,       title:(Picture-in-Picture)"
-        "pin,          title:(Picture-in-Picture)"
-
-
-        "fullscreen,   class:(Fusion)"
-        # wifi connection connection editoreditor
-        "float,        class:(nm-connection-editor)"
-        "move 920 40,  class:(nm-connection-editor)"
-        "size 350 250, class:(nm-connection-editor)"
-        # pulseaudio audio editor
-        "float,        class:(org.pulseaudio.pavucontrol)"
-        "move 10 40,   class:(org.pulseaudio.pavucontrol)"
-        "size 350 250, class:(org.pulseaudio.pavucontrol)"
-
-        "size <30%,    class:(aerc)"
-        "workspace 1,  class:(aerc)"
-
-        "size <70%,    class:(Slack)"
-        "workspace 1,  class:(Slack)"
-
-        "workspace 2,  class:(obsidian)"
-        "workspace 2,  class:(nvim)"
-        "workspace 2,  class:(firefox)"
-
-        "tile,         class:Aseprite"
-        "workspace 3,  class:Aseprite"
-        "workspace 3,  class:org.inkscape.Inkscape"
-        "float,        class:org.inkscape.Inkscape"
-
-        "workspace 4,  class:Minecraft*"
-
       ];
     };
   };

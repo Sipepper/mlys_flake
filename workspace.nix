@@ -6,6 +6,65 @@
   ];
 
   programs = {
+    wezterm = {
+      enable = true;
+      # extraConfig = ''
+      #   return {
+      #     font = wezterm.font("Iosevka NF"),
+      #     font_size = 16.0,
+      #     color_scheme = "Tomorrow Night",
+      #     hide_tab_bar_if_only_one_tab = true,
+      #     keys = {
+      #       {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
+      #     }
+      #   }
+      # '';
+    };
+
+
+    vesktop = {
+      enable = true;
+      settings = {};
+      vencord = {
+        # themes.path = /home/mlys/.assets/vencord; 
+        themes."system24" = ./assets/vencord_themes/system24.theme.css; 
+        settings = {
+          autoUpdate = false;
+          autoUpdateNotification = false;
+          notifyAboutUpdates = false;
+          useQuickCss = true;
+          disableMinSize = true;
+          enabledThemes = [
+            "system24.css"
+          ];
+          plugins = {
+            AlwaysExpandRoles.enabled = true;
+            AnonymiseFileNames.enabled = true;
+            BetterSettings.enabled = true;
+            ClearURLs.enabled = true;
+            CrashHandler.enabled = true;
+            Dearrow.enabled = true;
+            FixCodeblockGap.enabled = true;
+            FixImagesQuality.enabled = true;
+            ImageZoom.enabled = true;
+            MemberCount.enabled = true;
+            NoProfileThemes.enabled = true;
+            WebKeybinds.enabled = true;
+            WebScreenShareFixes.enabled = true;
+          };
+        };
+        # useSystem = true;
+      };
+    };
+
+
+    pandoc = {
+      enable = true;
+      defaults = {
+        metadata.author = "Mykola Lysynskyi";
+        pdf-engine = "tectonic";
+      };
+    };
     firefox = {
       enable = true;
 
@@ -186,6 +245,7 @@
           { on = "<Tab>"; run = "spot"; desc = "Spot hovered file"; }
           # Operation
           { on = "o";         run = "open --interactive";          desc = "Open selected files interactively"; }
+          { on = "i";         run = "shell dua interactive";             desc = "Open file size manager"; }
           { on = "y";         run = "yank";                        desc = "Yank selected files (copy)"; }
           { on = "x";         run = "yank --cut";                  desc = "Yank selected files (cut)"; }
           { on = "p";         run = "paste";                       desc = "Paste yanked files"; }
@@ -505,6 +565,7 @@
         enable = true;
         standalonePlugins = [
           "nvim-treesitter"
+          "snacks"
         ];
       };
 
@@ -531,7 +592,7 @@
         { action = "<C-w>h";                         key = "<C-h>";      options.desc = "sd4"; }
         { action = "<C-w>j";                         key = "<C-j>";      options.desc = "sd3"; }
         { action = "<C-w>k";                         key = "<C-k>";      options.desc = "sd2"; }
-        { action = "<cmd>noh<CR>";                   key = "<Esc><Esc>"; options.desc = "which_key_ignore"; }
+        { action = "<cmd>noh<CR>";                   key = "<leader><Esc>"; options.desc = "Remove search highlight"; }
         { action = "<cmd>BufferLineCloseOthers<CR>"; key = "<leader>bo"; options.desc = "Close other buffers"; }
         { action = "<cmd>bdelete<CR>";               key = "<leader>bd"; options.desc = "Close buffer"; }
         { action = "<cmd>bnext<CR>";                 key = "<S-l>";      options.desc = "Move to right tab"; }
@@ -565,7 +626,7 @@
 
       plugins = {
         snacks = {
-          enable = false;
+          enable = true;
           settings = {
             bigfile.enabled = true;
             terminal.enabled = true;
