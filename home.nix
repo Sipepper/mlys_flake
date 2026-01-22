@@ -9,7 +9,7 @@
   ];
 
   default.main-font = "Iosevka Custom";
-  default.term-font = "Iosevka Term NF";
+  default.term-font = "IosevkaTerm NF";
 
   home = {
     username = "mlys";
@@ -388,6 +388,8 @@
     cargo-expand 
     cargo-fuzz   
     milkytracker         # Tracker DAW
+
+    texlab
 
     docker
     vscode

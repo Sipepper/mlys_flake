@@ -222,7 +222,7 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: "${config.default.main-font}", "${config.default.term-font}";
+        font-family: "${config.default.term-font}", "${config.default.term-font}";
         font-size: 16px;
         min-height: 0;
       }
