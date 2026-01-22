@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
@@ -6,13 +6,57 @@
   ];
 
   programs = {
+    helix = {
+      enable = true;
+      extraPackages = [ pkgs.lldb ];
+      settings = {
+        theme = "nightfox";
+        editor = {
+          line-number = "relative";
+          lsp.display-messages = true;
+          soft-wrap.enable = true;
+          indent-guides.render = true;
+          bufferline = "multiple";
+          shell = [ "nu" "-c"];
+          cursor-shape.insert = "bar";
+        };
+        keys.normal = {
+          C-g = [
+            '':sh rm -f /tmp/unique-file''
+            '':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file''
+            '':open %sh{cat /tmp/unique-file}''
+            '':redraw''
+          ];
+        };
+      };
+      languages = {
+        language-server = {
+          rust-analyzer = { command = "${pkgs.rust-analyzer}/bin/rust-analyzer";};
+          nixd = { command = "${pkgs.nixd}/bin/nixd";};
+          vscode-css-languageserver = { command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver";};
+          typescript-language-server = { command = "${pkgs.typescript-language-server}/bin/typescript-language-server";};
+          superhtml = { command = "${pkgs.superhtml}/bin/superhtml";};
+          jdtls = { command = "${pkgs.jdt-language-server}/bin/jdtls";};
+          vscode-json-languageserver = { command = "${pkgs.vscode-json-languageserver}/bin/vscode-json-languageserver";};
+            texlab = { command = "${pkgs.texlab}/bin/texlab";};
+            taplo = { command = "${pkgs.taplo}/bin/taplo";};
+            tinymist = { command = "${pkgs.tinymist}/bin/tinymist";};
+          };
+          language = [
+            { name = "latex"; auto-format = true;}
+            { name = "rust"; formatter = { command = "${pkgs.rustfmt}/bin/rustfmt";};}
+          ];
+        };
+    };
+
+
     wezterm = {
       enable = true;
       extraConfig = ''
         return {
           color_scheme = "nightfox",
           use_fancy_tab_bar = false,
-          font = wezterm.font "IosevkaTerm NF Medium",
+          font = wezterm.font "IosevkaTerm NF",
 
           colors = {
             tab_bar = {
@@ -26,7 +70,7 @@
 
           },
 
-          font_size = 12,
+          font_size = 10,
           window_padding = {
             left = 2,
             right = 2,
@@ -593,7 +637,7 @@
         enable = true;
         standalonePlugins = [
           "nvim-treesitter"
-          "snacks"
+          "snacks.nvim"
         ];
       };
 

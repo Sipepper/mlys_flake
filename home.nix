@@ -8,8 +8,8 @@
     ./workspace.nix
   ];
 
-  default.main-font = "Iosevka Nerd Font";
-  default.term-font = "Iosevka Term NF";
+  default.main-font = "Iosevka Custom";
+  default.term-font = "IosevkaTerm NF";
 
   home = {
     username = "mlys";
@@ -382,6 +382,8 @@
     cargo-expand 
     cargo-fuzz   
     milkytracker         # Tracker DAW
+
+    texlab
 
     docker
 

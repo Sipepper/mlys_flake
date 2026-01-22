@@ -230,7 +230,7 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: "${config.default.main-font}", "Font Awesome 6 Free Solid";
+        font-family: "${config.default.term-font}", "Font Awesome 6 Free Solid";
         font-size: 16px;
         min-height: 0;
       }
@@ -426,7 +426,7 @@
         ''$mainMod, S, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png ''
         # screenshot of the whole screen
         ''$mainMod SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png''
-        "$mainMod, Q, exec, $terminal --class=terminal"
+        "$mainMod, Q, exec, $terminal"
         # "$mainMod, O, exec, obsidian"
         "$mainMod, A, killactive,"
         "$mainMod, E, exec, $fileManager"
