@@ -1908,7 +1908,8 @@
     };
 
     nixvim = {
-      enable = false;
+      enable = true;
+      defaultEditor = false;
       vimdiffAlias = true;
       colorschemes.nightfox.enable = true;
 
@@ -2095,7 +2096,7 @@
           };
         };
         ltex-extra = {
-          enable = true;
+          enable = false;
           settings = {
             initCheck = true;
             loadLangs = [
