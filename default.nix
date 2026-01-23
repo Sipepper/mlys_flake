@@ -44,7 +44,7 @@ in
 
   config = lib.mkIf cfg.enable {
     default = {
-      main-font = "Hurmit Nerd Font";
+      main-font = "Iosevka Custom";
       term-font = "Iosevka Term NF";
       cursor = {
         name = "Vanilla-DMZ";

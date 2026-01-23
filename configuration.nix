@@ -20,15 +20,20 @@
         noCvSs = true;
         exportGlyphNames = false;
         weights = {
+          Light = {
+            shape = 300;
+            menu = 300;
+            css = 300;
+          };
           Regular = {
             shape = 400;
             menu = 400;
             css = 400;
           };
           Bold = {
-            shape = 700;
-            menu = 700;
-            css = 700;
+            shape = 600;
+            menu = 600;
+            css = 600;
           };
         };
         slopes = {
@@ -52,8 +57,8 @@
   ];
 
   environment.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
+    EDITOR = "hx";
+    VISUAL = "hx";
     BROWSER = "firefox";
     # TERMINAL = "kitty";
     TERMINAL = "wezterm";
@@ -105,8 +110,8 @@
       "application/pdf" = "sioyek.desktop";
       "application/xopp" = "xournal.desktop";
       "application/x-genesis-rom" = "kega-fusion.desktop";
-      "text/plain" = "nvim.desktop";
-      "text/markdown" = "nvim.desktop";
+      "text/plain" = "Helix.desktop";
+      "text/markdown" = "Helix.desktop";
       "image/png" = "feh.desktop";
       "image/jpeg" = "feh.desktop";
       "image/svg" = "feh.desktop";
@@ -263,7 +268,7 @@
   users.users.mlys = {
     isNormalUser = true;
     description = "Mykola Lysynskyi";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       unzip
       vim
@@ -289,6 +294,8 @@
 
 
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  virtualisation.docker.enable = true;
 
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;

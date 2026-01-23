@@ -32,7 +32,7 @@
     platformTheme.name = "gtk3";
     style = {
       name = "Dracula";
-      package = pkgs.dracula-theme;
+      package = pkgs.dracula-qt5-theme;
     };
   };
   

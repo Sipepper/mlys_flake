@@ -5,17 +5,6 @@
   ];
 
   services = {
-    # background image for hyprland
-    hyprpaper = {
-      enable = true;
-      settings = {
-        ipc = "on";
-        splash = false;
-        splash_offset = 2.0;
-        preload = [ ".space.jpg" ];
-        wallpaper = [ ", .space.jpg" ];
-      };
-    };
     # Notifications aboba
     mako = {
       enable = true;
@@ -115,17 +104,17 @@
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           };
           "cpu" = {
-            format = " {usage}%";
+            format = "  {usage}%";
             tooltip = false;
             on-click = "wezterm -e btop";
           };
           "disk" = {
-            format = " {}%";
+            format = "  {}%";
             tooltip-format = "{used} / {total} used";
             on-click = "wezterm -e dua interactive";
           };
           "memory" = {
-            format = " {}%";
+            format = "  {}%";
             tooltip-format = "{used:0.1f}G / {total:0.1f}G used";
           };
           "temperature" = {
@@ -224,7 +213,7 @@
           };
           "custom/poweroff" = {
             tooltip = false;
-            format = " ";
+            format = "  ";
             on-click = "systemctl poweroff";
           };
         };
@@ -233,7 +222,7 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: "${config.default.main-font}", "Font Awesome 6 Free Solid";
+        font-family: "${config.default.main-font}", "${config.default.term-font}";
         font-size: 16px;
         min-height: 0;
       }
@@ -351,9 +340,8 @@
         };
       };
       exec-once = [
+        "nu ~/change_wallpaper.nu"
         "waybar"
-        "hyprpaper"
-        "slack -u"
         "easyeffects --gapplication-service"
         "vesktop --start-minimized"
         "Telegram -startintray"
@@ -444,15 +432,17 @@
         ''$mainMod SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png''
 
         "$mainMod, Q, exec, $terminal"
-        "$mainMod, C, killactive,"
+        "$mainMod, A, killactive,"
         "$mainMod, R, exec, $terminal -e yazi"
         "$mainMod, N, exec, $terminal -e nvim"
+        "$mainMod, C, exec, $terminal -e clipse"
         "$mainMod, M, exec, $menu"
         "$mainMod, Z, exec, woomer"
+        # ",ESC, exec, hyprctl switchxkblayout current 1"
+        
 
         "$mainMod, T, togglefloating,"
         "$mainMod, F, fullscreen,"
-        "$mainMod, C, centerwindow,"
 
         "$mainMod CTRL, l, resizeactive, 40 0"
         "$mainMod CTRL, h, resizeactive, -40 0"

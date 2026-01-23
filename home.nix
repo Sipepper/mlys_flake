@@ -8,7 +8,7 @@
     ./workspace.nix
   ];
 
-  default.main-font = "Iosevka Nerd Font";
+  default.main-font = "Iosevka Custom";
   default.term-font = "Iosevka Term NF";
 
   home = {
@@ -17,7 +17,7 @@
     sessionVariables = {
       SHELL = "nu";
       NIXOS_OZONE_WL = 1;
-      EDITOR = "nvim";
+      EDITOR = "hx";
       BROWSER = "firefox";
       TERMINAL = "wezterm";
       PAGER = "bat";
@@ -104,7 +104,7 @@
     };
 
     kitty = {
-      enable = true;
+      enable = false;
       font = {
         name = config.default.term-font;
         size = 12;
@@ -163,7 +163,7 @@
         note = "nu ${./assets/scripts/note.nu}";
       };
       configFile.text = ''
-      $env.config.buffer_editor = "nvim" 
+      $env.config.buffer_editor = "helix" 
       $env.config.show_banner = false 
 
       $env.config = {
@@ -232,6 +232,13 @@
   };
 
   services = {
+    clipse = {
+      enable = true;
+      imageDisplay.type = "kitty";
+    };
+
+
+
     gammastep = {
       enable = true;
       provider = "geoclue2";
@@ -344,7 +351,7 @@
     wf-recorder          # screen capture
     networkmanagerapplet # connections control for waybar
     wasistlos            # whatsapp client
-    aseprite             # pixel img/animation drawing software
+    # aseprite             # pixel img/animation drawing software
     wl-color-picker      # color picker
     xournalpp            # More advanced whiteboard
     tldr                 # Offline command Manual, substitute for `man` command
@@ -383,6 +390,16 @@
     milkytracker         # Tracker DAW
 
     docker
+    vscode
+
+    tilinggallery        # Penrose tiling wallpaper generator
+    wbg                  # Replacement for hyprpaper
+    chawan
+    jdk25
+
+    zola
+    lldb
+
 
     # pipes-rs             # cli pipes simulation
     # sc-controller        # controller configs
