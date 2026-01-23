@@ -34,9 +34,9 @@
             css = 400;
           };
           Bold = {
-            shape = 700;
-            menu = 700;
-            css = 700;
+            shape = 600;
+            menu = 600;
+            css = 600;
           };
         };
         slopes = {
@@ -274,7 +274,7 @@
   users.users.mlys = {
     isNormalUser = true;
     description = "Mykola Lysynskyi";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       unzip
       vim
@@ -298,6 +298,8 @@
   }];
 
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  virtualisation.docker.enable = true;
 
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;

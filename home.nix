@@ -209,7 +209,7 @@
     };
 
     kitty = {
-      enable = true;
+      enable = false;
       font = {
         name = config.default.term-font;
         size = 10;
@@ -270,8 +270,8 @@
         note = "nu ${./assets/scripts/note.nu}";
       };
       configFile.text = ''
-        $env.config.buffer_editor = "nvim" 
-        $env.config.show_banner = false 
+      $env.config.buffer_editor = "helix" 
+      $env.config.show_banner = false 
 
         $env.config = {
           bracketed_paste:                  true
@@ -339,6 +339,13 @@
   };
 
   services = {
+    clipse = {
+      enable = true;
+      imageDisplay.type = "kitty";
+    };
+
+
+
     gammastep = {
       enable = true;
       provider = "geoclue2";
@@ -481,12 +488,25 @@
     mermaid-cli # Mermaid diagrams
     typst # Analogue of LaTeX for math writing
     piper
-    jq # CLI json processor
-    cargo-generate # Generate Rust project template based on git repo
-    cargo-expand
-    cargo-fuzz
-    milkytracker # Tracker DAW
-    d2 # diagram scripting
+    jq                   # CLI json processor
+    imagemagick          # Used to render images (for snacks)
+    ghostscript          # ------||-------
+    cargo-generate       # Generate Rust project template based on git repo
+    cargo-expand 
+    cargo-fuzz   
+    milkytracker         # Tracker DAW
+
+    docker
+    vscode
+
+    tilinggallery        # Penrose tiling wallpaper generator
+    wbg                  # Replacement for hyprpaper
+    chawan
+    jdk25
+
+    zola
+    lldb
+
 
     # pipes-rs             # cli pipes simulation
     # sc-controller        # controller configs

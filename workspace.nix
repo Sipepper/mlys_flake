@@ -55,109 +55,48 @@
     helix = {
       enable = true;
       defaultEditor = true;
-      extraPackages = [ pkgs.lldb ];
+      # package = pkgs.evil-helix;
       settings = {
         theme = "nightfox";
+
         editor = {
           line-number = "relative";
-          lsp.display-messages = true;
-          soft-wrap.enable = true;
-          indent-guides.render = true;
           bufferline = "multiple";
-          shell = [
-            "nu"
-            "-c"
-          ];
-          cursor-shape.insert = "bar";
-        };
-        keys.normal = {
-          C-g = [
-            ":sh rm -f /tmp/unique-file"
-            '':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file''
-            ":open %sh{cat /tmp/unique-file}"
-            ":redraw"
-          ];
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+          };
+          soft-wrap.enable = true;
         };
       };
+
       languages = {
-        language-server = {
-          marksman = {
-            command = "${pkgs.marksman}/bin/marksman";
-          };
-          markdown-oxide = {
-            command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
-          };
-          hx-lsp = {
-            command = "${pkgs.hx-lsp}/bin/hx-lsp";
-            only-features = [ "document-colors" ];
-          };
-          rust-analyzer = {
-            command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-          };
-          nixd = {
-            command = "${pkgs.nixd}/bin/nixd";
-          };
-          nil = {
-            command = "${pkgs.nil}/bin/nil";
-          };
-          vscode-css-languageserver = {
-            command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver";
-          };
-          typescript-language-server = {
-            command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
-          };
-          superhtml = {
-            command = "${pkgs.superhtml}/bin/superhtml";
-          };
-          jdtls = {
-            command = "${pkgs.jdt-language-server}/bin/jdtls";
-          };
-          vscode-json-languageserver = {
-            command = "${pkgs.vscode-json-languageserver}/bin/vscode-json-languageserver";
-          };
-          texlab = {
-            command = "${pkgs.texlab}/bin/texlab";
-          };
-          taplo = {
-            command = "${pkgs.taplo}/bin/taplo";
-          };
-          tinymist = {
-            command = "${pkgs.tinymist}/bin/tinymist";
-          };
-        };
         language = [
-          {
-            name = "latex";
-            auto-format = true;
-            auto-pairs = {
-              "(" = ")";
-              "[" = "]";
-              "{" = "}";
-              "$" = "$";
-              "\"" = "\"";
-            };
-          }
-          {
-            name = "nix";
-            auto-format = true;
-            language-servers = [
-              "nil"
-              "nixd"
-              "hx-lsp"
-            ];
-          }
-          {
-            name = "rust";
-            formatter = {
-              command = "${pkgs.rustfmt}/bin/rustfmt";
-            };
-            language-servers = [
-              "rust-analyzer"
-              "hx-lsp"
-            ];
-          }
+          { name = "rust"; formatter = { command = "${pkgs.rustfmt}/bin/rustfmt"; }; }
+          { name = "latex"; formatter = { command = "${pkgs.tex-fmt}/bin/tex-fmt"; args = [ "--stdin" "--nowrap" ]; }; }
         ];
+
+        language-server = {
+          rust-analyzer = { command = "${pkgs.rust-analyzer}/bin/rust-analyzer"; };
+          nixd = { command = "${pkgs.nixd}/bin/nixd"; };
+          tinymist = { command = "${pkgs.tinymist}/bin/tinymist"; };
+          texlab = { command = "${pkgs.texlab}/bin/texlab"; };
+          vscode-css-languageserver = { command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver"; };
+          vscode-json-languageserver = { command = "${pkgs.vscode-json-languageserver}/bin/vscode-json-languageserver"; };
+          jdt-language-server = { command = "${pkgs.jdt-language-server}/bin/jdt-language-server"; };
+          typescript-language-server = { command = "${pkgs.typescript-language-server}/bin/typescript-language-server"; };
+          superhtml = { command = "${pkgs.superhtml}/bin/superhtml"; };
+          taplo = { command = "${pkgs.taplo}/bin/taplo"; };
+          ty = { command = "${pkgs.ty}/bin/ty"; };
+          bash-language-server = { command = "${pkgs.bash-language-server}/bin/bash-language-server"; };
+        };
+
+        # debugger = {
+        #   lldb-dap = { command = "${pkgs.lldb}/bin/lldb-dap"; };
+        #
+        # };
       };
+
     };
 
     wezterm = {
@@ -166,7 +105,7 @@
         return {
           color_scheme = "nightfox",
           use_fancy_tab_bar = false,
-          font = wezterm.font "IosevkaTerm NF",
+          font = wezterm.font "IosevkaTerm NF Medium",
 
           colors = {
             tab_bar = {
@@ -176,7 +115,8 @@
               new_tab = { bg_color = "#192330", fg_color = "#ffffff", },
               new_tab_hover = { bg_color = "#64727D", fg_color = "#ffffff", },
               inactive_tab_hover = { bg_color = "#192330", fg_color = "#738091", },
-            }
+            },
+            cursor_bg = "#5885DF"
 
           },
 
@@ -191,8 +131,8 @@
           keys = {
             { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
             { key = "s", mods = "CTRL|SHIFT", action = wezterm.action.SplitHorizontal {domain = "CurrentPaneDomain" } },
-            { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.SplitVertical {domain = "CurrentPaneDomain" } },
-            { key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+            { key = "a", mods = "CTRL|SHIFT", action = wezterm.action.SplitVertical {domain = "CurrentPaneDomain" } },
+            { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom("Clipboard") },
             { key = "x", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane { confirm = true } },
             { key = "j", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Down") },
             { key = "k", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Up") },
@@ -245,6 +185,7 @@
         pdf-engine = "tectonic";
       };
     };
+
     firefox = {
       enable = true;
 
@@ -1944,7 +1885,7 @@
 
     nixvim = {
       enable = true;
-      # defaultEditor = true;
+      defaultEditor = false;
       vimdiffAlias = true;
       colorschemes.nightfox.enable = true;
 
@@ -2087,37 +2028,6 @@
           settings = {
             bigfile.enabled = true;
             terminal.enabled = true;
-            image = {
-              enabled = true;
-              doc.inline = false;
-              math = {
-                enabled = false;
-                latex = {
-                  font_size = "normalsize";
-                  packages = [
-                    "concrete"
-                    "mathtools"
-                    "amsfonts"
-                    "amssymb"
-                    "amsthm"
-                    "amscd"
-                    "tikz"
-                  ];
-                  tpl = ''
-                    \documentclass[preview,border=0pt,varwidth,12pt]{standalone}
-                    \usepackage{$\{packages}}
-                    \usepackage[all]{xy}
-                    \begin{document}
-                    $\{header}
-                    { \$\{font_size} \selectfont
-                      \color[HTML]{$\{color}}
-                    $\{content}}
-                    \end{document}]]
-                  '';
-                };
-              };
-
-            };
             words.enabled = true;
             picker.enabled = true;
           };
@@ -2227,27 +2137,27 @@
             # '';
           };
         };
-        nvim-autopairs = {
-          enable = true;
-          settings = {
-            check_ts = true;
-            disable_filetype = [
-              "TelescopePrompt"
-            ];
-            fast_wrap = {
-              end_key = "$";
-              map = "<M-e>";
-              chars = [
-                "\$"
-                "{"
-                "["
-                "("
-                "\""
-                "'"
-              ];
-            };
-          };
-        };
+        # nvim-autopairs = {
+        #   enable = true;
+        #   settings = {
+        #     check_ts = true;
+        #     disable_filetype = [
+        #       "TelescopePrompt"
+        #     ];
+        #     fast_wrap = {
+        #       end_key = "$";
+        #       map = "<M-e>";
+        #       chars = [
+        #         "\$"
+        #         "{"
+        #         "["
+        #         "("
+        #         "\""
+        #         "'"
+        #       ];
+        #     };
+        #   };
+        # };
         which-key.enable = true;
         colorizer = {
           enable = true;
@@ -2363,18 +2273,14 @@
           enable = true;
           servers = {
             tinymist.enable = true;
-            ltex.enable = true;
+            ltex.enable = false;
             lua_ls.enable = true;
             ts_ls.enable = true;
-            rust_analyzer = {
-              enable = true;
-              installCargo = true;
-              installRustc = true;
-            };
+            rust_analyzer = { enable = true; installCargo = true; installRustc = true; };
             texlab.enable = true;
             nixd.enable = true;
             nushell.enable = true;
-            html.enable = true;
+            superhtml.enable = true;
           };
         };
         cmp = {
@@ -2399,19 +2305,16 @@
           };
         };
 
-        treesitter = {
+treesitter = {
           enable = true;
+          grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
           settings = {
             highlight = {
               enable = true;
-              disable = [ "latex" ];
-              # additional_vim_regex_highlighting = true;
+              disable = [ "latex" "rust" "html" ];
             };
-            indent.enable = true;
           };
         };
-
-        cmp-vimtex.enable = true;
 
         vimtex = {
           enable = true;
@@ -2436,6 +2339,8 @@
             matchparen.enable = true;
             quickfix_autojump = true;
             syntax_conceal_disable = true;
+            indent_enabled = true;
+            syntax_enabled = true;
           };
         };
         toggleterm.enable = true;
