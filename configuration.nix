@@ -60,8 +60,8 @@
   ];
 
   environment.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
+    EDITOR = "hx";
+    VISUAL = "hx";
     TERMINAL = "wezterm";
     PAGER = "bat --plain";
     MANPAGER = "bat --plain";
@@ -114,9 +114,9 @@
       "application/pdf" = "sioyek.desktop";
       "application/xopp" = "xournal.desktop";
       "application/x-genesis-rom" = "kega-fusion.desktop";
-      "text/plain" = "nvim.desktop";
-      "text/markdown" = "nvim.desktop";
-      "image/png" = "feh.desktop";
+      "text/plain" = "Helix.desktop";
+      "text/markdown" = "Helix.desktop";
+      "image/png" = "hx.desktop";
       "image/jpeg" = "feh.desktop";
       "image/svg" = "feh.desktop";
       "image/vnd.djvu+multipage" = "org.gnome.evince.desktop";

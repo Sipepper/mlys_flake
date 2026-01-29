@@ -17,7 +17,7 @@
     sessionVariables = {
       SHELL = "nu";
       NIXOS_OZONE_WL = 1;
-      EDITOR = "nvim";
+      EDITOR = "hx";
       BROWSER = "firefox";
       TERMINAL = "wezterm";
       PAGER = "bat";
