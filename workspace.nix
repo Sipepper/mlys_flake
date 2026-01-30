@@ -88,12 +88,32 @@
           {
             name = "latex";
             auto-format = true;
+            auto-pairs = {
+              "(" = ")";
+              "[" = "]";
+              "{" = "}";
+              "$" = "$";
+              "\"" = "\"";
+            };
+          }
+          {
+            name = "nix";
+            auto-format = true;
+            language-servers = [
+              "nil"
+              "nixd"
+              "hx-lsp"
+            ];
           }
           {
             name = "rust";
             formatter = {
               command = "${pkgs.rustfmt}/bin/rustfmt";
             };
+            language-servers = [
+              "rust-analyzer"
+              "hx-lsp"
+            ];
           }
         ];
       };
