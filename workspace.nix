@@ -6,24 +6,21 @@
   ];
 
   programs = {
-    
-
 
     jujutsu = {
-      enable = true;      
+      enable = true;
       settings = {
-        user = { email = "m.lysynskyi@gmail.com"; name = "Mykola Lysynskyi"; };
+        user = {
+          email = "m.lysynskyi@gmail.com";
+          name = "Mykola Lysynskyi";
+        };
       };
     };
 
-
-    
     chawan.enable = true;
-
 
     helix = {
       enable = true;
-      defaultEditor = true;
       defaultEditor = true;
       settings = {
         theme = "nightfox";
@@ -31,43 +28,92 @@
         editor = {
           line-number = "relative";
           bufferline = "multiple";
-          shell = [ "nu" "-c"];
+          shell = [
+            "nu"
+            "-c"
+          ];
           cursor-shape.insert = "bar";
         };
         keys.normal = {
           space.F = "file_picker_in_current_buffer_directory";
           C-y = [
-            '':sh rm -f /tmp/unique-file''
+            ":sh rm -f /tmp/unique-file"
             '':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file''
             '':sh printf "\e[?1049h\e[?2004h" | save -f /dev/tty''
-            '':open %sh{cat /tmp/unique-file}''
-            '':redraw''
+            ":open %sh{cat /tmp/unique-file}"
+            ":redraw"
           ];
         };
       };
 
       languages = {
         language = [
-          { name = "rust"; formatter = { command = "${pkgs.rustfmt}/bin/rustfmt"; }; }
-          { name = "typst"; auto-format = true; formatter.command = "${pkgs.typstyle}/bin/typstyle"; }
-          { name = "latex"; formatter = { command = "${pkgs.tex-fmt}/bin/tex-fmt"; args = [ "--stdin" "--nowrap" ]; }; }
+          {
+            name = "rust";
+            formatter = {
+              command = "${pkgs.rustfmt}/bin/rustfmt";
+            };
+          }
+          {
+            name = "typst";
+            auto-format = true;
+            formatter.command = "${pkgs.typstyle}/bin/typstyle";
+          }
+          {
+            name = "latex";
+            formatter = {
+              command = "${pkgs.tex-fmt}/bin/tex-fmt";
+              args = [
+                "--stdin"
+                "--nowrap"
+              ];
+            };
+          }
         ];
 
         language-server = {
-          rust-analyzer = { command = "${pkgs.rust-analyzer}/bin/rust-analyzer"; };
-          nixd = { command = "${pkgs.nixd}/bin/nixd"; };
-            tinymist = { command = "${pkgs.tinymist}/bin/tinymist"; };
-            texlab = { command = "${pkgs.texlab}/bin/texlab"; };
-          vscode-css-languageserver = { command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver"; };
-          vscode-json-languageserver = { command = "${pkgs.vscode-json-languageserver}/bin/vscode-json-languageserver"; };
-          jdt-language-server = { command = "${pkgs.jdt-language-server}/bin/jdt-language-server"; };
-          typescript-language-server = { command = "${pkgs.typescript-language-server}/bin/typescript-language-server"; };
-          superhtml = { command = "${pkgs.superhtml}/bin/superhtml"; };
-            taplo = { command = "${pkgs.taplo}/bin/taplo"; };
-          ty = { command = "${pkgs.ty}/bin/ty"; };
-          bash-language-server = { command = "${pkgs.bash-language-server}/bin/bash-language-server"; };
-          nil = { command = "${pkgs.nil}/bin/nil";};
-          markdown-oxide = { command = "${pkgs.markdown-oxide}/bin/markdown-oxide";};
+          rust-analyzer = {
+            command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+          };
+          nixd = {
+            command = "${pkgs.nixd}/bin/nixd";
+          };
+          tinymist = {
+            command = "${pkgs.tinymist}/bin/tinymist";
+          };
+          texlab = {
+            command = "${pkgs.texlab}/bin/texlab";
+          };
+          vscode-css-languageserver = {
+            command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver";
+          };
+          vscode-json-languageserver = {
+            command = "${pkgs.vscode-json-languageserver}/bin/vscode-json-languageserver";
+          };
+          jdt-language-server = {
+            command = "${pkgs.jdt-language-server}/bin/jdt-language-server";
+          };
+          typescript-language-server = {
+            command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
+          };
+          superhtml = {
+            command = "${pkgs.superhtml}/bin/superhtml";
+          };
+          taplo = {
+            command = "${pkgs.taplo}/bin/taplo";
+          };
+          ty = {
+            command = "${pkgs.ty}/bin/ty";
+          };
+          bash-language-server = {
+            command = "${pkgs.bash-language-server}/bin/bash-language-server";
+          };
+          nil = {
+            command = "${pkgs.nil}/bin/nil";
+          };
+          markdown-oxide = {
+            command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
+          };
         };
 
         # debugger = {
@@ -2253,7 +2299,11 @@
             ltex.enable = false;
             lua_ls.enable = true;
             ts_ls.enable = true;
-            rust_analyzer = { enable = true; installCargo = true; installRustc = true; };
+            rust_analyzer = {
+              enable = true;
+              installCargo = true;
+              installRustc = true;
+            };
             texlab.enable = true;
             nixd.enable = true;
             nushell.enable = true;
@@ -2282,13 +2332,17 @@
           };
         };
 
-treesitter = {
+        treesitter = {
           enable = true;
           grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
           settings = {
             highlight = {
               enable = true;
-              disable = [ "latex" "rust" "html" ];
+              disable = [
+                "latex"
+                "rust"
+                "html"
+              ];
             };
           };
         };
