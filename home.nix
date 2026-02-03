@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-{ 
+{
   imports = [
     ./default.nix
     ./desktop.nix
@@ -55,33 +55,139 @@
           ];
         };
         modules = [
-          { type= "custom"; format= "┌{$1}{$1}┐"; outputColor= "90"; }
-          { type= "title"; keyWidth= "10"; }
-          { type= "custom"; format= "└{$1}{$1}┘"; outputColor= "90"; }
-          { type= "custom"; format=  "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90} "; }
-          { type= "custom"; format= "┌{$1} {$1}┐"; outputColor= "90"; }
-          { type= "os";        key= "{icon} OS"; keyColor= "yellow"; }
-          { type= "kernel";    key= "│ ├ ";     keyColor= "yellow"; }
-          { type= "packages";  key= "│ ├󰏖 ";     keyColor= "yellow"; }
-          { type= "shell";     key= "│ └ ";     keyColor= "yellow"; }
-          { type= "wm";        key= " DE/WM";   keyColor= "blue"; }
-          { type= "lm";        key= "│ ├󰧨 ";     keyColor= "blue"; }
-          { type= "wmtheme";   key= "│ ├󰉼 ";     keyColor= "blue"; }
-          { type= "icons";     key= "│ ├󰀻 ";     keyColor= "blue"; }
-          { type= "terminal";  key= "│ ├ ";     keyColor= "blue"; }
-          { type= "wallpaper"; key= "│ └󰸉 ";     keyColor= "blue"; }
-          { type= "host";      key= "󰌢 PC";      keyColor= "green"; }
-          { type= "cpu";       key= "│ ├󰻠 ";     keyColor= "green"; }
-          { type= "gpu";       key= "│ ├󰍛 ";     keyColor= "green"; }
-          { type= "disk";      key= "│ ├ ";     keyColor= "green"; }
-          { type= "memory";    key= "│ ├󰑭 ";     keyColor= "green"; }
-          { type= "swap";      key= "│ ├󰓡 ";     keyColor= "green"; }
-          { type= "uptime";    key= "│ ├󰅐";      keyColor= "green"; }
-          { type= "display";   key= "│ └󰍹";      keyColor= "green"; }
-          { type= "sound";     key= " SND";     keyColor= "cyan"; }
-          { type= "player";    key= "│ ├󰥠 ";     keyColor= "cyan"; }
-          { type= "media";     key= "│ └󰝚 ";     keyColor= "cyan"; }
-          { type= "custom"; format= "└{$1} {$1}┘"; outputColor= "90"; }
+          {
+            type = "custom";
+            format = "┌{$1}{$1}┐";
+            outputColor = "90";
+          }
+          {
+            type = "title";
+            keyWidth = "10";
+          }
+          {
+            type = "custom";
+            format = "└{$1}{$1}┘";
+            outputColor = "90";
+          }
+          {
+            type = "custom";
+            format = "{#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90} ";
+          }
+          {
+            type = "custom";
+            format = "┌{$1} {$1}┐";
+            outputColor = "90";
+          }
+          {
+            type = "os";
+            key = "{icon} OS";
+            keyColor = "yellow";
+          }
+          {
+            type = "kernel";
+            key = "│ ├ ";
+            keyColor = "yellow";
+          }
+          {
+            type = "packages";
+            key = "│ ├󰏖 ";
+            keyColor = "yellow";
+          }
+          {
+            type = "shell";
+            key = "│ └ ";
+            keyColor = "yellow";
+          }
+          {
+            type = "wm";
+            key = " DE/WM";
+            keyColor = "blue";
+          }
+          {
+            type = "lm";
+            key = "│ ├󰧨 ";
+            keyColor = "blue";
+          }
+          {
+            type = "wmtheme";
+            key = "│ ├󰉼 ";
+            keyColor = "blue";
+          }
+          {
+            type = "icons";
+            key = "│ ├󰀻 ";
+            keyColor = "blue";
+          }
+          {
+            type = "terminal";
+            key = "│ ├ ";
+            keyColor = "blue";
+          }
+          {
+            type = "wallpaper";
+            key = "│ └󰸉 ";
+            keyColor = "blue";
+          }
+          {
+            type = "host";
+            key = "󰌢 PC";
+            keyColor = "green";
+          }
+          {
+            type = "cpu";
+            key = "│ ├󰻠 ";
+            keyColor = "green";
+          }
+          {
+            type = "gpu";
+            key = "│ ├󰍛 ";
+            keyColor = "green";
+          }
+          {
+            type = "disk";
+            key = "│ ├ ";
+            keyColor = "green";
+          }
+          {
+            type = "memory";
+            key = "│ ├󰑭 ";
+            keyColor = "green";
+          }
+          {
+            type = "swap";
+            key = "│ ├󰓡 ";
+            keyColor = "green";
+          }
+          {
+            type = "uptime";
+            key = "│ ├󰅐";
+            keyColor = "green";
+          }
+          {
+            type = "display";
+            key = "│ └󰍹";
+            keyColor = "green";
+          }
+          {
+            type = "sound";
+            key = " SND";
+            keyColor = "cyan";
+          }
+          {
+            type = "player";
+            key = "│ ├󰥠 ";
+            keyColor = "cyan";
+          }
+          {
+            type = "media";
+            key = "│ └󰝚 ";
+            keyColor = "cyan";
+          }
+          {
+            type = "custom";
+            format = "└{$1} {$1}┘";
+            outputColor = "90";
+          }
           "break"
         ];
       };
@@ -112,7 +218,7 @@
         enable_audio_bell = false;
         allow_remote_control = true;
         listen_on = "unix:kitty";
-        tab_bar_edge  = "top";
+        tab_bar_edge = "top";
         tab_bar_style = "powerline";
         scrollback_lines = 100000;
         scrollback_pager = "bat --chop-long-lines";
@@ -164,21 +270,21 @@
         note = "nu ${./assets/scripts/note.nu}";
       };
       configFile.text = ''
-      $env.config.buffer_editor = "nvim" 
-      $env.config.show_banner = false 
+        $env.config.buffer_editor = "nvim" 
+        $env.config.show_banner = false 
 
-      $env.config = {
-        bracketed_paste:                  true
-        buffer_editor:                    ""
-        datetime_format:                  {}
-        edit_mode:                        vi
-        error_style:                      fancy
-        float_precision:                  2
-        footer_mode:                      25
-        render_right_prompt_on_last_line: false
-        show_banner:                      false
-        use_ansi_coloring:                true
-      }
+        $env.config = {
+          bracketed_paste:                  true
+          buffer_editor:                    ""
+          datetime_format:                  {}
+          edit_mode:                        vi
+          error_style:                      fancy
+          float_precision:                  2
+          footer_mode:                      25
+          render_right_prompt_on_last_line: false
+          show_banner:                      false
+          use_ansi_coloring:                true
+        }
       '';
       # environmentVariables = {
       # };
@@ -189,8 +295,8 @@
       keybindings = {
         menu_parent = "Left";
         menu_child = "Right";
-        menu_down	= "Down";
-        menu_up =	"Up";
+        menu_down = "Down";
+        menu_up = "Up";
 
         scroll_left = "h";
         scroll_right = "l";
@@ -227,7 +333,7 @@
         close = [
           "q"
           "Q"
-        ]; 
+        ];
       };
     };
   };
@@ -319,73 +425,68 @@
 
   # SOFT
   home.packages = with pkgs; [
-    wofi                 # needed for waybar config, may delete soon TODO
-    brightnessctl        # brightness control
-    telegram-desktop     # telegram (messenger)
-    tectonic             # LaTeX processing
-    rustc                # Rust programming language
-    clippy               # Rust linter
-    cargo                # rust package manager
-    obsidian             # note taking
-    lazygit              # tui git 
-    qbittorrent          # torrent client
-    inkscape             # vector graphics
-    grim                 # screen shots together with slurp
-    slurp                # 
-    bacon                # Rust "jit" compilation tool
-    mpv                  # video player
-    pyradio              # tui radio
-    feh                  # image viewer
-    libreoffice-fresh    # office editors doc,xlsx, etc
-    discord              # voice and text-chat app
-    gpg-tui              # tui gpg
-    kega-fusion          # SEGA emulator
-    btop                 # tui system monitor
-    timer	         # tui timer
-    wf-recorder          # screen capture
+    wofi # needed for waybar config, may delete soon TODO
+    brightnessctl # brightness control
+    telegram-desktop # telegram (messenger)
+    tectonic # LaTeX processing
+    rustc # Rust programming language
+    clippy # Rust linter
+    cargo # rust package manager
+    obsidian # note taking
+    lazygit # tui git
+    qbittorrent # torrent client
+    inkscape # vector graphics
+    grim # screen shots together with slurp
+    slurp
+    bacon # Rust "jit" compilation tool
+    mpv # video player
+    pyradio # tui radio
+    feh # image viewer
+    libreoffice-fresh # office editors doc,xlsx, etc
+    discord # voice and text-chat app
+    gpg-tui # tui gpg
+    kega-fusion # SEGA emulator
+    btop # tui system monitor
+    timer # tui timer
+    wf-recorder # screen capture
     networkmanagerapplet # connections control for waybar
-    wasistlos            # whatsapp client
-    aseprite             # pixel img/animation drawing software
-    wl-color-picker      # color picker
-    xournalpp            # More advanced whiteboard
-    tldr                 # Offline command Manual, substitute for `man` command
-    wev                  # wayland event viewer
-    hyprpicker           # Another Color picker need further comparison with wl-color-picker
-    slack                # Business communication (Discord for KSE)
-    prismlauncher        # Minecraft launcher
-    lshw                 # Hardware info
+    wasistlos # whatsapp client
+    aseprite # pixel img/animation drawing software
+    wl-color-picker # color picker
+    xournalpp # More advanced whiteboard
+    tldr # Offline command Manual, substitute for `man` command
+    wev # wayland event viewer
+    hyprpicker # Another Color picker need further comparison with wl-color-picker
+    slack # Business communication (Discord for KSE)
+    prismlauncher # Minecraft launcher
+    lshw # Hardware info
     usbutils
-    wiki-tui             # TUI wikipedia
-    mask                 # Markdown makefiles
-    presenterm           # TUI Presentations!
-    dust                 # Disk space visualization
-    ouch                 # cli archiving tool
-    pass-wayland         # cli password store
-    tuifeed              # tui news feed reader
-    dua                  # tui storage capacity viewer
-    bluetuith            # tui bluetooth manager
+    wiki-tui # TUI wikipedia
+    mask # Markdown makefiles
+    presenterm # TUI Presentations!
+    dust # Disk space visualization
+    ouch # cli archiving tool
+    pass-wayland # cli password store
+    tuifeed # tui news feed reader
+    dua # tui storage capacity viewer
+    bluetuith # tui bluetooth manager
     clinfo
     evince
-    texliveFull          # TODO needed for Inkscape to render LaTeX
-    tree                 # CLI folder visualization
-    woomer               # Screen zoom and focus like Tsoding
+    texliveFull # TODO needed for Inkscape to render LaTeX
+    tree # CLI folder visualization
+    woomer # Screen zoom and focus like Tsoding
     chamber
-    calcure              # TUI calendar
-    bibtex-tidy          # Tidying bibtex offline!
-    mermaid-cli          # Mermaid diagrams 
-    typst                # Analogue of LaTeX for math writing
+    calcure # TUI calendar
+    bibtex-tidy # Tidying bibtex offline!
+    mermaid-cli # Mermaid diagrams
+    typst # Analogue of LaTeX for math writing
     piper
-    jq                   # CLI json processor
-    imagemagick          # Used to render images (for snacks)
-    ghostscript          # ------||-------
-    cargo-generate       # Generate Rust project template based on git repo
-    cargo-expand 
-    cargo-fuzz   
-    milkytracker         # Tracker DAW
-
-    texlab
-
-    docker
+    jq # CLI json processor
+    cargo-generate # Generate Rust project template based on git repo
+    cargo-expand
+    cargo-fuzz
+    milkytracker # Tracker DAW
+    d2 # diagram scripting
 
     # pipes-rs             # cli pipes simulation
     # sc-controller        # controller configs
@@ -398,7 +499,7 @@
     # orca-slicer          # 3D printing slicer
     # freecad-wayland      # CAD software
     # gearlever            # to work with Appimages
-    # dysk                 # TUI disk storage visualization 
+    # dysk                 # TUI disk storage visualization
     # visidata             # TUI data visualization
   ];
 }

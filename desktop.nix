@@ -21,7 +21,7 @@
       enable = true;
       settings = {
         font = config.default.main-font;
-        default-timeout = 4000; 
+        default-timeout = 4000;
         background-color = "#${config.default.colors.background}";
         border-color = "#${config.default.colors.border}";
       };
@@ -62,26 +62,26 @@
           position = "top";
           height = 35;
           modules-left = [
-            "battery#bat1" 
-            "battery#bat2" 
-            "disk" 
-            "memory" 
-            "cpu" 
+            "battery#bat1"
+            "battery#bat2"
+            "disk"
+            "memory"
+            "cpu"
             "temperature"
-            "custom/easyeffects" 
-            "custom/pyradio" 
-            "custom/blueman" 
+            "custom/easyeffects"
+            "custom/pyradio"
+            "custom/blueman"
             "backlight"
           ];
-          modules-center = ["tray"];
+          modules-center = [ "tray" ];
           modules-right = [
-            "hyprland/language" 
-            "hyprland/workspaces" 
-            "network#vpn" 
-            "network#wifi" 
-            "network#ethernet" 
-            "network#disconnected" 
-            "clock" 
+            "hyprland/language"
+            "hyprland/workspaces"
+            "network#vpn"
+            "network#wifi"
+            "network#ethernet"
+            "network#disconnected"
+            "clock"
             "custom/poweroff"
           ];
           "hyprland/language" = {
@@ -94,12 +94,12 @@
             format = "{icon}";
             all-outputs = true;
             format-icons = {
-              "1" = " "; #  
-              "2" = "󱣛 "; # 󱣛 
-              "3" = "󰡱 "; # 󰊗 
-              "4" = "󰊗 "; # 󰡱 
-              "5" = "󰄻 "; # 󰄻 
-              "6" = "󰃻";  # 󰃻"
+              "1" = " "; # 
+              "2" = "󱣛 "; # 󱣛
+              "3" = "󰡱 "; # 󰊗
+              "4" = "󰊗 "; # 󰡱
+              "5" = "󰄻 "; # 󰄻
+              "6" = "󰃻"; # 󰃻"
             };
             persistent-workspaces = {
               "*" = 6;
@@ -128,7 +128,13 @@
           "temperature" = {
             critical-threshold = 80;
             format = "{icon} {temperatureC}°C";
-            format-icons = ["" "" "" "" ""];
+            format-icons = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
           };
           "backlight" = {
             device = "intel_backlight";
@@ -136,7 +142,10 @@
             on-scroll-down = "brightnessctl --device='amdgpu_bl1' s +1";
             on-scroll-up = "brightnessctl --device='amdgpu_bl1' s 1-";
             format = "{icon} {percent}%";
-            format-icons  = ["" ""];
+            format-icons = [
+              ""
+              ""
+            ];
             on-click = "wdisplays";
           };
           "battery#bat1" = {
@@ -154,7 +163,13 @@
             format-plugged = " {capacity}%";
             format-empty = "";
             format-full = "";
-            format-icons = ["" "" "" "" ""];
+            format-icons = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
           };
           "battery#bat2" = {
             bat = "BAT1";
@@ -169,7 +184,13 @@
             format-charging = " {capacity}%";
             format-plugged = " {capacity}%";
             format-full = "";
-            format-icons = ["" "" "" "" ""];
+            format-icons = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
           };
           "network#disconnected" = {
             tooltip-format = "No connection!";
@@ -227,106 +248,105 @@
         };
       };
       style = ''
-      * {
-        border: none;
-        border-radius: 0;
-        font-family: "${config.default.term-font}", "Font Awesome 6 Free Solid";
-        font-size: 16px;
-        min-height: 0;
-      }
-
-      window#waybar {
-        background-color: #${config.default.colors.background};
-        color: #${config.default.colors.text};
-        transition-property: background-color;
-        transition-duration: .5s;
-      }
-
-      window#waybar.empty {
-        color: rgba(0,0,0,0);
-      }
-
-      .topbar {
-        border-bottom: 3px solid #${config.default.colors.border};
-      }
-
-      #workspaces button {
-      padding: 0 3px;
-      }
-
-      #workspaces button:hover {
-        box-shadow: inherit;
-        text-shadow: inherit;
-      }
-
-      #workspaces button.visible {
-        background: #90b1b1;
-        color: #ffffff;
-      }
-
-      #workspaces button.current_output.visible {
-        background: #90b1b1;
-        color: #ffffff;
-      }
-
-      #workspaces button.current_output.focused {
-        background: #ff0088;
-      }
-
-      #mode {
-        background-color: #64727D;
-        border-top: 3px solid #ffffff;
-      }
-
-      #backlight,
-      #battery.bat1,
-      #battery.bat2,
-      #clock,
-      #cpu,
-      #custom-mail,
-      #custom-poweroff,
-      #custom-weather,
-      #disk,
-      #idle_inhibitor,
-      #memory,
-      #mode,
-      #network.vpn,
-      #network.wifi,
-      #network.ethernet,
-      #network.disconnected,
-      #pulseaudio,
-      #taskbar,
-      #temperature,
-      #tray {
-      padding: 0 6px;
-      margin: 0 0px;
-      color: #ffffff;
-      }
-
-      @keyframes blink {
-        to {
-          background-color: #ffffff;
-          color: #000000;
+        * {
+          border: none;
+          border-radius: 0;
+          font-family: "${config.default.term-font}", "Font Awesome 6 Free Solid";
+          font-size: 16px;
+          min-height: 0;
         }
-      }
 
-      #battery.bat2.critical:not(.charging) {
-        background-color: #f53c3c;
+        window#waybar {
+          background-color: #${config.default.colors.background};
+          color: #${config.default.colors.text};
+          transition-property: background-color;
+          transition-duration: .5s;
+        }
+
+        window#waybar.empty {
+          color: rgba(0,0,0,0);
+        }
+
+        .topbar {
+          border-bottom: 3px solid #${config.default.colors.border};
+        }
+
+        #workspaces button {
+        padding: 0 3px;
+        }
+
+        #workspaces button:hover {
+          box-shadow: inherit;
+          text-shadow: inherit;
+        }
+
+        #workspaces button.visible {
+          background: #90b1b1;
+          color: #ffffff;
+        }
+
+        #workspaces button.current_output.visible {
+          background: #90b1b1;
+          color: #ffffff;
+        }
+
+        #workspaces button.current_output.focused {
+          background: #ff0088;
+        }
+
+        #mode {
+          background-color: #64727D;
+          border-top: 3px solid #ffffff;
+        }
+
+        #backlight,
+        #battery.bat1,
+        #battery.bat2,
+        #clock,
+        #cpu,
+        #custom-mail,
+        #custom-poweroff,
+        #custom-weather,
+        #disk,
+        #idle_inhibitor,
+        #memory,
+        #mode,
+        #network.vpn,
+        #network.wifi,
+        #network.ethernet,
+        #network.disconnected,
+        #pulseaudio,
+        #taskbar,
+        #temperature,
+        #tray {
+        padding: 0 6px;
+        margin: 0 0px;
         color: #ffffff;
-        animation-name: blink;
-        animation-duration: 0.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
+        }
 
-      #temperature.critical {
-        background-color: #eb4d4b;
-      }
+        @keyframes blink {
+          to {
+            background-color: #ffffff;
+            color: #000000;
+          }
+        }
+
+        #battery.bat2.critical:not(.charging) {
+          background-color: #f53c3c;
+          color: #ffffff;
+          animation-name: blink;
+          animation-duration: 0.5s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+
+        #temperature.critical {
+          background-color: #eb4d4b;
+        }
       '';
     };
   };
-
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -377,7 +397,7 @@
         border_size = "1";
         "col.active_border" = "rgba(${config.default.colors.border}ff)";
         "col.inactive_border" = "rgba(${config.default.colors.background}ff)";
-        resize_on_border = false; 
+        resize_on_border = false;
         allow_tearing = true;
         layout = "dwindle";
       };
@@ -389,16 +409,16 @@
       master = {
         new_status = "master";
       };
-      misc = { 
-        force_default_wallpaper = "-1"; 
-        disable_hyprland_logo = false; 
+      misc = {
+        force_default_wallpaper = "-1";
+        disable_hyprland_logo = false;
         vfr = true;
       };
       input = {
-        kb_layout = "us,ua,ru"; #,ru
+        kb_layout = "us,ua,ru"; # ,ru
         kb_variant = "";
         kb_model = "";
-        kb_options = "grp:alt_shift_toggle, caps:super"; 
+        kb_options = "grp:alt_shift_toggle, caps:super";
         kb_rules = "";
         follow_mouse = "1";
         sensitivity = "0.2";
@@ -410,10 +430,10 @@
         repeat_delay = 300;
 
       };
-      monitor = ",1920x1080,auto,1.5";
+      monitor = ",1920x1080,auto,1.2";
 
       # xwayland.force_zero_scaling = if config.default.isPC then false else true;
-      xwayland.force_zero_scaling = true;
+      # xwayland.force_zero_scaling = true;
 
       "$mainMod" = "SUPER";
       # "$terminal" = "kitty";
@@ -425,9 +445,9 @@
         # screenshot of a region
         ''$mainMod, S, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png ''
         # screenshot of the whole screen
-        ''$mainMod SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png''
+        "$mainMod SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
         "$mainMod, Q, exec, $terminal"
-        # "$mainMod, O, exec, obsidian"
+        "$mainMod, Z, exec, woomer"
         "$mainMod, A, killactive,"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, R, exec, $terminal -e yazi"
@@ -468,7 +488,6 @@
         "$mainMod SHIFT, 0, movetoworkspace, 10"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-
 
         "$mainMod, SPACE, exec, $(hyprctl activewindow -j | jq '.floating') && hyprctl dispatch cyclenext tiled || hyprctl dispatch cyclenext floating"
 

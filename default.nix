@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   cfg = config.default;
 in
@@ -25,8 +30,8 @@ in
       type = lib.types.attrs;
       default = {
         background = "192330"; # #192330
-        text = "ffffff";       # #ffffff
-        border = "64727d";     # #64727d
+        text = "ffffff"; # #ffffff
+        border = "64727d"; # #64727d
       };
     };
     isPC = lib.mkOption {
@@ -53,8 +58,8 @@ in
       };
       colors = {
         background = "2b303b"; # #2b303b
-        text = "ffffff";       # #ffffff
-        border = "64727d";     # #64727d
+        text = "ffffff"; # #ffffff
+        border = "64727d"; # #64727d
       };
       isPC = true;
       iconTheme = {
@@ -64,4 +69,3 @@ in
     };
   };
 }
-

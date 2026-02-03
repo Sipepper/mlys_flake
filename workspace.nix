@@ -25,7 +25,7 @@
           bufferline = "multiple";
           shell = [
             "nu"
-            "-ic"
+            "-c"
           ];
           cursor-shape.insert = "bar";
         };
@@ -139,7 +139,7 @@
 
           },
 
-          font_size = 10,
+          font_size = 12,
           window_padding = {
             left = 2,
             right = 2,
