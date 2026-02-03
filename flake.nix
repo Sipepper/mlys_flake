@@ -17,14 +17,24 @@
 
   };
 
-  outputs = { 
-    nixpkgs, 
-    determinate, 
-    ... 
-    }@inputs: {
+  outputs =
+    {
+      nixpkgs,
+      determinate,
+      ...
+    }@inputs:
+    {
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./configuration.nix
+            inputs.home-manager.nixosModules.default
+            determinate.nixosModules.default
+          ];
+        };
+        laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
             inputs.home-manager.nixosModules.default
