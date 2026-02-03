@@ -16,6 +16,7 @@
     homeDirectory = "/home/mlys";
     sessionVariables = {
       SHELL = "nu";
+      TERM = "wezterm";
       NIXOS_OZONE_WL = 1;
       EDITOR = "hx";
       BROWSER = "firefox";
@@ -255,7 +256,7 @@
         "super_fast_search" = "1";
         "rerender_overview" = "1";
         "status_bar_font_size" = "16";
-        "inverse_search_command" = "nvim +%2 %1";
+        "inverse_search_command" = "hx %1:%2";
 
       };
     };
@@ -286,8 +287,9 @@
           use_ansi_coloring:                true
         }
       '';
-      # environmentVariables = {
-      # };
+      environmentVariables = {
+        YAZI_TEMP = "~/.yazi_temp";
+      };
     };
 
     feh = {
@@ -503,9 +505,11 @@
     wbg                  # Replacement for hyprpaper
     chawan
     jdk25
+    lazyjj
 
     zola
     lldb
+    hayabusa
 
 
     # pipes-rs             # cli pipes simulation

@@ -63,6 +63,7 @@
     EDITOR = "hx";
     VISUAL = "hx";
     TERMINAL = "wezterm";
+    TERM = "wezterm";
     PAGER = "bat --plain";
     MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;
@@ -114,8 +115,9 @@
       "application/pdf" = "sioyek.desktop";
       "application/xopp" = "xournal.desktop";
       "application/x-genesis-rom" = "kega-fusion.desktop";
-      "text/plain" = "Helix.desktop";
-      "text/markdown" = "Helix.desktop";
+      "text/plain" = "helix.desktop";
+      "text/markdown" = "helix.desktop";
+      "text/x-nix" = "helix.desktop";
       "image/png" = "hx.desktop";
       "image/jpeg" = "feh.desktop";
       "image/svg" = "feh.desktop";
@@ -176,6 +178,7 @@
 
   programs = {
 
+    thunar.enable = true;
     dconf.enable = true;
 
     gamescope.enable = true;
