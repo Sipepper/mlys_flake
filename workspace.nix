@@ -6,89 +6,68 @@
   ];
 
   programs = {
-    chawan.enable = true;
+    
 
 
     jujutsu = {
-      enable = true;
-      extraConfig = ''
-        return {
-          color_scheme = "nightfox",
-          use_fancy_tab_bar = false,
-          font = wezterm.font "IosevkaTerm NF Medium",
-
-          colors = {
-            tab_bar = {
-              background = "#192330",
-              active_tab = { bg_color = "#3C5372", fg_color = "#ffffff", intensity = "Bold", italic = true },
-              inactive_tab = { bg_color = "#192330", fg_color = "#64727D", },
-              new_tab = { bg_color = "#192330", fg_color = "#ffffff", },
-              new_tab_hover = { bg_color = "#64727D", fg_color = "#ffffff", },
-              inactive_tab_hover = { bg_color = "#192330", fg_color = "#738091", },
-            }
-
-          },
-
-          font_size = 12,
-          window_padding = {
-            left = 2,
-            right = 2,
-            top = 0,
-            bottom = 0,
-          },
-          hide_tab_bar_if_only_one_tab = true,
-          keys = {
-            { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
-            { key = "s", mods = "CTRL|SHIFT", action = wezterm.action.SplitHorizontal {domain = "CurrentPaneDomain" } },
-            { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.SplitVertical {domain = "CurrentPaneDomain" } },
-            { key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
-            { key = "x", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane { confirm = true } },
-            { key = "j", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Down") },
-            { key = "k", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Up") },
-            { key = "l", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Right") },
-            { key = "h", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Left") },
-          },
-        }
-      '';
+      enable = true;      
+      settings = {
+        user = { email = "m.lysynskyi@gmail.com"; name = "Mykola Lysynskyi"; };
+      };
     };
+
+
+    
+    chawan.enable = true;
+
 
     helix = {
       enable = true;
       defaultEditor = true;
-      # package = pkgs.evil-helix;
+      defaultEditor = true;
       settings = {
         theme = "nightfox";
 
         editor = {
           line-number = "relative";
           bufferline = "multiple";
-          cursor-shape = {
-            insert = "bar";
-            normal = "block";
-          };
-          soft-wrap.enable = true;
+          shell = [ "nu" "-c"];
+          cursor-shape.insert = "bar";
+        };
+        keys.normal = {
+          space.F = "file_picker_in_current_buffer_directory";
+          C-y = [
+            '':sh rm -f /tmp/unique-file''
+            '':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file''
+            '':sh printf "\e[?1049h\e[?2004h" | save -f /dev/tty''
+            '':open %sh{cat /tmp/unique-file}''
+            '':redraw''
+          ];
         };
       };
 
       languages = {
         language = [
           { name = "rust"; formatter = { command = "${pkgs.rustfmt}/bin/rustfmt"; }; }
+          { name = "typst"; auto-format = true; formatter.command = "${pkgs.typstyle}/bin/typstyle"; }
           { name = "latex"; formatter = { command = "${pkgs.tex-fmt}/bin/tex-fmt"; args = [ "--stdin" "--nowrap" ]; }; }
         ];
 
         language-server = {
           rust-analyzer = { command = "${pkgs.rust-analyzer}/bin/rust-analyzer"; };
           nixd = { command = "${pkgs.nixd}/bin/nixd"; };
-          tinymist = { command = "${pkgs.tinymist}/bin/tinymist"; };
-          texlab = { command = "${pkgs.texlab}/bin/texlab"; };
+            tinymist = { command = "${pkgs.tinymist}/bin/tinymist"; };
+            texlab = { command = "${pkgs.texlab}/bin/texlab"; };
           vscode-css-languageserver = { command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver"; };
           vscode-json-languageserver = { command = "${pkgs.vscode-json-languageserver}/bin/vscode-json-languageserver"; };
           jdt-language-server = { command = "${pkgs.jdt-language-server}/bin/jdt-language-server"; };
           typescript-language-server = { command = "${pkgs.typescript-language-server}/bin/typescript-language-server"; };
           superhtml = { command = "${pkgs.superhtml}/bin/superhtml"; };
-          taplo = { command = "${pkgs.taplo}/bin/taplo"; };
+            taplo = { command = "${pkgs.taplo}/bin/taplo"; };
           ty = { command = "${pkgs.ty}/bin/ty"; };
           bash-language-server = { command = "${pkgs.bash-language-server}/bin/bash-language-server"; };
+          nil = { command = "${pkgs.nil}/bin/nil";};
+          markdown-oxide = { command = "${pkgs.markdown-oxide}/bin/markdown-oxide";};
         };
 
         # debugger = {
@@ -96,7 +75,6 @@
         #
         # };
       };
-
     };
 
     wezterm = {
@@ -1884,8 +1862,7 @@
     };
 
     nixvim = {
-      enable = true;
-      defaultEditor = false;
+      enable = false;
       vimdiffAlias = true;
       colorschemes.nightfox.enable = true;
 
@@ -1906,7 +1883,7 @@
 
       globals = {
         mapleader = " ";
-        maplocalleader = ",";
+        maplocalleader = "";
         _ts_force_sync_parsing = true;
       };
 
