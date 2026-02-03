@@ -1,4 +1,4 @@
-{ config, inputs ,pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./default.nix
@@ -104,17 +104,17 @@
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           };
           "cpu" = {
-            format = "  {usage}%";
+            format = " {usage}%";
             tooltip = false;
             on-click = "wezterm -e btop";
           };
           "disk" = {
-            format = "  {}%";
+            format = " {}%";
             tooltip-format = "{used} / {total} used";
             on-click = "wezterm -e dua interactive";
           };
           "memory" = {
-            format = "  {}%";
+            format = " {}%";
             tooltip-format = "{used:0.1f}G / {total:0.1f}G used";
           };
           "temperature" = {
