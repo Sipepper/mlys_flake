@@ -1,17 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, inputs, ... }:
-{ 
-  imports =
-    [ # Include the results of the hardware scan. ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-      ./hardware-configuration.nix
-      ./main-user.nix
-    ];
+{ pkgs, ... }:
+{
+  imports = [ ];
 
-  fonts.packages = with pkgs; [ 
-    nerd-fonts.droid-sans-mono
+  fonts.packages = with pkgs; [
     nerd-fonts.iosevka-term
     (iosevka.override {
       set = "custom";
@@ -65,7 +59,7 @@
     TERMINAL = "wezterm";
     TERM = "wezterm";
     PAGER = "bat --plain";
-    MANPAGER = "bat --plain";
+    # MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;
   };
 
@@ -81,32 +75,29 @@
     pkgs.udiskie
     pkgs.fd
     pkgs.sshfs
-    pkgs.xorg.xhost
-    pkgs.glib
+    # pkgs.xorg.xhost
+    # pkgs.glib
     # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
-    pkgs.cargo-expand 
-    pkgs.cargo-fuzz   
-    pkgs.evcxr 
+    pkgs.cargo-expand
+    pkgs.cargo-fuzz
+    pkgs.evcxr
     (pkgs.catppuccin-sddm.override {
       flavor = "mocha";
       font = "Iosevka Custom";
       fontSize = "12";
     })
 
-    pkgs.gtk3
-    pkgs.adwaita-icon-theme
-    pkgs.gsettings-desktop-schemas
+    # pkgs.gtk3
+    # pkgs.adwaita-icon-theme
+    # pkgs.gsettings-desktop-schemas
 
   ];
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
-  main-user.enable = true;
-  main-user.userName = "mlys";
-
   xdg.mime = {
     enable = true;
-    # removedAssociations = { 
+    # removedAssociations = {
     #   "inode/directory" = "kitty-open.desktop";
     # };
     defaultApplications = {
@@ -123,7 +114,9 @@
       "image/svg" = "feh.desktop";
       "image/vnd.djvu+multipage" = "org.gnome.evince.desktop";
     };
-    addedAssociations = { "inode/directory" = "yazi.desktop"; };
+    addedAssociations = {
+      "inode/directory" = "yazi.desktop";
+    };
   };
 
   services = {
@@ -142,10 +135,10 @@
 
     printing = {
       enable = true;
-      drivers = [ 
-        pkgs.samsung-unified-linux-driver 
-        pkgs.splix 
-        pkgs.gutenprint 
+      drivers = [
+        pkgs.samsung-unified-linux-driver
+        pkgs.splix
+        pkgs.gutenprint
         pkgs.gutenprintBin
       ];
     };
@@ -177,10 +170,7 @@
   };
 
   programs = {
-
-    thunar.enable = true;
     dconf.enable = true;
-
     gamescope.enable = true;
 
     steam = {
@@ -188,12 +178,10 @@
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    };	
+    };
 
     seahorse.enable = true;
-
     gamemode.enable = true;
-
     xfconf.enable = true;
 
     hyprland = {
@@ -201,6 +189,7 @@
       xwayland.enable = true;
     };
 
+    niri.enable = false; # Core contributor is Russian :/
     # Some programs need SUID wrappers
     mtr.enable = true;
 
@@ -216,17 +205,12 @@
     bluetooth = {
       enable = true;
       powerOnBoot = true;
-      settings = { 
+      settings = {
         General.Experimental = true;
         General.FastConnectable = true;
         Policy.AutoEnable = true;
       };
     };
-    # amdgpu = {
-    #   overdrive.enable = true;
-    #   opencl.enable = true;
-    # };
-
   };
 
   security = {
@@ -235,11 +219,10 @@
     polkit.enable = true;
   };
 
-
   # boot.loader.systemd-boot.enable = true;
   boot.loader = {
     grub = {
-      enable = true; 
+      enable = true;
       efiSupport = true;
       device = "nodev";
       splashImage = ./assets/grub.jpg;
@@ -249,12 +232,14 @@
     efi.canTouchEfiVariables = true;
   };
 
-
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
   };
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   time.timeZone = "Europe/Kyiv";
 
@@ -272,12 +257,16 @@
     LC_TIME = "uk_UA.UTF-8";
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mlys = {
     isNormalUser = true;
     description = "Mykola Lysynskyi";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
+    shell = pkgs.nushell;
     packages = with pkgs; [
       unzip
       vim
@@ -286,19 +275,14 @@
     ];
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "mlys" = import ./home.nix;
-    };
-  };
-
   nixpkgs.config.allowUnfree = true;
 
-  swapDevices = [{
-    device = "/swapfile";
-    size = 16 * 1024;
-  }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   system.stateVersion = "24.05"; # Did you read the comment?
 

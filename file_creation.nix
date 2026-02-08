@@ -1,63 +1,42 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
     ./default.nix
   ];
 
   home.file = {
-    ".wallpaper.png" = {
-      source = ./assets/wallpaper.png;
+    "Git/.readme.md" = {
+      text = "Primary folder for git repos.";
+    };
+    "Rust/.readme.md" = {
+      text = "Primary folder for programming projects.";
+    };
+    "Games/.readme.md" = {
+      text = "Primary folder for games outside of Steam.";
+    };
+    "Books/.readme.md" = {
+      text = "Primary folder for books, i.e. **The Library**.";
+    };
+    "Work/.readme.md" = {
+      text = "Primary folder for non-math work.";
+    };
+    "Documents/.readme.md" = {
+      text = "Primary folder for legal and other documents.";
+    };
+    "LaTeX/.readme.md" = {
+      text = "Primary folder for math papers projects.";
     };
 
-    ".config/pyradio/config" = {
-      enable = true;
-      text = ''
-        theme = catppuccin-mocha
-      '';
+
+    ".assets/tex/preamble.tex" = {
+      source = ./assets/tex/preamble.tex;
     };
-
-    ".space.jpg" = { source = ./assets/space.jpg; };
-
-    "Games/sega" = { source = ./assets/sega; };
-    "Git/.readme.md" = { text = "Primary folder for git repos."; };
-    "Rust/.readme.md" = { text = "Primary folder for programming projects."; };
-    "Games/.readme.md" = { text = "Primary folder for games outside of Steam."; };
-    "Books/.readme.md" = { text = "Primary folder for books, i.e. **The Library**."; };
-    "Work/.readme.md" = { text = "Primary folder for non-math work."; };
-    "Documents/.readme.md" = { text = "Primary folder for legal and other documents."; };
-    "LaTeX/.readme.md" = { text = "Primary folder for math papers projects."; };
-
-    ".local/share/applications/kega-fusion.desktop" = {
-      text = ''
-        [Desktop Entry]
-        Encoding=UTF-8
-        Version=1.0
-        Type=Application
-        NoDisplay=true
-        Exec=kega-fusion %f
-        Name=Kega Fusion
-      '';
+    ".assets/tex/general.bib" = {
+      source = ./assets/tex/bib.bib;
     };
-
-    ".local/share/applications/yazi.desktop" = {
-      text = ''
-        [Desktop Entry]
-        Type=Application
-        Name=Yazi in Wezterm
-        Comment=Launch Yazi file manager in the Wezterm terminal
-        Exec=wezterm -e yazi
-        Icon=yazi # Or specify the full path to an icon file, e.g., /path/to/yazi-icon.png
-        Terminal=false # Wezterm handles the terminal, so we set this to false
-        Categories=System;Utility;FileManager;
-        MimeType=inode/directory;
-      '';
+    ".assets/nu/pack.nu" = {
+      source = ./assets/scripts/pack.nu;
     };
-
-    ".assets/tex/preamble.tex" = { source = ./assets/tex/preamble.tex; };
-    ".assets/tex/general.bib" = { source = ./assets/tex/bib.bib; };
-    ".assets/tex/listings-rust.sty" = { source = ./assets/tex/listings-rust.sty; };
-    ".assets/nu/pack.nu" = { source = ./assets/scripts/pack.nu; };
-    ".assets/vencord/system24.theme.css" = { source = ./assets/system24.theme.css; };
 
   };
 

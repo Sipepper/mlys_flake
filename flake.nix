@@ -10,35 +10,47 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   outputs =
     {
       nixpkgs,
       determinate,
+      home-manager,
       ...
     }@inputs:
     {
       nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
+        desktop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
-            inputs.home-manager.nixosModules.default
+            ./hardware-desktop.nix
             determinate.nixosModules.default
+            home-manager.nixosModules.default
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users."mlys" = {
+                imports = [ ./home.nix ];
+                wayland.windowManager.hyprland.settings.monitor = ",1920x1080@100,auto,1";
+              };
+            }
           ];
         };
         laptop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
-            inputs.home-manager.nixosModules.default
+            ./hardware-laptop.nix
             determinate.nixosModules.default
+            home-manager.nixosModules.default
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users."mlys" = {
+                imports = [ ./home.nix ];
+                wayland.windowManager.hyprland.settings.monitor = ",1920x1080,auto,1.2";
+              };
+            }
           ];
         };
       };

@@ -1,11 +1,14 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    inputs.nixvim.homeModules.nixvim
     ./default.nix
   ];
 
   programs = {
+    btop.enable = true;
+    discord.enable = true;
+    obsidian.enable = true;
+    lazygit.enable = true;
 
     jujutsu = {
       enable = true;
@@ -17,11 +20,10 @@
       };
     };
 
-    chawan.enable = true;
-
     helix = {
       enable = true;
       defaultEditor = true;
+      extraPackages = [ pkgs.lldb ];
       settings = {
         theme = "nightfox";
 
@@ -61,6 +63,7 @@
           }
           {
             name = "latex";
+            auto-format = true;
             formatter = {
               command = "${pkgs.tex-fmt}/bin/tex-fmt";
               args = [
@@ -77,6 +80,9 @@
           };
           nixd = {
             command = "${pkgs.nixd}/bin/nixd";
+          };
+          nil = {
+            command = "${pkgs.nil}/bin/nil";
           };
           tinymist = {
             command = "${pkgs.tinymist}/bin/tinymist";
@@ -108,18 +114,11 @@
           bash-language-server = {
             command = "${pkgs.bash-language-server}/bin/bash-language-server";
           };
-          nil = {
-            command = "${pkgs.nil}/bin/nil";
-          };
           markdown-oxide = {
             command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
           };
         };
 
-        # debugger = {
-        #   lldb-dap = { command = "${pkgs.lldb}/bin/lldb-dap"; };
-        #
-        # };
       };
     };
 
@@ -172,16 +171,16 @@
       settings = { };
       vencord = {
         # themes.path = /home/mlys/.assets/vencord;
-        themes."system24" = ./assets/vencord_themes/system24.theme.css;
+        # themes."system24" = ./assets/vencord_themes/system24.theme.css;
         settings = {
           autoUpdate = false;
           autoUpdateNotification = false;
           notifyAboutUpdates = false;
           useQuickCss = true;
           disableMinSize = true;
-          enabledThemes = [
-            "system24.css"
-          ];
+          # enabledThemes = [
+          #   "system24.css"
+          # ];
           plugins = {
             AlwaysExpandRoles.enabled = true;
             AnonymiseFileNames.enabled = true;
@@ -210,207 +209,9 @@
       };
     };
 
-    firefox = {
-      enable = true;
-
-    };
-
-    obsidian = {
-      enable = false;
-      vaults = {
-        "mind-garden" = {
-          enable = true;
-          target = "/Obsidian";
-          settings = {
-
-            app = {
-              livePreview = false;
-              vimMode = true;
-              attachmentFolderPath = "Attachments";
-              propertiesInDocument = "visible";
-
-              pdfExportSettings = {
-                includeName = true;
-                pageSize = "Letter";
-                landscape = false;
-                margin = 0;
-                downscalePercent = 100;
-              };
-
-              alwaysUpdateLinks = true;
-              promptDelete = false;
-              trashOption = "none";
-              showLineNumber = true;
-            };
-
-            appearance = {
-              nativeMenus = false;
-              theme = "obsidian";
-              interfaceFontFamily = "Iosevka Custom,Iosevka Nerd Font,Hurmit Nerd Font";
-              textFontFamily = "Iosevka Custom,Iosevka Nerd Font,Hurmit Nerd Font Propo";
-              monospaceFontFamily = "Iosevka Nerd Font Mono,Hurmit Nerd Font Mono";
-              showRibbon = true;
-              baseFontSize = 16;
-              cssTheme = "Nightfox";
-            };
-
-            # TODO Not working here (have no clue how to resolve yet)
-            communityPlugins = [
-              { "quick-latex".enable = true; }
-              { "obsidian-admonition".enable = true; }
-              { "templater-obsidian".enable = true; }
-              { "dataview".enable = true; }
-              { "tag-wrangler".enable = true; }
-              { "obsidian-vault-statistics-plugin".enable = true; }
-              { "obsidian-excalidraw-plugin".enable = true; }
-              { "graph-analysis".enable = true; }
-              { "obsidian-dangling-links".enable = true; }
-              { "calendar".enable = true; }
-              { "contribution-graph".enable = true; }
-              { "obsidian-spaced-repetition".enable = true; }
-              { "obsidian-kanban".enable = true; }
-              { "homepage".enable = true; }
-              { "oz-clear-unused-images".enable = true; }
-              { "performosu".enable = true; }
-              { "obsidian42-strange-new-worlds".enable = true; }
-              { "cut-the-fluff".enable = true; }
-              { "notes-explorer".enable = true; }
-              { "obsidian-relative-line-numbers".enable = true; }
-              { "obsidian-collapse-all-plugin".enable = true; }
-              { "code-emitter".enable = true; }
-              { "code-styler".enable = true; }
-              { "obsidian-tracker".enable = true; }
-            ];
-
-            corePlugins = [
-              {
-                name = "file-explorer";
-                enable = true;
-              }
-              {
-                name = "global-search";
-                enable = true;
-              }
-              {
-                name = "switcher";
-                enable = true;
-              }
-              {
-                name = "graph";
-                enable = true;
-              }
-              {
-                name = "backlink";
-                enable = true;
-              }
-              {
-                name = "outgoing-link";
-                enable = true;
-              }
-              {
-                name = "tag-pane";
-                enable = true;
-              }
-              {
-                name = "page-preview";
-                enable = true;
-              }
-              {
-                name = "daily-notes";
-                enable = true;
-              }
-              {
-                name = "templates";
-                enable = true;
-              }
-              {
-                name = "note-composer";
-                enable = true;
-              }
-              {
-                name = "command-palette";
-                enable = true;
-              }
-              {
-                name = "slash-command";
-                enable = false;
-              }
-              {
-                name = "editor-status";
-                enable = false;
-              }
-              {
-                name = "starred";
-                enable = true;
-              }
-              {
-                name = "markdown-importer";
-                enable = false;
-              }
-              {
-                name = "zk-prefixer";
-                enable = false;
-              }
-              {
-                name = "random-note";
-                enable = true;
-              }
-              {
-                name = "outline";
-                enable = true;
-              }
-              {
-                name = "word-count";
-                enable = true;
-              }
-              {
-                name = "slides";
-                enable = true;
-              }
-              {
-                name = "audio-recorder";
-                enable = false;
-              }
-              {
-                name = "workspaces";
-                enable = true;
-              }
-              {
-                name = "file-recovery";
-                enable = true;
-              }
-              {
-                name = "publish";
-                enable = false;
-              }
-              {
-                name = "sync";
-                enable = false;
-              }
-              {
-                name = "canvas";
-                enable = true;
-              }
-              {
-                name = "bookmarks";
-                enable = true;
-              }
-              {
-                name = "properties";
-                enable = true;
-              }
-            ];
-          };
-        };
-      };
-    };
-
+    firefox.enable = true;
     mergiraf.enable = true;
-
-    fzf = {
-      enable = true;
-    };
-
+    fzf.enable = true;
     git = {
       enable = true;
       settings = {
@@ -1852,8 +1653,6 @@
         ];
       };
       settings = {
-        # preview.image_delay = 0;
-
         plugin.prepend_previewers = [
           {
             mime = "application/*zip";
@@ -1893,500 +1692,9 @@
         relative-motions = pkgs.yaziPlugins.relative-motions;
         ouch = pkgs.yaziPlugins.ouch;
         diff = pkgs.yaziPlugins.diff;
-        # yatline = pkgs.yaziPlugins.yatline;
-        custom-shell = pkgs.fetchFromGitHub {
-          owner = "AnirudhG07";
-          repo = "custom-shell.yazi";
-          # repo = "https://github.com/AnirudhG07/custom-shell.yazi";
-          rev = "6b4550a1b18afbb7ef328ebf54d81de24101288e";
-          sha256 = "1msaj7h2lfbzi6a06jrcvhaq57qqnsg157nj5pmr1zh9rr8dpqkm";
-        };
       };
       initLua = ./assets/yazi_init.lua;
       shellWrapperName = "y";
-
     };
-
-    nixvim = {
-      enable = true;
-      defaultEditor = false;
-      vimdiffAlias = true;
-      colorschemes.nightfox.enable = true;
-
-      # extraPlugins = [
-      #   (pkgs.vimUtils.buildVimPlugin {
-      #     name = "typst-preview.nvim";
-      #     src = pkgs.vimPlugins.typst-preview-nvim;
-      #   })
-      # ];
-
-      performance.combinePlugins = {
-        enable = true;
-        standalonePlugins = [
-          "nvim-treesitter"
-          "snacks.nvim"
-        ];
-      };
-
-      globals = {
-        mapleader = " ";
-        maplocalleader = "";
-        _ts_force_sync_parsing = true;
-      };
-
-      opts = {
-        smartcase = true;
-        ignorecase = true;
-        number = true;
-        relativenumber = true;
-        completeopt = [
-          "menu"
-          "menuone"
-          "noselect"
-        ];
-        clipboard = "unnamedplus";
-        foldenable = false;
-
-        shiftwidth = 2;
-        langmap = "ФИСВУАПРШОЛДЬТЩЗЙКІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкіегмцчня;abcdefghijklmnopqrstuvwxyz,хїґжєбю\\ʼ;\\[\\]\\\\;\\'\\,\\.\\~";
-      };
-      keymaps = [
-        {
-          action = "<C-w>l";
-          key = "<C-l>";
-          options.desc = "sd1";
-        }
-        {
-          action = "<C-w>h";
-          key = "<C-h>";
-          options.desc = "sd4";
-        }
-        {
-          action = "<C-w>j";
-          key = "<C-j>";
-          options.desc = "sd3";
-        }
-        {
-          action = "<C-w>k";
-          key = "<C-k>";
-          options.desc = "sd2";
-        }
-        {
-          action = "<cmd>noh<CR>";
-          key = "<leader><Esc>";
-          options.desc = "Remove search highlight";
-        }
-        {
-          action = "<cmd>BufferLineCloseOthers<CR>";
-          key = "<leader>bo";
-          options.desc = "Close other buffers";
-        }
-        {
-          action = "<cmd>bdelete<CR>";
-          key = "<leader>bd";
-          options.desc = "Close buffer";
-        }
-        {
-          action = "<cmd>bnext<CR>";
-          key = "<S-l>";
-          options.desc = "Move to right tab";
-        }
-        {
-          action = "<cmd>bprev<CR>";
-          key = "<S-h>";
-          options.desc = "Move to left tab";
-        }
-        {
-          action = "<cmd>Telescope live_grep<CR>";
-          key = "<leader>lg";
-          options.desc = "Live Grep";
-        }
-        {
-          action = "<cmd>FFFFind<CR>";
-          key = "<leader>s";
-          options.desc = "Open FFF";
-        }
-        {
-          action = "<cmd>LazyGitCurrentFile<CR>";
-          key = "<leader>g";
-          options.desc = "LazyGit";
-        }
-        {
-          action = "<cmd>Yazi<cr>";
-          key = "<leader>f";
-          options.desc = "Yazi";
-        }
-        {
-          action = "<cmd>w<CR>";
-          key = "<leader>j";
-          options.desc = "Write";
-        }
-        {
-          action = "<cmd>UndotreeToggle<CR>";
-          key = "<leader>u";
-          options.desc = "Toggle UndoTree";
-        }
-        {
-          action = "<cmd>lua vim.lsp.buf.definition()<CR>";
-          key = "gd";
-          options = {
-            noremap = true;
-            silent = true;
-            desc = "Go to definition";
-          };
-        }
-        {
-          action = "<cmd>lua vim.lsp.buf.declaration()<CR>";
-          key = "gD";
-          options = {
-            noremap = true;
-            silent = true;
-            desc = "Go to declaration";
-          };
-        }
-      ];
-
-      plugins = {
-        snacks = {
-          enable = true;
-          settings = {
-            bigfile.enabled = true;
-            terminal.enabled = true;
-            words.enabled = true;
-            picker.enabled = true;
-          };
-
-        };
-        # java.enable = true;
-        fff = {
-          enable = true;
-          settings = {
-            # base_path = lib.nixvim.mkRaw "vim.fn.getcwd()";
-            key_bindings = {
-              close = [
-                "<Esc>"
-                "<C-c>"
-              ];
-              move_down = [
-                "<Down>"
-                "<C-n>"
-              ];
-              move_up = [
-                "<Up>"
-                "<C-p>"
-              ];
-              open_split = "<C-s>";
-              open_tab = "<C-t>";
-              open_vsplit = "<C-v>";
-              select_file = "<CR>";
-            };
-            layout = {
-              height = 0.8;
-              preview_position = "right";
-              width = 0.8;
-            };
-            max_results = 100;
-          };
-        };
-        typst-vim = {
-          enable = true;
-          keymaps.watch = "<leader>w";
-          settings = {
-            pdf_viewer = "sioyek";
-          };
-        };
-        ltex-extra = {
-          enable = false;
-          settings = {
-            initCheck = true;
-            loadLangs = [
-              "en-US"
-              "uk-UA"
-            ];
-            logLevel = "non";
-            path = ".ltex";
-          };
-        };
-        undotree = {
-          enable = true;
-          settings = {
-            CursorLine = true;
-            DiffAutoOpen = true;
-            DiffCommand = "diff";
-            DiffpanelHeight = 10;
-            HelpLine = true;
-            HighlightChangedText = true;
-            HighlightChangedWithSign = true;
-            HighlightSyntaxAdd = "DiffAdd";
-            HighlightSyntaxChange = "DiffChange";
-            HighlightSyntaxDel = "DiffDelete";
-            RelativeTimestamp = true;
-            SetFocusWhenToggle = true;
-            ShortIndicators = false;
-            SplitWidth = 40;
-            TreeNodeShape = "*";
-            TreeReturnShape = "\\";
-            TreeSplitShape = "/";
-            TreeVertShape = "|";
-            WindowLayout = 4;
-          };
-        };
-
-        yazi = {
-          enable = true;
-          settings = {
-            enable_mouse_support = true;
-            floating_window_scaling_factor = 0.8;
-            log_level = "debug";
-            yazi_floating_window_border = "single";
-            # yazi_floating_window_winblend = 50;
-          };
-        };
-
-        nix.enable = true;
-        web-devicons.enable = true;
-        telescope.enable = true;
-        bacon.enable = true;
-
-        bufferline = {
-          enable = true;
-          settings = {
-            options.always_show_bufferline = false;
-            # options.custom_filter = ''
-            #   function(buf_number)
-            #     if not not vim.api.nvim_buf_get_name(buf_number):find(vim.fn.getcwd(), 0, true) then
-            #       return true
-            #     end
-            #   end,
-            # '';
-          };
-        };
-        # nvim-autopairs = {
-        #   enable = true;
-        #   settings = {
-        #     check_ts = true;
-        #     disable_filetype = [
-        #       "TelescopePrompt"
-        #     ];
-        #     fast_wrap = {
-        #       end_key = "$";
-        #       map = "<M-e>";
-        #       chars = [
-        #         "\$"
-        #         "{"
-        #         "["
-        #         "("
-        #         "\""
-        #         "'"
-        #       ];
-        #     };
-        #   };
-        # };
-        which-key.enable = true;
-        colorizer = {
-          enable = true;
-          settings.user_default_options = {
-            AARRGGBB = true;
-            RRGGBBAA = true;
-            RGB = true;
-            names = false;
-          };
-        };
-
-        indent-blankline.enable = true;
-        indent-blankline.settings = {
-          exclude = {
-            buftypes = [
-              "terminal"
-              "quickfix"
-              "dashboard"
-            ];
-            filetypes = [
-              ""
-              "checkhealth"
-              "help"
-              "lspinfo"
-              "packer"
-              "TelescopePrompt"
-              "TelescopeResults"
-              "yaml"
-              "dashboard"
-            ];
-          };
-          indent.char = "│";
-        };
-
-        lazygit.enable = true;
-        lazygit.settings = {
-          # git.paging.pager = "difftastic";
-          git.paging.pager = "mergiraf";
-          floating_window_border_chars = [
-            "┌"
-            "─"
-            "┐"
-            "│"
-            "┘"
-            "─"
-            "└"
-            "│"
-          ];
-        };
-        noice.enable = false;
-        notify.enable = true;
-        lualine.enable = true;
-        luasnip = {
-          enable = true;
-          fromLua = [
-            { paths = ./assets/snippets; }
-          ];
-        };
-
-        dashboard.enable = true;
-        dashboard.settings = {
-          change_to_vcs_root = true;
-          config = {
-            footer = [
-              "░ᚠᚢᛚᛗ᛫ᚪᛠᚣᛟᚪ░"
-            ];
-            header = [
-              "⠀⠀⣀⣤⠤⠶⠶⠶⠶⠶⠶⢶⠶⠶⠦⣤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣤⡤⣤⠶⠴⠶⠶⠶⣶⠶⠶⢤⣤⣀⡀ "
-              "⣴⡏⠡⢒⡸⠋⠀⠐⣾⠉⠉⠭⢄⣠⢤⡷⠷⢾⣛⣿⠷⣶⣤⣄⡀⠀⠀⠐⢿⣟⢲⡁⠐⣾⠛⠃⠀⠀⢀⣠⡤⠶⠒⣛⣩⠝⢋⣠⣰⣂⣤⠴⠏⠉⠓⢺⡿⢁⣴⣮⢽⡟ "
-              "⠙⠶⣞⣥⡴⠚⣩⣦⠨⣷⠋⠠⠤⠶⢲⡺⠢⣤⡼⠿⠛⠛⣻⣿⣿⠿⢶⣤⣿⣯⡾⠗⠾⣇⣙⣤⡶⢿⣯⡕⢖⣺⠋⣭⣤⣤⢤⡶⠖⠮⢷⡄⠛⠂⣠⣽⡟⢷⣬⡿⠋⠁ "
-              "⠀⠀⠀⠈⠒⢿⣁⡴⠟⣊⣇⠠⣴⠞⣉⣤⣷⣤⠶⠿⢛⢛⠩⠌⠚⢁⣴⣿⠏⠀⣴⠀⢀⣦⠻⠻⣑⠢⢕⡋⢿⡿⣿⣷⢮⣤⣷⣬⣿⠷⠈⢁⣤⣾⡿⣽⡮⠋⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠈⠛⠷⣾⣋⣤⡾⠛⣁⡡⢤⡾⢤⡖⠋⠉⠀⠀⠀⠀⠀⢰⣿⡷⠺⠛⠐⡿⠃⠦⠤⠈⠉⠢⠄⠈⠁⠙⢿⣮⣿⢤⣶⣁⣀⣛⣿⣷⠼⠚⠁⠀⠀⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠙⠇⠀⣩⡥⠞⢗⣼⣧⠀⠀⠀⠀⠀⠀⠀⢈⣿⡇⢄⡤⠤⣧⠄⢀⡀⠀⠀⠀⠀⠀⠀⠀⢘⣿⡟⠺⣯⣽⡉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠇⣊⣭⢿⡛⠁⡅⠀⠀⠀⠀⠀⠀⠈⢻⡇⢘⣡⣀⡀⣏⠀⠃⠀⠀⠀⠀⠀⠀⠀⣸⡏⠈⢦⣶⣿⡟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣥⡔⣫⠔⡀⡰⠀⠀⠀⠀⠀⠀⠀⢺⡇⠈⢰⠀⢹⠇⠀⡘⡄⠀⠀⠀⠀⠀⢠⣿⣄⢠⣾⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠷⠺⠘⠛⠛⠓⢂⠀⠀⠀⠀⠸⣧⠀⢺⠀⠊⠀⠰⠇⠘⢄⡀⠀⠰⠶⡛⠓⠟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣆⠛⠒⠁⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-              "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-            ];
-            packages.enable = false;
-            mru.limit = 6;
-            project = {
-              enable = true;
-              limit = 4;
-            };
-            shortcut = [
-              # {
-              #   action = {
-              #     __raw = "function(path) vim.cmd('Telescope find_files') end";
-              #   };
-              #   desc = "Files";
-              #   group = "Label";
-              #   icon = " ";
-              #   icon_hl = "@variable";
-              #   key = "f";
-              # }
-              {
-                action = "q";
-                desc = " quit";
-                group = "Number";
-                key = "q";
-              }
-            ];
-            week_header = {
-              enable = false;
-            };
-          };
-          theme = "hyper";
-        };
-        lsp = {
-          enable = true;
-          servers = {
-            tinymist.enable = true;
-            ltex.enable = false;
-            lua_ls.enable = true;
-            ts_ls.enable = true;
-            rust_analyzer = {
-              enable = true;
-              installCargo = true;
-              installRustc = true;
-            };
-            texlab.enable = true;
-            nixd.enable = true;
-            nushell.enable = true;
-            superhtml.enable = true;
-          };
-        };
-        cmp = {
-          enable = true;
-          autoEnableSources = true;
-          settings = {
-            sources = [
-              { name = "nvim_lsp"; }
-              { name = "path"; }
-              { name = "buffer"; }
-              { name = "luasnip"; }
-            ];
-            mapping = {
-              "<C-Space>" = "cmp.mapping.complete()";
-              "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-              "<C-e>" = "cmp.mapping.close()";
-              "<C-f>" = "cmp.mapping.scroll_docs(4)";
-              "<CR>" = "cmp.mapping.confirm({ select = true })";
-              "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-              "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            };
-          };
-        };
-
-        treesitter = {
-          enable = true;
-          grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
-          settings = {
-            highlight = {
-              enable = true;
-              disable = [
-                "latex"
-                "rust"
-                "html"
-              ];
-            };
-          };
-        };
-
-        vimtex = {
-          enable = true;
-          texlivePackage = pkgs.texlive.combined.scheme-full;
-          settings = {
-            compiler_method = "tectonic";
-            compiler.tectonic = {
-              options = [ "--synctex" ];
-            };
-            toc_config = {
-              split_pos = "vert topleft"; # TODO
-              split_width = 40;
-            };
-            view_method = "sioyek";
-            mappings.disable = {
-              "n" = [
-                "tse"
-                "tsd"
-              ];
-              "x" = [ "tsd" ];
-            };
-            matchparen.enable = true;
-            quickfix_autojump = true;
-            syntax_conceal_disable = true;
-            indent_enabled = true;
-            syntax_enabled = true;
-          };
-        };
-        toggleterm.enable = true;
-        toggleterm.settings = {
-          direction = "float";
-          float_opts = {
-            border = "single";
-            height = 30;
-            width = 130;
-          };
-          open_mapping = "[[<c-;>]]";
-        };
-      };
-    };
-
   };
 }
