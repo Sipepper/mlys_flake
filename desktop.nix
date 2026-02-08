@@ -101,17 +101,17 @@
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           };
           "cpu" = {
-            format = "  {usage}%";
+            format = " {usage}%";
             tooltip = false;
             on-click = "wezterm -e btop";
           };
           "disk" = {
-            format = "  {}%";
+            format = " {}%";
             tooltip-format = "{used} / {total} used";
             on-click = "wezterm -e dua interactive";
           };
           "memory" = {
-            format = "  {}%";
+            format = " {}%";
             tooltip-format = "{used:0.1f}G / {total:0.1f}G used";
           };
           "temperature" = {
@@ -128,8 +128,8 @@
           "backlight" = {
             device = "intel_backlight";
             interval = 1;
-            on-scroll-down = "brightnessctl --device='amdgpu_bl1' s +1";
-            on-scroll-up = "brightnessctl --device='amdgpu_bl1' s 1-";
+            on-scroll-down = "brightnessctl --device='amdgpu_bl1' s +128";
+            on-scroll-up = "brightnessctl --device='amdgpu_bl1' s 128-";
             format = "{icon} {percent}%";
             format-icons = [
               ""
@@ -201,7 +201,7 @@
           "network#wifi" = {
             interface = "wlp*";
             format-ethernet = "";
-            format-wifi = " {essid} ({signalStrength}%)";
+            format-wifi = "  {essid} ({signalStrength}%)";
             format-linked = "";
             format-disconnected = "";
             tooltip-format = "{ifname}: {ipaddr}/{cidr}";
@@ -231,7 +231,7 @@
           };
           "custom/poweroff" = {
             tooltip = false;
-            format = "  ";
+            format = " ";
             on-click = "systemctl poweroff";
           };
         };
@@ -354,7 +354,7 @@
         };
       };
       exec-once = [
-        "nu ~/change_wallpaper.nu"
+        # "nu ~/change_wallpaper.nu"
         "waybar"
         "easyeffects --gapplication-service"
         "vesktop --start-minimized"
@@ -377,7 +377,6 @@
         "MOZ_ENABLE_WAYLAND,1"
         "GDK_SCALE,auto"
         "GTK_USE_PORTAL=1"
-        "GSETTINGS_SCHEMAS_DIR,${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
       ];
       general = {
         gaps_in = "2";
@@ -418,15 +417,11 @@
         repeat_delay = 300;
 
       };
-      monitor = ",1920x1080,auto,1.2";
-
-      # xwayland.force_zero_scaling = if config.default.isPC then false else true;
-      # xwayland.force_zero_scaling = true;
+      # monitor = ",1920x1080,auto,1.2";
 
       "$mainMod" = "SUPER";
       # "$terminal" = "kitty";
       "$terminal" = "wezterm";
-      "$fileManager" = "thunar";
       "$menu" = "fuzzel";
 
       bind = [
@@ -437,15 +432,11 @@
         "$mainMod, Q, exec, $terminal"
         "$mainMod, Z, exec, woomer"
         "$mainMod, A, killactive,"
-        "$mainMod, E, exec, $fileManager"
         "$mainMod, R, exec, $terminal -e yazi"
         "$mainMod, N, exec, $terminal -e nvim"
         "$mainMod, C, exec, $terminal -e clipse"
         "$mainMod, M, exec, $menu"
         "$mainMod, Z, exec, woomer"
-        # ",ESC, exec, hyprctl switchxkblayout current 1"
-        
-
         "$mainMod, T, togglefloating,"
         "$mainMod, F, fullscreen,"
 
@@ -486,9 +477,6 @@
 
         "$mainMod, SPACE, exec, $(hyprctl activewindow -j | jq '.floating') && hyprctl dispatch cyclenext tiled || hyprctl dispatch cyclenext floating"
 
-        "$mainMod SHIFT, T, togglefloating,"
-        "$mainMod SHIFT, F, fullscreen,"
-        "$mainMod SHIFT, C, centerwindow,"
       ];
       bindm = [
         "$mainMod, mouse:272, movewindow"

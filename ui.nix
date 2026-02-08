@@ -6,12 +6,29 @@
 
   xdg = {
     # Can create desktop entries via desktopEntries = { ... }
-    configFile."xdg-desktop-portal-termfilechooser/config" = {
-      force = true;
-      text = ''
-      [filechooser]
-      cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-      '';
+    desktopEntries = {
+      yazi = {
+        type = "Application";
+        name = "Yazi in Wezterm";
+        comment = "Launch Yazi file manager in the Wezterm terminal";
+        exec = "wezterm -e yazi";
+        icon = "yazi"; # Or specify the full path to an icon file, e.g., /path/to/yazi-icon.png;
+        terminal = false; # Wezterm handles the terminal, so we set this to false;
+        categories = [
+          "System"
+          "Utility"
+          "FileManager"
+        ];
+        mimeType = [ "inode/directory" ];
+      };
+      kega-fusion = {
+        type = "Application";
+        noDisplay = true;
+        exec = "kega-fusion %f";
+        name = "Kega Fusion";
+        mimeType = [ "application/x-genesis-rom" ];
+      };
+
     };
     portal = {
       enable = true;
@@ -21,12 +38,12 @@
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
         };
       };
-      extraPortals = [ 
+      extraPortals = [
         pkgs.xdg-desktop-portal-termfilechooser
       ];
     };
   };
-  
+
   qt = {
     enable = true;
     platformTheme.name = "gtk3";
@@ -35,7 +52,7 @@
       package = pkgs.dracula-qt5-theme;
     };
   };
-  
+
   gtk = {
     enable = true;
     theme = {

@@ -16,7 +16,6 @@
     homeDirectory = "/home/mlys";
     sessionVariables = {
       SHELL = "nu";
-      TERM = "wezterm";
       NIXOS_OZONE_WL = 1;
       EDITOR = "hx";
       BROWSER = "firefox";
@@ -42,12 +41,13 @@
       settings = {
         # logo = {
         #   source = ./assets/galana.png;
-        #    width = 50;
-        #    height = 50;
-        #    padding = {
-        #      top = 20;
-        #      bottom = 20;
-        #    };
+        #   # type = "sixel";
+        #   width = 20;
+        #   height = 20;
+        #   padding = {
+        #     top = 10;
+        #     bottom = 10;
+        #   };
         # };
         display = {
           separator = " -> ";
@@ -58,7 +58,7 @@
         modules = [
           {
             type = "custom";
-            format = "┌{$1}{$1}┐";
+            format = "┌{$1} {$1}┐";
             outputColor = "90";
           }
           {
@@ -67,7 +67,7 @@
           }
           {
             type = "custom";
-            format = "└{$1}{$1}┘";
+            format = "└{$1} {$1}┘";
             outputColor = "90";
           }
           {
@@ -209,54 +209,30 @@
       ];
     };
 
-    kitty = {
-      enable = false;
-      font = {
-        name = config.default.term-font;
-        size = 10;
-      };
-      settings = {
-        enable_audio_bell = false;
-        allow_remote_control = true;
-        listen_on = "unix:kitty";
-        tab_bar_edge = "top";
-        tab_bar_style = "powerline";
-        scrollback_lines = 100000;
-        scrollback_pager = "bat --chop-long-lines";
-        # cursor_trail = 3;
-        enabled_layouts = "all";
-        background = "#192330";
-
-        remember_window_size = false;
-      };
-      themeFile = "Nord";
-    };
-
     sioyek = {
       enable = true;
       bindings = {
-        "move_up_smooth" = "k";
-        "move_down_smooth" = "j";
-        "move_left" = "l";
-        "move_right" = "h";
-        "close_window" = "q";
-        "quit" = "Q";
-        "next_page" = "J";
-        "previous_page" = "K";
-
-        "synctex_under_ruler" = "gd";
-        "copy" = "yy";
-        "visual_mark_under_cursor" = "V";
+        move_up_smooth = "k";
+        move_down_smooth = "j";
+        move_left = "l";
+        move_right = "h";
+        close_window = "q";
+        quit = "Q";
+        next_page = "J";
+        previous_page = "K";
+        synctex_under_ruler = "gd";
+        copy = "yy";
+        visual_mark_under_cursor = "V";
       };
       config = {
-        "should_launch_new_window" = "1";
-        "ui_font" = "${config.default.main-font}";
-        "font_size" = "14";
-        "keyboard_select_font_size" = "10";
-        "super_fast_search" = "1";
-        "rerender_overview" = "1";
-        "status_bar_font_size" = "16";
-        "inverse_search_command" = "hx %1:%2";
+        should_launch_new_window = "1";
+        ui_font = "${config.default.main-font}";
+        font_size = "14";
+        keyboard_select_font_size = "10";
+        super_fast_search = "1";
+        rerender_overview = "1";
+        status_bar_font_size = "16";
+        inverse_search_command = "hx %1:%2";
 
       };
     };
@@ -271,21 +247,21 @@
         note = "nu ${./assets/scripts/note.nu}";
       };
       configFile.text = ''
-      $env.config.buffer_editor = "helix" 
-      $env.config.show_banner = false 
+        $env.config.buffer_editor = "helix" 
+        $env.config.show_banner = false 
 
-        $env.config = {
-          bracketed_paste:                  true
-          buffer_editor:                    ""
-          datetime_format:                  {}
-          edit_mode:                        vi
-          error_style:                      fancy
-          float_precision:                  2
-          footer_mode:                      25
-          render_right_prompt_on_last_line: false
-          show_banner:                      false
-          use_ansi_coloring:                true
-        }
+          $env.config = {
+            bracketed_paste:                  true
+            buffer_editor:                    ""
+            datetime_format:                  {}
+            edit_mode:                        vi
+            error_style:                      fancy
+            float_precision:                  2
+            footer_mode:                      25
+            render_right_prompt_on_last_line: false
+            show_banner:                      false
+            use_ansi_coloring:                true
+          }
       '';
       environmentVariables = {
         YAZI_TEMP = "~/.yazi_temp";
@@ -343,10 +319,11 @@
   services = {
     clipse = {
       enable = true;
-      imageDisplay.type = "kitty";
+      imageDisplay = {
+        type = "sixel";
+        heightCut = 10;
+      };
     };
-
-
 
     gammastep = {
       enable = true;
@@ -433,86 +410,68 @@
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
   # SOFT
-  home.packages = with pkgs; [
-    wofi # needed for waybar config, may delete soon TODO
-    brightnessctl # brightness control
-    telegram-desktop # telegram (messenger)
-    tectonic # LaTeX processing
-    rustc # Rust programming language
-    clippy # Rust linter
-    cargo # rust package manager
-    obsidian # note taking
-    lazygit # tui git
-    qbittorrent # torrent client
-    inkscape # vector graphics
-    grim # screen shots together with slurp
-    slurp
-    bacon # Rust "jit" compilation tool
-    mpv # video player
-    pyradio # tui radio
-    feh # image viewer
-    libreoffice-fresh # office editors doc,xlsx, etc
-    discord # voice and text-chat app
-    gpg-tui # tui gpg
-    kega-fusion # SEGA emulator
-    btop # tui system monitor
-    timer # tui timer
-    wf-recorder # screen capture
-    networkmanagerapplet # connections control for waybar
-    wasistlos # whatsapp client
-    aseprite # pixel img/animation drawing software
-    wl-color-picker # color picker
-    xournalpp # More advanced whiteboard
-    tldr # Offline command Manual, substitute for `man` command
-    wev # wayland event viewer
-    hyprpicker # Another Color picker need further comparison with wl-color-picker
-    slack # Business communication (Discord for KSE)
-    prismlauncher # Minecraft launcher
-    lshw # Hardware info
-    usbutils
-    wiki-tui # TUI wikipedia
-    mask # Markdown makefiles
-    presenterm # TUI Presentations!
-    dust # Disk space visualization
-    ouch # cli archiving tool
-    pass-wayland # cli password store
-    tuifeed # tui news feed reader
-    dua # tui storage capacity viewer
-    bluetuith # tui bluetooth manager
-    clinfo
-    evince
-    texliveFull # TODO needed for Inkscape to render LaTeX
-    tree # CLI folder visualization
-    woomer # Screen zoom and focus like Tsoding
-    chamber
-    calcure # TUI calendar
-    bibtex-tidy # Tidying bibtex offline!
-    mermaid-cli # Mermaid diagrams
-    typst # Analogue of LaTeX for math writing
-    piper
-    jq                   # CLI json processor
-    imagemagick          # Used to render images (for snacks)
-    ghostscript          # ------||-------
-    cargo-generate       # Generate Rust project template based on git repo
-    cargo-expand 
-    cargo-fuzz   
-    milkytracker         # Tracker DAW
-
-    docker
-    vscode
-
-    tilinggallery        # Penrose tiling wallpaper generator
-    wbg                  # Replacement for hyprpaper
-    chawan
-    jdk25
-    lazyjj
-
-    zola
-    lldb
-    hayabusa
-
-
-    # pipes-rs             # cli pipes simulation
+  home.packages = [
+    pkgs.wofi # needed for waybar config, may delete soon TODO
+    pkgs.brightnessctl # brightness control
+    pkgs.telegram-desktop # telegram (messenger)
+    pkgs.tectonic # LaTeX processing
+    pkgs.rustc # Rust programming language
+    pkgs.clippy # Rust linter
+    pkgs.cargo # rust package manager
+    pkgs.nyaa # tui torrents browser & download
+    pkgs.inkscape # vector graphics
+    pkgs.grim # screen shots together with slurp
+    pkgs.slurp
+    pkgs.bacon # Rust "jit" compilation tool
+    pkgs.mpv # video player
+    pkgs.pyradio # tui radio
+    pkgs.feh # image viewer
+    pkgs.libreoffice-fresh # office editors doc,xlsx, etc
+    pkgs.wf-recorder # screen capture
+    pkgs.networkmanagerapplet # connections control for waybar
+    pkgs.wasistlos # whatsapp client
+    pkgs.xournalpp # More advanced whiteboard
+    pkgs.tldr # Offline command Manual, substitute for `man` command
+    pkgs.wev # wayland event viewer
+    pkgs.hyprpicker # Another Color picker need further comparison with wl-color-picker
+    pkgs.prismlauncher # Minecraft launcher
+    pkgs.lshw # Hardware info
+    pkgs.usbutils
+    pkgs.presenterm # TUI Presentations!
+    pkgs.dust # Disk space visualization
+    pkgs.ouch # cli archiving tool
+    pkgs.pass-wayland # cli password store
+    pkgs.dua # tui storage capacity viewer
+    pkgs.bluetuith # tui bluetooth manager
+    pkgs.evince # DJVU/PDF reader
+    pkgs.tree # CLI folder visualization
+    pkgs.woomer # Screen zoom and focus like Tsoding | TODO not working with fractional scaling
+    pkgs.mermaid-cli # Mermaid diagrams
+    pkgs.typst # Better LaTeX
+    pkgs.jq # CLI json processor
+    pkgs.cargo-generate # Generate Rust project template based on git repo
+    pkgs.cargo-expand
+    pkgs.cargo-fuzz
+    pkgs.milkytracker # Tracker DAW
+    pkgs.docker
+    pkgs.vscode
+    pkgs.tilinggallery # Penrose tiling wallpaper generator
+    pkgs.wbg # Replacement for hyprpaper
+    pkgs.chawan
+    pkgs.jdk25
+    pkgs.lazyjj
+    pkgs.zola
+    pkgs.hayabusa
+    pkgs.pipes-rs # cli pipes simulation
+    # pkgs.aseprite # pixel img/animation drawing software
+    # pkgs.gpg-tui # tui gpg
+    # pkgs.kega-fusion # SEGA emulator
+    # pkgs.wiki-tui # TUI wikipedia
+    # pkgs.mask # Markdown makefiles
+    # pkgs.tuifeed # tui news feed reader
+    # pkgs.texliveFull # TODO needed for Inkscape to render LaTeX
+    # pkgs.calcure # TUI calendar
+    # pkgs.bibtex-tidy # Tidying bibtex offline!
     # sc-controller        # controller configs
     # orca-c               # esoteric programming sequencer
     # cava                 # audio visualizer
