@@ -59,7 +59,7 @@
     TERMINAL = "wezterm";
     TERM = "wezterm";
     PAGER = "bat --plain";
-    MANPAGER = "bat --plain";
+    # MANPAGER = "bat --plain";
     NIXOS_OZONE_WL = 1;
   };
 
@@ -75,6 +75,8 @@
     pkgs.udiskie
     pkgs.fd
     pkgs.sshfs
+    # pkgs.xorg.xhost
+    # pkgs.glib
     # Copied from https://github.com/RGBCube/NCC/blob/aec093b751cdf8d0170628e483923aae7773e3a5/modules/common/rust.nix
     pkgs.cargo-expand
     pkgs.cargo-fuzz
