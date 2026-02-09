@@ -54,6 +54,10 @@
       languages = {
         language = [
           {
+            name = "nix";
+            auto-format = true;
+          }
+          {
             name = "rust";
             formatter = {
               command = "${pkgs.rustfmt}/bin/rustfmt";
@@ -105,9 +109,9 @@
           typescript-language-server = {
             command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
           };
-          superhtml = {
-            command = "${pkgs.superhtml}/bin/superhtml";
-          };
+          # superhtml = {
+          #   command = "${pkgs.superhtml}/bin/superhtml";
+          # };
           taplo = {
             command = "${pkgs.taplo}/bin/taplo";
           };
