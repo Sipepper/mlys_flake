@@ -354,7 +354,7 @@
         };
       };
       exec-once = [
-        # "nu ~/change_wallpaper.nu"
+        "wbg -s ${./assets/.wallpaper.svg}"
         "waybar"
         "easyeffects --gapplication-service"
         "vesktop --start-minimized"
@@ -419,8 +419,8 @@
       };
       # monitor = ",1920x1080,auto,1.2";
 
+
       "$mainMod" = "SUPER";
-      # "$terminal" = "kitty";
       "$terminal" = "wezterm";
       "$menu" = "fuzzel";
 
@@ -428,7 +428,7 @@
         # screenshot of a region
         ''$mainMod, S, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png ''
         # screenshot of the whole screen
-        "$mainMod SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
+        ''$mainMod SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png''
         "$mainMod, Q, exec, $terminal"
         "$mainMod, Z, exec, woomer"
         "$mainMod, A, killactive,"
