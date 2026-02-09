@@ -29,6 +29,9 @@
 
         editor = {
           line-number = "relative";
+          lsp.display-messages = true;
+          soft-wrap.enable = true;
+          indent-guides.render = true;
           bufferline = "multiple";
           shell = [
             "nu"

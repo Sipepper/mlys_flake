@@ -32,7 +32,14 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users."mlys" = {
                 imports = [ ./home.nix ];
-                wayland.windowManager.hyprland.settings.monitor = ",1920x1080@100,auto,1";
+                wayland.windowManager.hyprland.settings = {
+                  monitor = ",1920x1080@100,auto,1";
+                  device = {
+                    name = "keychron--keychron-link-";
+                    sensitivity = "-0.5";
+                  };
+                };
+               programs.vscode.enable = true;
               };
             }
           ];
@@ -57,7 +64,11 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users."mlys" = {
                 imports = [ ./home.nix ];
-                wayland.windowManager.hyprland.settings.monitor = ",1920x1080,auto,1.2";
+                wayland.windowManager.hyprland.settings = {
+                  monitor = ",1920x1080,auto,1.2";
+                  xwayland.force_zero_scaling = true;
+                };
+
               };
             }
           ];

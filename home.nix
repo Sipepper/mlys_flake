@@ -453,8 +453,6 @@
     pkgs.cargo-expand
     pkgs.cargo-fuzz
     pkgs.milkytracker # Tracker DAW
-    pkgs.docker
-    pkgs.vscode
     pkgs.tilinggallery # Penrose tiling wallpaper generator
     pkgs.wbg # Replacement for hyprpaper
     pkgs.chawan
