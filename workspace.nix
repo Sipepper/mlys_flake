@@ -8,7 +8,15 @@
     btop.enable = true;
     discord.enable = true;
     obsidian.enable = true;
-    lazygit.enable = true;
+    lazygit = {
+      enable = true;
+      settings = {
+        user = {
+          email = "m.lysynskyi@gmail.com";
+          name = "Mykola Lysynskyi";
+        };
+      };
+    };
 
     jujutsu = {
       enable = true;
@@ -96,6 +104,35 @@
           };
           texlab = {
             command = "${pkgs.texlab}/bin/texlab";
+            config.texlab.forwardSearch = {
+              executable = "sioyek";
+              args = [
+                "--reuse-window"
+                "--execute-command"
+                "toggle_synctex"
+                "--inverse-search"
+                "texlab inverse-search -i \"%%1\" -l %%2"
+                "--forward-search-file"
+                "%f"
+                "--forward-search-line"
+                "%l"
+                "%p"
+              ];
+            };
+            config.texlab.build = {
+              onSave = true;
+              forwardSearchAfter = true;
+              executable = "tectonic";
+              args = [
+                "-X"
+                "compile"
+                "%f"
+                "--synctex"
+                "-Zshell-escape"
+                "--keep-logs"
+                "--keep-intermediates"
+              ];
+            };
           };
           vscode-css-languageserver = {
             command = "${pkgs.vscode-css-languageserver}/bin/vscode-css-languageserver";
