@@ -26,6 +26,9 @@
           modules = [
             ./configuration.nix
             ./hardware-desktop.nix
+            {
+              system.stateVersion = "24.05";
+            }
             determinate.nixosModules.default
             home-manager.nixosModules.default
             {
@@ -39,7 +42,7 @@
                     sensitivity = "-0.5";
                   };
                 };
-               programs.vscode.enable = true;
+                programs.vscode.enable = true;
               };
             }
           ];
@@ -56,7 +59,7 @@
                   size = 16 * 1024;
                 }
               ];
-              system.stateVersion = "24.05"; # Did you read the comment?
+              system.stateVersion = "24.05";
             }
             determinate.nixosModules.default
             home-manager.nixosModules.default
